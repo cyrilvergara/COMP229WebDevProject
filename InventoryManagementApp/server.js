@@ -1,26 +1,28 @@
-import dotenv from 'dotenv';
-import config from './config/config.js';
-import app from './server/express.js';
-import mongoose from 'mongoose';
+const dotenv = require('dotenv');
+const config = require('./server/config/config.js');
+const app = require('./server/express.js');
+const mongoose = require('mongoose');
 
-dotenv.config();
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
 
- .then(() => {
-   console.log("Connected to the database!");
-   })
-  
-mongoose.connection.on('error', () => {
-throw new Error(`unable to connect to database: ${config.mongoUri}`) 
-})
-app.get("/", (req, res) => {
-res.json({ message: "Welcome to User application." });
+// Connect to MongoDB database
+mongoose.connect(config.mongoUri)
+  .then(() => {
+    console.log("Connected to the database!");
+    // Start the Express server after successful database connection
+    app.listen(config.port, () => {
+      console.info('Server started on port %s.', config.port);
+    });
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the database:", err);
+    process.exit(1); // Exit the application if unable to connect to the database
+  });
+
+
+
+// Handle MongoDB connection errors
+mongoose.connection.on('error', (err) => {
+  console.error("MongoDB connection error:", err);
 });
-app.listen(config.port, (err) => { 
-if (err) {
-console.log(err) 
-}
-console.info('Server started on port %s.', config.port) 
-})

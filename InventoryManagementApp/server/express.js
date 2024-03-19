@@ -1,26 +1,28 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
-import compress from 'compression'
-import cors from 'cors'
-import helmet from 'helmet'
-import Template from './../template.js'
-import userRoutes from './routes/user.routes.js'
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const userRoutes = require('./routes/UserRoute');
 
 
 const app = express()
 app.get('/', (req, res) => {
-    res.status(200).send(Template()) 
+    res.status(200).send("Welcome ") 
     })
     
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-app.use('/', userRoutes)
+
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser())
-app.use(compress())
-app.use(helmet())
+
 app.use(cors())
-export default app
+
+// Mount user routes
+app.use('/api/users', userRoutes);
+
+// // Start the server
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`);
+// });
+
+module.exports = app
