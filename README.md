@@ -3,7 +3,7 @@
 ## Prerequisites
 Before you start testing, ensure you follow these steps:
 
-1. Checkout the 'buildAPI_1' branch.
+1. Checkout the 'buildAPI_V1' branch.
 2. Create a `.env` file and include the following line:
    ```
    JWT_SECRET_KEY=generateSecret()
