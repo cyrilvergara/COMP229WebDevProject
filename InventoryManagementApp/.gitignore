@@ -1,2 +1,30 @@
-node_modules
+# Dependency directories
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Cache and session data
+*.dat
+*.db
+*.sqlite
+*.sqlite3
+*.log.*
+
+# Environment variables
 .env
+
+# IDEs
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
