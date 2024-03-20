@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-require('dotenv').config();
-
 
 // Create New User
 const SignupUser = async (req, res) => {

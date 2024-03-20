@@ -7,9 +7,8 @@ Before you start testing, ensure you follow these steps:
 2. Create a `.env` file and include the following line:
    ```
    JWT_SECRETE_KEY = generateSecret()
-
-GMAIL_USER=your_gmail_email_address
-GMAIL_PASS=your_gmail_password_or_app_specific_password
+   GMAIL_USER=your_gmail_email_address
+   GMAIL_PASS=your_gmail_password_or_app_specific_password
    ```
 3. Run `npm install`.
 4. Spin up the server with `npm run dev`.
