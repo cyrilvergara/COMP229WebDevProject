@@ -4,63 +4,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 
-// Create New User
-const SignupUser = async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
-
-        // Hash the password
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-        // Create a new user with hashed password
-        const newUser = new User({
-            name,
-            email,
-            hashed_password: hashedPassword // Store hashed password
-        });
-
-        // Save the user to the database
-        const savedUser = await newUser.save();
-
-        res.status(201).json(savedUser);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
-
-
-
-
-// Login User
-const loginUser = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-
-        // Find the user by email
-        const user = await User.findOne({ email });
-
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-
-        // Compare passwords
-        const passwordMatch = await bcrypt.compare(password, user.hashed_password);
-
-        if (!passwordMatch) {
-            return res.status(401).json({ error: 'Invalid password' });
-        }
-
-        // Generate JWT token
-        const jwtSecret = process.env.JWT_SECRETE_KEY;
-        const token = jwt.sign({ userId: user._id }, jwtSecret , { expiresIn: '1h' });
-
-        res.status(200).json({ token });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
-
 
 // Controller to get all users
 const getAllUsers = async (req, res) => {
@@ -113,6 +56,7 @@ const deleteUser = async (req, res) => {
 };
 
 
-module.exports = { SignupUser,loginUser, getAllUsers, updateUser, deleteUser };
+
+module.exports = { getAllUsers, updateUser, deleteUser };
 
   

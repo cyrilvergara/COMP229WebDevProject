@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const userRoutes = require('./routes/UserRoute');
+const authRoutes = require('./routes/AuthRouter')
+const inventoryRoutes = require('./routes/InventoryRouter')
 
 
 const app = express()
@@ -19,10 +21,13 @@ app.use(cors())
 // Mount user routes
 app.use('/api/users', userRoutes);
 
-// // Start the server
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`);
-// });
+
+// Mount Auth routes
+app.use('/api/auth', authRoutes);
+
+// Mount inventory routes
+app.use('/api/inventory', inventoryRoutes);
+
+
 
 module.exports = app
