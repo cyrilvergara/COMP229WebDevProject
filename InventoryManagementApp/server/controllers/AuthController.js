@@ -2,6 +2,7 @@ const  User  = require("../models/UserModel");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 require('dotenv').config();
 
@@ -78,21 +79,19 @@ const passwordResetRequest = async (req, res) => {
         // Generate password reset token
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRETE_KEY, { expiresIn: '1h' });
 
-        // Save token in the database (you need to implement this)
-
         // Send password reset email
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 587,
             secure: false, // Use TLS
             auth: {
-              user: 'maxafangscodev@gmail.com', // Your Gmail email address
-              pass: 'Maxafangscodev2024' // Your Gmail password or app-specific password
+                user: process.env.GMAIL_USER,
+                pass: process.env.GMAIL_PASS
             }
-          });
-          
+        });
+
         const mailOptions = {
-            from: 'your_email@example.com',
+            from: process.env.GMAIL_USER,
             to: email,
             subject: 'Password Reset Request',
             text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n
@@ -121,7 +120,7 @@ const passwordReset = async (req, res) => {
         const { password } = req.body;
 
         // Verify token
-        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRETE_KEY, async (err, decoded) => {
             if (err) {
                 return res.status(400).json({ error: 'Invalid or expired token' });
             }
