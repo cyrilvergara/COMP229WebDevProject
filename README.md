@@ -81,7 +81,7 @@ Before you start testing, ensure you follow these steps:
 
 - **Description**: Endpoint to signup a new user.
 - **HTTP Method**: POST
-- **URL**: `/api/users/signup`
+- **URL**: `/api/auth/signup`
 - **Request Body**:
   ```json
   {
