@@ -3,6 +3,10 @@ const config = require('./server/config/config.js');
 const app = require('./server/express.js');
 const mongoose = require('mongoose');
 
+const fs = require('fs');
+
+const uploadDir = './uploads';
+
 
 mongoose.Promise = global.Promise;
 
@@ -19,6 +23,17 @@ mongoose.connect(config.mongoUri)
     console.error("Unable to connect to the database:", err);
     process.exit(1); // Exit the application if unable to connect to the database
   });
+
+
+
+// Check if the directory exists, if not create it
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+    console.log('Upload directory created');
+} else {
+    console.log('Upload directory already exists');
+}
+
 
 
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const inventorySchema = new mongoose.Schema({
-    rank: { type: Number, auto: true },
+    rank: { type: Number, required: true },
     desc: { type: String, required: true },
     qtysold: { type: Number, required: false },
     exchqty: { type: Number, required: false },
@@ -20,7 +20,14 @@ const inventorySchema = new mongoose.Schema({
     itemcode: { type: String, required: true },
     otherbc: { type: String },
     lastsold: { type: Date },
-    dept: { type: String, required: true }
+    dept: { type: String, required: true },
+    category: { type: String },
+    division: { type: String },
+    group: { type: String },
+    brand: { type: String },
+    supplier: { type: String },
+    size: { type: Schema.Types.Mixed }, // Can be either String or Number
+    unit: { type: String }
 });
 
 module.exports = mongoose.model('Inventory', inventorySchema);

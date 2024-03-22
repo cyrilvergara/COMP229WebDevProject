@@ -3,7 +3,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const userRoutes = require('./routes/UserRoute');
 const authRoutes = require('./routes/AuthRouter')
-const inventoryRoutes = require('./routes/InventoryRouter')
+const inventoryRoutes = require('./routes/InventoryRouter');
+const multer = require('multer');
+
+
+
+
 
 
 const app = express()
@@ -12,7 +17,10 @@ app.get('/', (req, res) => {
     })
     
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// Middleware to handle file uploads
+//app.use(upload.single('csv')); // 'csv' should match the name attribute in the file input of your form
 
 app.use(bodyParser.json())
 
@@ -27,7 +35,6 @@ app.use('/api/auth', authRoutes);
 
 // Mount inventory routes
 app.use('/api/inventory', inventoryRoutes);
-
 
 
 module.exports = app

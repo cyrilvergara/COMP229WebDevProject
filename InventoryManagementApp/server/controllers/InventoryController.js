@@ -1,4 +1,8 @@
 const Inventory = require('../models/InventoryModel');
+const fs = require('fs');
+const csv = require('csv-parser');
+const XLSX = require('xlsx');
+const moment = require('moment'); // For date handling
 
 // Create a new inventory item
 const createInventoryItem = async (req, res) => {
@@ -64,10 +68,47 @@ const deleteInventoryItem = async (req, res) => {
     }
 };
 
+
+// Bulk upload controller
+const uploadBulkInventory = async (req, res) => {
+    try {
+        const workbook = XLSX.readFile(req.file.path);
+        const sheetName = workbook.SheetNames[0]; // Assuming data is in the first sheet
+        const worksheet = workbook.Sheets[sheetName];
+        const json = XLSX.utils.sheet_to_json(worksheet);
+
+        const processedData = json.map(item => {
+            // Parse and validate the lastsold date
+            if (item.lastsold && typeof item.lastsold === 'string') {
+                const parsedDate = moment(item.lastsold, 'DD-MMM-YY');
+                if (parsedDate.isValid()) {
+                    item.lastsold = parsedDate.toDate();
+                } else {
+                    // Handle invalid dates as needed
+                    item.lastsold = undefined; // or set to a default value
+                }
+            }
+            return item;
+        });
+
+        // Bulk insert into MongoDB
+        const insertedItems = await Inventory.insertMany(processedData);
+        res.status(201).json(insertedItems);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    } finally {
+        // Cleanup: delete the uploaded file after processing
+        fs.unlinkSync(req.file.path);
+    }
+};
+
+
 module.exports = {
     createInventoryItem,
     getAllInventoryItems,
     getInventoryItemById,
     updateInventoryItem,
-    deleteInventoryItem
+    deleteInventoryItem,
+    uploadBulkInventory
 };

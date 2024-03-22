@@ -1,4 +1,4 @@
-const  User  = require("../models/UserModel");
+const User = require("../models/UserModel");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
@@ -53,8 +53,8 @@ const loginUser = async (req, res) => {
         }
 
         // Generate JWT token
-        const jwtSecret = process.env.JWT_SECRETE_KEY;
-        const token = jwt.sign({ userId: user._id }, jwtSecret , { expiresIn: '1h' });
+        const jwtSecret = process.env.JWT_SECRET_KEY;
+        const token = jwt.sign({ userId: user._id }, jwtSecret, { expiresIn: '1h' });
 
         res.status(200).json({ token });
     } catch (error) {
@@ -75,7 +75,7 @@ const passwordResetRequest = async (req, res) => {
         }
 
         // Generate password reset token
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRETE_KEY, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
 
         // Send password reset email
         const transporter = nodemailer.createTransport({
@@ -129,7 +129,15 @@ const passwordReset = async (req, res) => {
             if (!user) {
                 return res.status(404).json({ error: 'User not found' });
             }
-            user.password = password; // Update password (you may need to hash it)
+
+            // Inside the passwordReset endpoint, before saving the new password
+            bcrypt.hash(password, saltRounds, async (err, hashedPassword) => {
+                if (err) {
+                    return res.status(500).json({ error: 'Error hashing password' });
+                }
+                user.password = hashedPassword; // Use the hashed password
+            });
+
             await user.save();
 
             res.status(200).json({ message: 'Password updated successfully' });
@@ -141,6 +149,5 @@ const passwordReset = async (req, res) => {
 };
 
 
-module.exports = { SignupUser,loginUser, passwordResetRequest, passwordReset  };
+module.exports = { SignupUser, loginUser, passwordResetRequest, passwordReset };
 
-  
