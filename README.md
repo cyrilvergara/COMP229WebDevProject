@@ -66,11 +66,14 @@ Before you start testing, ensure you follow these steps:
 - **HTTP Method**: POST
 - **URL**: `/api/auth/login`
 - **Request Body**:
-  ```json
- {
+   ```
+   {
   "email": "lucas1@gmail.com",
   "password":"luckiday"
-}
+  }
+```
+  ```json
+
   ```
 - **Response**:
   - `200 OK`: Successfully logged in. Returns a JWT token for authentication.
@@ -104,11 +107,11 @@ Endpoint: `POST /api/auth/password/reset/request`
 This endpoint is used to request a password reset for a user.
 
 #### Request Body
-
+```
 {
    "email": "lucas1@gmail.com"
 }
-
+```
 #### Response
 
 - Status Code: `200 OK`
