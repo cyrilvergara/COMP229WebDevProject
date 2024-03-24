@@ -1,4 +1,7 @@
 const config = {
+    SENDGRID_EMAIL: process.env.SENDGRID_EMAIL, 
+  SENDGRID_TEMPLATE: process.env.SENDGRID_TEMPLATE,
+  SENDGRID_BEARER: process.env.SENDGRID_BEARER,
     env: process.env.NODE_ENV || 'development', 
     port: process.env.PORT || 3000,
     jwtSecret: process.env.JWT_SECRET || "YOUR_secret_key", 
@@ -8,6 +11,8 @@ const config = {
    (process.env.MONGO_PORT || '27017') +
     '/mernproject' 
     }
+    
+
    module.exports= config
    
 

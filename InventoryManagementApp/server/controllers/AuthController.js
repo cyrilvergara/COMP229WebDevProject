@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const sgMail = require('@sendgrid/mail')
 
 
 // Create New User
@@ -78,47 +79,45 @@ const passwordResetRequest = async (req, res) => {
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
 
         // Send password reset email
-        const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 587,
-            secure: false, // Use TLS
-            auth: {
-                user: process.env.GMAIL_USER,
-                pass: process.env.GMAIL_PASS
-            }
-        });
 
-        const mailOptions = {
-            from: process.env.GMAIL_USER,
-            to: email,
-            subject: 'Password Reset Request',
-            text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n
-                Please click on the following link, or paste this into your browser to complete the process:\n\n
-                http://${req.headers.host}/api/password/reset/${token}\n\n
-                If you did not request this, please ignore this email and your password will remain unchanged.\n`
-        };
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error('Error sending password reset email:', error);
-                return res.status(500).json({ error: 'Failed to send password reset email' });
-            }
-            console.log('Password reset email sent:', info.response);
-            res.status(200).json({ message: 'Password reset email sent successfully' });
-        });
+        // Send password reset email
+
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+        const msg = {
+            to: email, // Change to your recipient
+            from: 'maxafangsco@gmail.com', // Change to your verified sender
+            subject: 'Password Reset from WinterDev',
+            text: 'Click the link below to set a new password:',
+            html: `<body>
+            <p>Click to set a new password: <a href="localhost:3000/api/auth/password/reset/${token}">Reset password</a></p>
+         </body>`
+        }
+
+        sgMail
+            .send(msg)
+            .then((response) => {
+                console.log(response[0].statusCode)
+                console.log(response[0].headers)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+
+
     } catch (error) {
         console.error('Error requesting password reset:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };
 
-// Password Reset Endpoint
 const passwordReset = async (req, res) => {
     try {
         const { token } = req.params;
         const { password } = req.body;
 
         // Verify token
-        jwt.verify(token, process.env.JWT_SECRETE_KEY, async (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decoded) => {
             if (err) {
                 return res.status(400).json({ error: 'Invalid or expired token' });
             }
@@ -130,17 +129,20 @@ const passwordReset = async (req, res) => {
                 return res.status(404).json({ error: 'User not found' });
             }
 
+            // Define saltRounds
+            const saltRounds = 10;
+
             // Inside the passwordReset endpoint, before saving the new password
-            bcrypt.hash(password, saltRounds, async (err, hashedPassword) => {
-                if (err) {
-                    return res.status(500).json({ error: 'Error hashing password' });
-                }
-                user.password = hashedPassword; // Use the hashed password
-            });
+            try {
+                const hashedPassword = await bcrypt.hash(password, saltRounds);
+                user.hashed_password = hashedPassword;// Use the hashed password
+                await user.save();
+                res.status(200).json({ message: 'Password updated successfully' });
+            } catch (error) {
+                console.error('Error hashing password:', error);
+                return res.status(500).json({ error: 'Error hashing password' });
+            }
 
-            await user.save();
-
-            res.status(200).json({ message: 'Password updated successfully' });
         });
     } catch (error) {
         console.error('Error resetting password:', error);
