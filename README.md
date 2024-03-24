@@ -294,11 +294,11 @@ This API allows you to manage inventory items.
 
 Given your specifics for the CSV file upload endpoint, here's the updated documentation section for the Bulk Upload via CSV File Endpoint, tailored to your application's requirements:
 
-````
+
 ## Bulk Upload via CSV File Endpoint
 
 ### 13 Upload CSV File for Inventory Data Import
-```
+
 - **Description**: This endpoint facilitates the bulk uploading of inventory data through a CSV file. It's designed to parse the uploaded CSV file on the server and insert each row as a separate record in the database, enabling efficient mass data import.
 
 - **HTTP Method**: POST
@@ -306,22 +306,22 @@ Given your specifics for the CSV file upload endpoint, here's the updated docume
 - **URL**: `/api/inventory/upload`
 
 - **Authorization**: Required. A valid JWT token must be included in the request headers to authenticate the request.
-
+```
 - **Request Headers**:  
   - `Content-Type`: `multipart/form-data`  
   - `Authorization`: `Bearer [Your_JWT_Token_Here]`  
     Replace `[Your_JWT_Token_Here]` with the actual JWT token provided after authentication.
-
+```
 - **Form Data**:  
   - `csvFile`: The CSV file containing inventory data to be uploaded. This file should adhere to the expected format, with the first row containing column headers that match the inventory entity's attributes, followed by rows representing individual inventory records.
 
 - **CSV Format Example**:  
   The CSV file must include column headers corresponding to the inventory item attributes. Each subsequent row represents a single inventory item. For instance:
-  ```
+  
  Upload the file with a key: `csvFile`
-  ```
+  
   Ensure the CSV file adheres to this structure for successful parsing and import.
-
+```
 - **Response**:
   - `200 OK`: The upload and data import were successful. The response body may include a summary of the import process, such as the count of records imported.
   - `400 Bad Request`: The request was malformed. Possible reasons include an improperly formatted CSV file, absence of the `csvFile` in the form data, or data type mismatches.
