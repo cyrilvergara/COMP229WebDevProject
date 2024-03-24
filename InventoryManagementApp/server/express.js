@@ -5,6 +5,7 @@ const userRoutes = require('./routes/UserRoute');
 const authRoutes = require('./routes/AuthRouter')
 const inventoryRoutes = require('./routes/InventoryRouter');
 const multer = require('multer');
+const path = require('path')
 
 
 
@@ -12,6 +13,8 @@ const multer = require('multer');
 
 
 const app = express()
+const CURRENT_WORKING_DIR = process.cwd()
+
 app.get('/', (req, res) => {
     res.status(200).send("Welcome ") 
     })
@@ -35,6 +38,9 @@ app.use('/api/auth', authRoutes);
 
 // Mount inventory routes
 app.use('/api/inventory', inventoryRoutes);
+
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
+
 
 
 module.exports = app
