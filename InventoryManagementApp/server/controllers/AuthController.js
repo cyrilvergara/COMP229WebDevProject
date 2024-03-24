@@ -90,20 +90,15 @@ const passwordResetRequest = async (req, res) => {
             subject: 'Password Reset from WinterDev',
             text: 'Click the link below to set a new password:',
             html: `<body>
-            <p>Click to set a new password: <a href="localhost:3000/api/auth/password/reset/${token}">Reset password</a></p>
-         </body>`
+                    <p>Click to set a new password: <a href="http://localhost:3000/api/auth/password/reset/${token}" target="_blank">Reset password</a></p>
+                 </body>`
         }
+
 
         sgMail
             .send(msg)
-            .then((response) => {
-                console.log(response[0].statusCode)
-                console.log(response[0].headers)
-            })
-            .catch((error) => {
-                console.error(error)
-            })
-
+        // Send a response back to the client to stop the spinner
+        res.status(200).json({ message: 'Email sent successfully' });
 
     } catch (error) {
         console.error('Error requesting password reset:', error);
