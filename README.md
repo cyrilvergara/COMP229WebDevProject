@@ -17,7 +17,7 @@ Before you start testing, ensure you follow these steps:
 ## User Endpoint
 
 
-### Get All Users
+### 1 Get All Users
 
 - **Description**: Endpoint to retrieve all users.
 - **HTTP Method**: GET
@@ -26,7 +26,7 @@ Before you start testing, ensure you follow these steps:
   - `200 OK`: Successfully retrieved all users. Returns an array of user objects.
   - `500 Internal Server Error`: An error occurred while processing the request.
 
-### Update User
+### 2 Update User
 
 - **Description**: Endpoint to update a user.
 - **HTTP Method**: PUT
@@ -45,7 +45,7 @@ Before you start testing, ensure you follow these steps:
   - `404 Not Found`: User with the specified ID not found.
   - `500 Internal Server Error`: An error occurred while processing the request.
 
-### Delete User
+### 3 Delete User
 
 - **Description**: Endpoint to delete a user.
 - **HTTP Method**: DELETE
@@ -60,7 +60,7 @@ Before you start testing, ensure you follow these steps:
 
 ## Auth Endpoint
 
-### Login User
+### 4 Login User
 
 - **Description**: Endpoint to login a user.
 - **HTTP Method**: POST
@@ -76,9 +76,9 @@ Before you start testing, ensure you follow these steps:
   - `200 OK`: Successfully logged in. Returns a JWT token for authentication.
   - `401 Unauthorized`: Invalid credentials provided.
   - `500 Internal Server Error`: An error occurred while processing the request.
-
-### Signup New User
-
+```
+### 5 Signup New User
+```
 - **Description**: Endpoint to signup a new user.
 - **HTTP Method**: POST
 - **URL**: `/api/auth/signup`
@@ -97,7 +97,7 @@ Before you start testing, ensure you follow these steps:
 
 ## Password Reset Endpoints
 
-### Request Password Reset
+###  6 Request Password Reset
 
 Endpoint: `POST /api/auth/password/reset/request`
 
@@ -120,7 +120,7 @@ This endpoint is used to request a password reset for a user.
 - Status Code: `500 Internal Server Error`
   - Description: Failed to send password reset email.
 
-### Reset Password
+### 7 Reset Password
 
 Endpoint: `POST /api/auth/password/reset/:token`
 
@@ -160,7 +160,7 @@ This API allows you to manage inventory items.
 
 ### Endpoints
 
-#### 1. Create a new inventory item
+#### 8. Create a new inventory item
 
 - **URL:** `/api/inventory/create`
 - **Method:** `POST`
@@ -173,6 +173,7 @@ This API allows you to manage inventory items.
 
 ```json
 {
+    "rank" : 908
     "desc": "Product description example",
     "qtysold": 100,
     "exchqty": 50,
@@ -205,7 +206,7 @@ This API allows you to manage inventory items.
 }
 ```
 
-#### 2. Get all inventory items
+#### 9. Get all inventory items
 
 - **URL:** `/api/inventory`
 - **Method:** `GET`
@@ -228,7 +229,7 @@ This API allows you to manage inventory items.
 ]
 ```
 
-#### 3. Get a single inventory item by ID
+#### 10. Get a single inventory item by ID
 
 - **URL:** `/api/inventory/:itemId`
 - **Method:** `GET`
@@ -246,7 +247,7 @@ This API allows you to manage inventory items.
 }
 ```
 
-#### 4. Update an existing inventory item
+#### 11. Update an existing inventory item
 
 - **URL:** `/api/inventory/:itemId`
 - **Method:** `PUT`
@@ -274,8 +275,8 @@ This API allows you to manage inventory items.
 }
 ```
 
-#### 5. Delete an existing inventory item
-
+#### 12. Delete an existing inventory item
+```
 - **URL:** `/api/inventory/:itemId`
 - **Method:** `DELETE`
 -**Authorization:** `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZhZWNhY2IyMTUwYjMwMWMwZjA2N2EiLCJpYXQiOjE3MTA5NTc3NTQsImV4cCI6MTcxMDk2MTM1NH0.sMFJgYbKLi4oSfVyuyjfYes2mqYsbmP_6GjkkRRg2xo`
@@ -290,4 +291,40 @@ This API allows you to manage inventory items.
 }
 ```
 
+
+Given your specifics for the CSV file upload endpoint, here's the updated documentation section for the Bulk Upload via CSV File Endpoint, tailored to your application's requirements:
+
+````
+## Bulk Upload via CSV File Endpoint
+
+### 13 Upload CSV File for Inventory Data Import
+```
+- **Description**: This endpoint facilitates the bulk uploading of inventory data through a CSV file. It's designed to parse the uploaded CSV file on the server and insert each row as a separate record in the database, enabling efficient mass data import.
+
+- **HTTP Method**: POST
+
+- **URL**: `/api/inventory/upload`
+
+- **Authorization**: Required. A valid JWT token must be included in the request headers to authenticate the request.
+
+- **Request Headers**:  
+  - `Content-Type`: `multipart/form-data`  
+  - `Authorization`: `Bearer [Your_JWT_Token_Here]`  
+    Replace `[Your_JWT_Token_Here]` with the actual JWT token provided after authentication.
+
+- **Form Data**:  
+  - `csvFile`: The CSV file containing inventory data to be uploaded. This file should adhere to the expected format, with the first row containing column headers that match the inventory entity's attributes, followed by rows representing individual inventory records.
+
+- **CSV Format Example**:  
+  The CSV file must include column headers corresponding to the inventory item attributes. Each subsequent row represents a single inventory item. For instance:
+  ```
+ Upload the file with a key: `csvFile`
+  ```
+  Ensure the CSV file adheres to this structure for successful parsing and import.
+
+- **Response**:
+  - `200 OK`: The upload and data import were successful. The response body may include a summary of the import process, such as the count of records imported.
+  - `400 Bad Request`: The request was malformed. Possible reasons include an improperly formatted CSV file, absence of the `csvFile` in the form data, or data type mismatches.
+  - `401 Unauthorized`: The request lacked a valid JWT token or the token was invalid, indicating the user is not authenticated or lacks the permissions for the operation.
+  - `500 Internal Server Error`: An unexpected error occurred on the server during the file processing or data insertion phase
 ---
