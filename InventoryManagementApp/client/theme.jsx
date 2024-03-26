@@ -3,6 +3,20 @@ import { pink } from '@material-ui/core/colors'
 const theme = createTheme({
     typography: {
         useNextVariants: true,
+        fontFamily: [
+            'proxima-nova',
+            'futura-pt',
+            '-apple-system',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+          ].join(','),
     },
     palette: {
         primary: {
