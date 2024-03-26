@@ -1,8 +1,6 @@
-const React = require('react')
-const ReactDOM = require('react-dom/client')
-const App = require('./App.jsx')
-require('./index.css')
-
+import React from 'react'
+import App from './App.jsx'
+import { createRoot } from 'react-dom/client';
 const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container);
-root.render(React.createElement(App, {tab: "home"}));
+const root = createRoot(container);
+root.render(<App tab="home" />)
