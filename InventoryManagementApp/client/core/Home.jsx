@@ -30,7 +30,8 @@ export default function Home() {
                 image={wdLogo} title="Winter Devs" />
             <CardContent>
                 <Typography variant="body2" component="p">
-                    Welcome to the MERN Skeleton home page.
+                    TEMP DESIGN FOR TESTING.
+                    REPLACE THIS WITH ACTUAL HOME.
                 </Typography>
             </CardContent>
         </Card>
