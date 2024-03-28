@@ -33,6 +33,7 @@ const theme = createTheme({
         },
         openTitle: '#3f4771',
         protectedTitle: pink['400'],
+        customColorBlue: '#0bc4ff',
         type: 'light'
     }
 })
