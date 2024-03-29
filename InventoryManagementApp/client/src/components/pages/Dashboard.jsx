@@ -23,8 +23,8 @@ export default function Test() {
     return (
         <Card className={classes.card}>
 
-            <Typography variant="h6" className={classes.title}>Test Page</Typography>
-            <Typography variant="body1" className={classes.title}>This page is for testing the component styles</Typography>
+            <Typography variant="h3" className={classes.title}>Dashboard</Typography>
+            <Typography variant="body1" className={classes.title}>This page is for testing the component styles and for the dashboard after the user logs in</Typography>
             <CardContent>
                 <Typography variant="body2" component="p">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

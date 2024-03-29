@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import CustomCard from "../components/CustomCard";
-import Footer from "../components/Footer";
-import theme from "../../theme";
+import LoginSignupForm from "../form/LoginSignupForm";
+import Footer from "../footer/Footer";
+import theme from "../../../theme";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -11,13 +11,13 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "80vh",
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(10),
+    padding: theme.spacing(7.8),
   },
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
     gap: theme.spacing(6),
-    marginTop: theme.spacing(20),
+    marginTop: theme.spacing(3),
     marginLeft: theme.spacing(10),
   },
   title: {
@@ -63,7 +63,7 @@ export default function Home() {
             </Typography>
           </div>
           <div>
-            <CustomCard />
+            <LoginSignupForm />
           </div>
         </div>
         <Footer />

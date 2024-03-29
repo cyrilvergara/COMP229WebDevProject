@@ -1,8 +1,8 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from '../../theme';
-import logo from '../../assets/images/WinterDevLogo_PrimaryLogoLight.svg';
+import theme from "../../../theme";
+import logo from '../../../assets/images/WinterDevLogo_PrimaryLogoLight.svg';
 
 const Footer = () => {
   return (
