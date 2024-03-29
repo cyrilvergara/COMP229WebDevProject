@@ -8,16 +8,16 @@ import theme from "../../../theme";
 const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: theme.palette.background.default,
-    minHeight: "80vh",
+    minHeight: "88vh",
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(7.8),
+    padding: theme.spacing(4),
   },
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
-    gap: theme.spacing(6),
-    marginTop: theme.spacing(3),
+    gap: theme.spacing(3),
+    marginTop: theme.spacing(1),
     marginLeft: theme.spacing(10),
   },
   title: {
@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
   },
   description: {
     color: theme.palette.text.secondary,
+  },
+  footer: {
+    marginTop: theme.spacing(9),
   },
 }));
 
@@ -66,7 +69,9 @@ export default function Home() {
             <LoginSignupForm />
           </div>
         </div>
+        <div className={classes.footer}>
         <Footer />
+      </div>
       </div>
     </ThemeProvider>
   );
