@@ -13,13 +13,14 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoginIcon from "@mui/icons-material/Login";
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../theme";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [showPassword, setShowPassword] = React.useState(false);
-  const [emailInput, setEmailInput] = React.useState('');
-  const [passwordInput, setPasswordInput] = React.useState('');
+  const [emailInput, setEmailInput] = React.useState("");
+  const [passwordInput, setPasswordInput] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -67,7 +68,13 @@ export default function Login() {
           </FormControl>
         </div>
 
-        <div style={{ fontSize: "15px", fontFamily: theme.typography.fontFamily, color: theme.palette.text.secondary }}>
+        <div
+          style={{
+            fontSize: "15px",
+            fontFamily: theme.typography.fontFamily,
+            color: theme.palette.text.secondary,
+          }}
+        >
           <Checkbox
             {...label}
             size="small"
@@ -81,7 +88,8 @@ export default function Login() {
             variant="contained"
             fullWidth
             startIcon={<LoginIcon />}
-            onClick={() => console.log("LOGIN button clicked")} // Placeholder onClick
+            component={Link}
+            to="/dashboard"
           >
             LOGIN
           </Button>

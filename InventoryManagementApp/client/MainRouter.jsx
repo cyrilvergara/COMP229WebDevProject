@@ -7,7 +7,7 @@ const MainRouter = () => {
     <div>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/test" element={<Dashboard />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>
   );
