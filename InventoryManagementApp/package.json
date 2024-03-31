@@ -24,11 +24,10 @@
       "nodemon": "^2.0.22"
    },
    "scripts": {
-      "dev": "concurrently 'vite' \"nodemon server.js\"",
-      "build": "vite build",
-      "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-      "preview": "vite preview"
-   },
+      "dev": "concurrently \"cd client && npx vite\" \"node server.js\"",
+      "build": "cd client && vite build",
+      "preview": "cd client && vite preview"
+    },
    "dependencies": {
       "@sendgrid/mail": "^8.1.1",
       "bcrypt": "^5.1.1",
