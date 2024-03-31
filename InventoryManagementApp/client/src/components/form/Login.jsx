@@ -9,13 +9,16 @@ import {
   Input,
   Checkbox,
 } from "@mui/material";
+import Typography from "@material-ui/core/Typography";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoginIcon from "@mui/icons-material/Login";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../theme";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import { signin } from "../../apis/auth.api";
+import auth from "../../helper/auth.helper";
+import { Navigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   marginTop5: {
@@ -34,13 +37,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() { 
+export default function Login() {
   const classes = useStyles();
 
   const [showPassword, setShowPassword] = React.useState(false);
-  const [emailInput, setEmailInput] = React.useState("");
-  const [passwordInput, setPasswordInput] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+
+  const [fields, setFieldValues] = React.useState({
+    email: "",
+    password: "",
+    error: "",
+  });
+
+  const onTextChange = (field) => (event) => {
+    setFieldValues({ ...fields, [field]: event.target.value });
+  };
+
+  const onLoginClick = () => {
+    const userCredentials = {
+      email: fields.email,
+      password: fields.password,
+    };
+
+    signin(userCredentials).then((response) => {
+      if (response.error) {
+        setFieldValues({ ...fields, error: response.error });
+        return;
+      }
+
+      auth.authenticate(response, () => {
+        setFieldValues({ ...fields, error: "" });
+
+        if (response && response.token) {
+          setIsAuthenticated(true);
+        }
+      });
+    });
+  };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
@@ -48,6 +82,14 @@ export default function Login() {
   };
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+  if (isAuthenticated) {
+    return (
+      <>
+        <Navigate to="/dashboard" />
+      </>
+    );
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -58,8 +100,7 @@ export default function Login() {
             label="Email Address"
             fullWidth
             variant="standard"
-            value={emailInput}
-            onChange={(event) => setEmailInput(event.target.value)}
+            onChange={onTextChange("email")}
           />
         </div>
         <div className={classes.marginTop5}>
@@ -70,8 +111,7 @@ export default function Login() {
             <Input
               id="standard-adornment-password"
               type={showPassword ? "text" : "password"}
-              onChange={(event) => setPasswordInput(event.target.value)}
-              value={passwordInput}
+              onChange={onTextChange("password")}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -87,6 +127,12 @@ export default function Login() {
           </FormControl>
         </div>
 
+        {fields.error && (
+          <Typography component="p" color="error">
+            {fields.error}
+          </Typography>
+        )}
+
         <div className={classes.rememberMe}>
           <Checkbox
             {...label}
@@ -101,8 +147,7 @@ export default function Login() {
             variant="contained"
             fullWidth
             startIcon={<LoginIcon />}
-            component={Link}
-            to="/dashboard"
+            onClick={onLoginClick}
           >
             LOGIN
           </Button>
