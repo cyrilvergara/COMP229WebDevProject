@@ -25,7 +25,7 @@ const theme = createTheme({
       fontSize: "6rem",
       lineHeight: "8rem",
       letterSpacing: "0.02em",
-    }, 
+    },
     h2: {
       fontFamily: [
         'futura-pt',
@@ -37,7 +37,7 @@ const theme = createTheme({
       fontSize: "5.333rem",
       lineHeight: "6.667rem",
       letterSpacing: "0.02em",
-    },  
+    },
     h3: {
       fontFamily: [
         'futura-pt',
@@ -49,7 +49,7 @@ const theme = createTheme({
       fontSize: "4.667rem",
       lineHeight: "6rem",
       letterSpacing: 0,
-    }, 
+    },
     h4: {
       fontFamily: [
         'futura-pt',
