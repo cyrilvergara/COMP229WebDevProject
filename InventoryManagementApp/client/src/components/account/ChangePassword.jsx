@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     card: {
         padding: '24px',
         boxShadow: '0 2px 4px 0 #ABBDC225',
+        borderRadius: '8px',
     },
     cardContent: {
         padding: 0,
