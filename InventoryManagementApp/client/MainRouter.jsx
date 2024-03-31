@@ -5,6 +5,7 @@ import Dashboard from "./src/components/pages/Dashboard";
 import Profile from "./src/components/account/Profile";
 import UpdateInfo from "./src/components/account/UpdateInfo";
 import UpdateAdmin from "./src/components/account/UpdateAdmin";
+import ChangePassword from "./src/components/account/ChangePassword";
 const MainRouter = () => {
   return (
     <div>
@@ -14,6 +15,7 @@ const MainRouter = () => {
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/update" element={<UpdateInfo />} />
         <Route exact path="/admin-update" element={<UpdateAdmin />} />
+        <Route exact path="/change-password" element={<ChangePassword />} />
       </Routes>
     </div>
   );
