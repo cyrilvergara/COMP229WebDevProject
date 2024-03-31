@@ -1,12 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
 import Footer from '../footer/Footer';
-// import theme from '../../../theme';
+import theme from '../../../theme';
 
 const drawerWidth = 300;
 
@@ -52,7 +52,7 @@ const Sidebar = () => {
           wdinv
         </Typography>
         <List>
-          {['View Records', 'Create New Record', 'Update Records', 'Delete Records', 'View Users'].map((text, index) => (
+          {['View Records', 'Create New Record', 'Update Records', 'Delete Records', 'View Users', 'Account', 'Log Out'].map((text, index) => (
             <ListItem button key={index} className={classes.listItem}>
               <ListItemText primary={text} />
             </ListItem>
