@@ -111,7 +111,6 @@ const theme = createTheme({
       fontSize: "1.667rem",
       lineHeight: "2.333rem",
       letterSpacing: "0.02em",
-      textTransform: 'uppercase',
     },
     body1: {
       fontFamily: [
@@ -177,7 +176,7 @@ const theme = createTheme({
     error: {
       light: '#F05816',
       main: '#F05816',
-      dark: '#F05816',
+      dark: '#E24908',
       contrastText: '#FDFFFF',
     },
     warning: {
