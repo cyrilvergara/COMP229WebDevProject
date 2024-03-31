@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./src/components/pages/Home";
 import Dashboard from "./src/components/pages/Dashboard";
-import Profile from "./src/components/user/Profile";
+import Profile from "./src/components/account/Profile";
 const MainRouter = () => {
   return (
     <div>
