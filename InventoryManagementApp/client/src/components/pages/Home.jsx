@@ -4,40 +4,47 @@ import Typography from "@material-ui/core/Typography";
 import LoginSignupForm from "../form/LoginSignupForm";
 import Footer from "../footer/Footer";
 import theme from "../../../theme";
+import logo from '../../../assets/images/wdinvLogo_light.svg';
+import { capitalize, Grid } from "@material-ui/core";
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    backgroundColor: theme.palette.background.default,
-    minHeight: "88vh",
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(4),
+  root: {
+    backgroundColor: theme.palette.primary.light,
+    color: theme.palette.common.black,
+    display: 'flex',
+    maxWidth: '100vw',
+    minHeight: '100vh',
+    flexDirection: 'column',
+    overflow: 'hidden',
+    justifyContent: 'center',
+  },
+  main: {
+    maxWidth: theme.breakpoints.values.lg,
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '64px 0',
   },
   grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
     gap: theme.spacing(3),
-    marginTop: theme.spacing(1),
-    marginLeft: theme.spacing(10),
   },
-  title: {
-    fontSize: "5rem",
-    fontWeight: "bold",
-    marginBottom: theme.spacing(6),
+  column1: {
+    maxWidth: '600px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '24px',
+    alignItems: 'flex-start',
   },
-  titleColor: {
-    color: theme.palette.customColorBlue,
+  column2: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
   },
-  subTitle: {
-    fontSize: "6xl",
-    color: theme.palette.text.secondary,
-  },
-  description: {
-    color: theme.palette.text.secondary,
-  },
-  footer: {
-    marginTop: theme.spacing(9),
-  },
+  heading: {
+    textTransform: 'capitalize',
+  }
 }));
 
 export default function Home() {
@@ -45,34 +52,28 @@ export default function Home() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={classes.container}>
-        <div className={classes.grid}>
-          <div>
-            <div className="mb-6">
-              <Typography variant="h1" className={classes.title}>
-                <span className={classes.titleColor}>wd</span>
-                <span>inv</span>
-              </Typography>
-
-              <Typography variant="h2" className={classes.subTitle}>
+      <Container className={classes.root}>
+        <Container className={classes.main}>
+          <Grid container className={classes.grid}>
+            <Grid item className={classes.column1}>
+              <img src={logo} alt="WDInv Logo" height='40px' />
+              <Typography variant="h4" className={classes.heading}>
                 Effortless Inventory Control Awaits
               </Typography>
-            </div>
-            <Typography variant="body1" className={classes.description}>
-              Simplify your stock control with WDInv, the intuitive inventory
-              management solution. Enjoy real-time tracking, streamlined
-              ordering, and actionable insights-all in one place. Get ready to
-              elevate your inventory efficiency.
-            </Typography>
-          </div>
-          <div>
-            <LoginSignupForm />
-          </div>
-        </div>
-        <div className={classes.footer}>
-        <Footer />
-      </div>
-      </div>
+              <Typography variant="body1" className={classes.body}>
+                Simplify your stock control with WDInv, the intuitive inventory
+                management solution. Enjoy real-time tracking, streamlined
+                ordering, and actionable insights-all in one place. Get ready to
+                elevate your inventory efficiency.
+              </Typography>
+            </Grid>
+            <Grid item className={classes.column2}>
+              <LoginSignupForm />
+            </Grid>
+          </Grid>
+          <Footer />
+        </Container>
+      </Container>
     </ThemeProvider>
   );
 }
