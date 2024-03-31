@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import MainRouter from '../MainRouter';
 import theme from '../theme';
 const App = () => {
@@ -8,6 +9,7 @@ const App = () => {
     <Router>
       <ThemeProvider theme={theme}>
         <MainRouter />
+        <CssBaseline />
       </ThemeProvider>
     </Router>
   );
