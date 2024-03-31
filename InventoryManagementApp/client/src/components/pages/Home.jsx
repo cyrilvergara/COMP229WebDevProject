@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     padding: '64px 0',
+    gap: '120px',
   },
   grid: {
     display: 'grid',
