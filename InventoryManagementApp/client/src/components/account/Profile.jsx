@@ -107,31 +107,31 @@ export default function Profile() {
                             </Grid>
                             <CardContent className={classes.cardContent}>
                                 <Container className={classes.item}>
-                                    <Typography variant='h6' className={classes.label}>Label</Typography>
+                                    <Typography variant='h6' className={classes.label}>ID</Typography>
                                     <Typography variant='body1' className={classes.Info}>Lorem Ipsum</Typography>
                                 </Container>
                                 <Container className={classes.item}>
-                                    <Typography variant='h6' className={classes.label}>Label</Typography>
+                                    <Typography variant='h6' className={classes.label}>Name</Typography>
                                     <Typography variant='body1' className={classes.Info}>Lorem Ipsum</Typography>
                                 </Container>
                                 <Container className={classes.item}>
-                                    <Typography variant='h6' className={classes.label}>Label</Typography>
+                                    <Typography variant='h6' className={classes.label}>Email</Typography>
                                     <Typography variant='body1' className={classes.Info}>Lorem Ipsum</Typography>
                                 </Container>
                                 <Container className={classes.item}>
-                                    <Typography variant='h6' className={classes.label}>Label</Typography>
+                                    <Typography variant='h6' className={classes.label}>Account Created On</Typography>
                                     <Typography variant='body1' className={classes.Info}>Lorem Ipsum</Typography>
                                 </Container>
                                 <Container className={classes.item}>
-                                    <Typography variant='h6' className={classes.label}>Label</Typography>
+                                    <Typography variant='h6' className={classes.label}>Account Last updated on</Typography>
                                     <Typography variant='body1' className={classes.Info}>Lorem Ipsum</Typography>
                                 </Container>
                                 <Container className={classes.item}>
-                                    <Typography variant='h6' className={classes.label}>Label</Typography>
+                                    <Typography variant='h6' className={classes.label}>User Type</Typography>
                                     <Typography variant='body1' className={classes.Info}>Lorem Ipsum</Typography>
                                 </Container>
                                 <Container className={classes.item}>
-                                    <Typography variant='h6' className={classes.label}>Label</Typography>
+                                    <Typography variant='h6' className={classes.label}>Password</Typography>
                                     <Typography variant='body1' className={classes.Info}>Lorem Ipsum</Typography>
                                     <Link href='#'><Typography variant='h6'>Change Password</Typography></Link>
                                 </Container>
