@@ -8,7 +8,6 @@ import {
   Button,
   Input,
   Checkbox,
-  Stack,
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -16,8 +15,28 @@ import LoginIcon from "@mui/icons-material/Login";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../theme";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 
-export default function Login() {
+const useStyles = makeStyles((theme) => ({
+  marginTop5: {
+    marginTop: "5px",
+  },
+  marginTop10: {
+    marginTop: "10px",
+  },
+  paddingTop15: {
+    paddingTop: "15px",
+  },
+  rememberMe: {
+    fontSize: "15px",
+    fontFamily: theme.typography.fontFamily,
+    color: theme.palette.text.secondary,
+  },
+}));
+
+export default function Login() { 
+  const classes = useStyles();
+
   const [showPassword, setShowPassword] = React.useState(false);
   const [emailInput, setEmailInput] = React.useState("");
   const [passwordInput, setPasswordInput] = React.useState("");
@@ -32,18 +51,18 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        <div style={{ marginTop: "5px" }}>
+      <div className={classes.paddingTop15}>
+        <div className={classes.marginTop5}>
           <TextField
+            type="email"
             label="Email Address"
             fullWidth
             variant="standard"
-            sx={{ width: "100%" }}
             value={emailInput}
             onChange={(event) => setEmailInput(event.target.value)}
           />
         </div>
-        <div style={{ marginTop: "5px" }}>
+        <div className={classes.marginTop5}>
           <FormControl sx={{ width: "100%" }} variant="standard">
             <InputLabel htmlFor="standard-adornment-password">
               Password
@@ -68,13 +87,7 @@ export default function Login() {
           </FormControl>
         </div>
 
-        <div
-          style={{
-            fontSize: "15px",
-            fontFamily: theme.typography.fontFamily,
-            color: theme.palette.text.secondary,
-          }}
-        >
+        <div className={classes.rememberMe}>
           <Checkbox
             {...label}
             size="small"
@@ -83,7 +96,7 @@ export default function Login() {
           Remember Me
         </div>
 
-        <div style={{ marginTop: "10px" }}>
+        <div className={classes.marginTop10}>
           <Button
             variant="contained"
             fullWidth

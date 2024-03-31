@@ -6,6 +6,8 @@ import Profile from "./src/components/account/Profile";
 import UpdateInfo from "./src/components/account/UpdateInfo";
 import UpdateAdmin from "./src/components/account/UpdateAdmin";
 import ChangePassword from "./src/components/account/ChangePassword";
+import SignUp from "./src/components/form/Signup";
+
 const MainRouter = () => {
   return (
     <div>
@@ -16,6 +18,7 @@ const MainRouter = () => {
         <Route exact path="/update" element={<UpdateInfo />} />
         <Route exact path="/admin-update" element={<UpdateAdmin />} />
         <Route exact path="/change-password" element={<ChangePassword />} />
+        <Route exact path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );

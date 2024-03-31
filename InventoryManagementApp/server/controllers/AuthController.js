@@ -5,35 +5,6 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 const sgMail = require('@sendgrid/mail')
 
-
-// Create New User
-const SignupUser = async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
-
-        // Hash the password
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-        // Create a new user with hashed password
-        const newUser = new User({
-            name,
-            email,
-            hashed_password: hashedPassword // Store hashed password
-        });
-
-        // Save the user to the database
-        const savedUser = await newUser.save();
-
-        res.status(201).json(savedUser);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
-
-
-
-
 // Login User
 const loginUser = async (req, res) => {
     try {
@@ -54,7 +25,7 @@ const loginUser = async (req, res) => {
         }
 
         // Generate JWT token
-        const jwtSecret = process.env.JWT_SECRET_KEY;
+        const jwtSecret = generateSecret();
         const token = jwt.sign({ userId: user._id }, jwtSecret, { expiresIn: '1h' });
 
         res.status(200).json({ token });
@@ -76,7 +47,7 @@ const passwordResetRequest = async (req, res) => {
         }
 
         // Generate password reset token
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, generateSecret(), { expiresIn: '1h' });
 
         // Send password reset email
 
@@ -112,7 +83,7 @@ const passwordReset = async (req, res) => {
         const { password } = req.body;
 
         // Verify token
-        jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decoded) => {
+        jwt.verify(token, generateSecret(), async (err, decoded) => {
             if (err) {
                 return res.status(400).json({ error: 'Invalid or expired token' });
             }
@@ -146,5 +117,5 @@ const passwordReset = async (req, res) => {
 };
 
 
-module.exports = { SignupUser, loginUser, passwordResetRequest, passwordReset };
+module.exports = { loginUser, passwordResetRequest, passwordReset };
 

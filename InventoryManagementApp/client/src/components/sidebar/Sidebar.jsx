@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: theme.palette.primary.dark,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '100%',
+    backgroundColor: theme.palette.customColorDarkBlue,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "100%",
   },
   title: {
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: theme.spacing(2),
     color: theme.palette.primary.contrastText,
   },
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.contrastText,
   },
   footer: {
-    justifyContent: 'center',
+    justifyContent: "center",
   },
 }));
 
@@ -52,7 +52,13 @@ const Sidebar = () => {
           wdinv
         </Typography>
         <List>
-          {['View Records', 'Create New Record', 'Update Records', 'Delete Records', 'View Users', 'Account', 'Log Out'].map((text, index) => (
+          {[
+            "View Records",
+            "Create New Record",
+            "Update Records",
+            "Delete Records",
+            "View Users",
+          ].map((text, index) => (
             <ListItem button key={index} className={classes.listItem}>
               <ListItemText primary={text} />
             </ListItem>
