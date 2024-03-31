@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: theme.palette.customColorDarkBlue,
+    backgroundColor: theme.palette.primary.dark,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
