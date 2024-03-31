@@ -5,11 +5,11 @@ import logo from '../../../assets/images/WinterDevLogo_PrimaryLogoLight.svg';
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
-    padding: theme.spacing(5),
+    padding: theme.spacing(3),
     textAlign: 'center',
   },
   logoImage: {
-    width: 250,
+    width: 180,
     margin: 'auto',
     marginTop: theme.spacing(2),
   },
@@ -20,7 +20,7 @@ const Footer = () => {
 
   return (
     <div className={classes.footerContainer}>
-      <Typography variant="body2" color="textSecondary">
+      <Typography variant="h6">
         POWERED BY
       </Typography>
       <div className={classes.logoImage}>
