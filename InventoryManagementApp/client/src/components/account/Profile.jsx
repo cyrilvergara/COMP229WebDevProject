@@ -146,7 +146,7 @@ export default function Profile() {
                                     <Container className={classes.item}>
                                         <Typography variant='h6' className={classes.label}>Password</Typography>
                                         <Typography variant='body1' className={classes.Info}>Lorem Ipsum</Typography>
-                                        <Link to="#" className={classes.textLink}><Typography variant='h6'>Change Password</Typography></Link>
+                                        <Link to="/change-password" className={classes.textLink}><Typography variant='h6'>Change Password</Typography></Link>
                                     </Container>
                                 </CardContent>
                             </Card>

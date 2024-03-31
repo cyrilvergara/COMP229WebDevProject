@@ -8,7 +8,6 @@ import Sidebar from '../sidebar/Sidebar';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import ArrowBackOutlinedIcon from '@material-ui/icons/ArrowBackOutlined';
 import TextField from '@material-ui/core/TextField';
 import { Link } from "react-router-dom";
 
@@ -42,33 +41,12 @@ const useStyles = makeStyles((theme) => ({
         padding: '12px 24px',
         borderRadius: '4px',
     },
-    btnDelete: {
-        width: 'min-content',
-        padding: '12px 24px',
-        borderRadius: '4px',
-        backgroundColor: theme.palette.error.main,
-        color: theme.palette.common.white,
-        '&:hover': {
-            backgroundColor: theme.palette.error.dark,
-        },
-    },
-    btnIcon: {
-        marginRight: '8px',
-    },
     card: {
         padding: '24px',
         boxShadow: '0 2px 4px 0 #ABBDC225',
     },
-    cardHead: {
-        width: '100%',
-        padding: '0 0 12px 0',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        gap: '12px',
-    },
     cardContent: {
-        padding: '16px 0 0 0',
+        padding: 0,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -103,23 +81,18 @@ export default function ChangePassword() {
                     </Grid>
                     <Grid item className={classes.main}>
                         <Grid item className={classes.content}>
-                            <Link to="/profile">
-                                <Button className={classes.btnPrimary} variant="contained" color="primary" disableElevation> <ArrowBackOutlinedIcon className={classes.btnIcon} /> Back </Button>
-                            </Link>
+                            <Typography variant='h5'>Change Password</Typography>
                             <Card className={classes.card}>
-                                <Grid className={classes.cardHead}>
-                                    <Typography variant='h5'>Name</Typography>
-                                </Grid>
                                 <CardContent className={classes.cardContent}>
-                                    <TextField label="Name"></TextField>
-                                    <TextField label="Email"></TextField>
+                                    <TextField label="Current Password"></TextField>
+                                    <TextField label="New Password"></TextField>
+                                    <TextField label="Confirm New Password"></TextField>
                                 </CardContent>
                                 <Grid className={classes.cardFoot}>
                                     <Grid className={classes.cardAct}>
                                         <Button className={classes.btnPrimary} variant="contained" color="primary" disableElevation> Update </Button>
-                                        <Button className={classes.btnPrimary} variant="outlined" color="primary" disableElevation> Reset </Button>
+                                        <Link to='/profile'><Button className={classes.btnPrimary} variant="outlined" color="primary" disableElevation> Cancel </Button></Link>
                                     </Grid>
-                                        <Button className={classes.btnDelete} variant="contained" disableElevation> Delete </Button>
                                 </Grid>
                             </Card>
                         </Grid>
