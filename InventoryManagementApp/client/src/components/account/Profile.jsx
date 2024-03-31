@@ -108,7 +108,7 @@ export default function Profile() {
                             <Typography variant='h5'>Profile</Typography>
                             <Card className={classes.card}>
                                 <Grid className={classes.cardHead}>
-                                    <Typography variant='subtitle2'>Name</Typography>
+                                    <Typography variant='h5'>Name</Typography>
                                     <Grid className={classes.cardAct}>
                                         <Link to="/update">
                                             <Button className={classes.btnIcon}> <EditOutlinedIcon className={classes.icon} /> </Button>

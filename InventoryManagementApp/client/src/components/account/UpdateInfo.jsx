@@ -108,7 +108,7 @@ export default function UpdateInfo() {
                             </Link>
                             <Card className={classes.card}>
                                 <Grid className={classes.cardHead}>
-                                    <Typography variant='subtitle2'>Name</Typography>
+                                    <Typography variant='h5'>Name</Typography>
                                 </Grid>
                                 <CardContent className={classes.cardContent}>
                                     <TextField label="Name"></TextField>
