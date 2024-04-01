@@ -20,11 +20,13 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Footer from "./src/components/footer/Footer";
-import logo from './assets/images/wdinvLogo_dark.svg';
-import logoWD from './assets/images/WinterDevLogo_PrimaryLogoDark.svg';
+import logo from "./assets/images/wdinvLogo_dark.svg";
+import logoWD from "./assets/images/WinterDevLogo_PrimaryLogoDark.svg";
 
 const isActive = (location, path) => {
-  return location.pathname === path ? { color: '#0BC4FF' } : { color: '#EFF6F9' };
+  return location.pathname === path
+    ? { color: "#0BC4FF" }
+    : { color: "#EFF6F9" };
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -39,34 +41,34 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-between",
     height: "100%",
-    padding: '24px 0',
+    padding: "24px 0",
   },
   logo: {
-    height: '24px',
-    padding: '0 24px',
-    margin: '0 0 64px 0',
+    height: "24px",
+    padding: "0 24px",
+    margin: "0 0 64px 0",
   },
   listItem: {
     color: theme.palette.primary.light,
-    padding: '12px 24px',
-    borderBottom: '1px solid rgba(234,245,249,.05)',
+    padding: "12px 24px",
+    borderBottom: "1px solid rgba(234,245,249,.05)",
     "& a": {
-      textDecoration: 'none !important',
+      textDecoration: "none !important",
     },
   },
   link: {
-    textDecoration: 'none !important',
+    textDecoration: "none !important",
   },
   footer: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.common.white,
-    gap: '8px',
+    gap: "8px",
   },
   logoWD: {
-    height: '48px',
+    height: "48px",
   },
 }));
 
@@ -75,7 +77,7 @@ const drawerWidth = 300;
 const MainRouter = () => {
   const classes = useStyles();
   const location = useLocation();
-  
+
   if (!authHelper.isAuthenticated()) {
     return (
       <>
@@ -117,18 +119,30 @@ const MainRouter = () => {
               </ListItem>
             </Link> */}
             <Link to="/item/list">
-              <ListItem button className={classes.listItem} style={isActive(location, "/dashboard")}>
+              <ListItem
+                button
+                className={classes.listItem}
+                style={isActive(location, "/dashboard")}
+              >
                 <ListItemText primary="View Items" />
               </ListItem>
             </Link>
             <Link to="/item/add">
-              <ListItem button className={classes.listItem} style={isActive(location, "/item/add")}>
+              <ListItem
+                button
+                className={classes.listItem}
+                style={isActive(location, "/item/add")}
+              >
                 <ListItemText primary="Create New Item" />
               </ListItem>
             </Link>
           </List>
           <Link to="/item/edit">
-            <ListItem button className={classes.listItem} style={isActive(location, "/item/edit")}>
+            <ListItem
+              button
+              className={classes.listItem}
+              style={isActive(location, "/item/edit")}
+            >
               <ListItemText primary="Edit Item" />
             </ListItem>
           </Link>
@@ -157,7 +171,6 @@ const MainRouter = () => {
         </Routes>
       </Box>
     </Box>
-    
   );
 };
 export default MainRouter;
