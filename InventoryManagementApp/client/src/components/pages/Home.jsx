@@ -17,14 +17,13 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100vh',
     flexDirection: 'column',
     overflow: 'hidden',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   main: {
     maxWidth: theme.breakpoints.values.lg,
     display: 'flex',
     flexDirection: 'column',
     padding: '120px 0 0 0',
-    gap: '200px',
   },
   grid: {
     display: 'grid',
@@ -45,7 +44,13 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     textTransform: 'capitalize',
-  }
+  },
+  footer: {
+    position: "fixed",
+    bottom: 0,
+    width: "100vw",
+    textAlign: "center"
+  },
 }));
 
 export default function Home() {
@@ -72,7 +77,9 @@ export default function Home() {
               <LoginSignupForm />
             </Grid>
           </Grid>
-          <Footer />
+          <Container className={classes.footer}>
+            <Footer />
+          </Container>
         </Container>
       </Container>
     </ThemeProvider>
