@@ -37,7 +37,6 @@ export default function EditItem() {
     };
 
     update(updatedItem, textFields.id, auth.token).then((response) => {
-        debugger;
       if (response.error) {
         setFieldValues({ ...textFields, error: response.error });
         return;

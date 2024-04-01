@@ -86,7 +86,7 @@ export default function Login() {
   if (isAuthenticated) {
     return (
       <>
-        <Navigate to="/dashboard" />
+        <Navigate to="/item/list" />
       </>
     );
   }

@@ -1,15 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./src/components/pages/Home";
-import Dashboard from "./src/components/pages/Dashboard";
 import ViewItems from "./src/components/inventory/ViewItems";
 import AddItem from "./src/components/inventory/AddItem";
 import EditItem from "./src/components/inventory/EditItem";
-import Profile from "./src/components/account/Profile";
-import UpdateInfo from "./src/components/account/UpdateInfo";
-import UpdateAdmin from "./src/components/account/UpdateAdmin";
-import ChangePassword from "./src/components/account/ChangePassword";
-import SignUp from "./src/components/form/Signup";
+import authHelper from "./src/helper/auth.helper";
+
 import {
   AppBar,
   CssBaseline,
@@ -19,7 +15,7 @@ import {
   Drawer,
   List,
   ListItemText,
-  ListItem
+  ListItem,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
@@ -55,6 +51,17 @@ const drawerWidth = 300;
 
 const MainRouter = () => {
   const classes = useStyles();
+  
+  if (!authHelper.isAuthenticated()) {
+    return (
+      <>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+        </Routes>
+        ;
+      </>
+    );
+  }
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -82,11 +89,11 @@ const MainRouter = () => {
             wdinv
           </Typography>
           <List>
-            <Link to="/dashboard">
+            {/* <Link to="/dashboard">
               <ListItem button className={classes.listItem}>
                 <ListItemText primary="Dashboard" />
               </ListItem>
-            </Link>
+            </Link> */}
             <Link to="/item/list">
               <ListItem button className={classes.listItem}>
                 <ListItemText primary="View Items" />
@@ -98,12 +105,12 @@ const MainRouter = () => {
               </ListItem>
             </Link>
           </List>
-            <Link to="/item/edit">
-              <ListItem button className={classes.listItem}>
-                <ListItemText primary="Edit Item" />
-              </ListItem>
-            </Link>
-            {/* <Link to="/item/delete">
+          <Link to="/item/edit">
+            <ListItem button className={classes.listItem}>
+              <ListItemText primary="Edit Item" />
+            </ListItem>
+          </Link>
+          {/* <Link to="/item/delete">
               <ListItem button className={classes.listItem}>
                 <ListItemText primary="Delete Item" />
               </ListItem>
@@ -118,27 +125,16 @@ const MainRouter = () => {
         component="main"
         sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
       >
-      <Toolbar />
+        <Toolbar />
         <Routes>
-            <Route exact path="/dashboard" element={<Dashboard />} />
-            <Route exact path="/item/list" element={<ViewItems />} />
-            <Route exact path="/item/add" element={<AddItem />} />
-            <Route exact path="/item/edit" element={<EditItem />} />
+          {/* <Route exact path="/dashboard" element={<Dashboard />} /> */}
+          <Route exact path="/item/list" element={<ViewItems />} />
+          <Route exact path="/item/add" element={<AddItem />} />
+          <Route exact path="/item/edit" element={<EditItem />} />
         </Routes>
       </Box>
     </Box>
-
-    // <div>
-    //   <Routes>
-    //     <Route exact path="/" element={<Home />} />
-    //     <Route exact path="/dashboard" element={<Dashboard />} />
-    //     <Route exact path="/profile" element={<Profile />} />
-    //     <Route exact path="/update" element={<UpdateInfo />} />
-    //     <Route exact path="/admin-update" element={<UpdateAdmin />} />
-    //     <Route exact path="/change-password" element={<ChangePassword />} />
-    //     <Route exact path="/signup" element={<SignUp />} />
-    //   </Routes>
-    // </div>
+    
   );
 };
 export default MainRouter;

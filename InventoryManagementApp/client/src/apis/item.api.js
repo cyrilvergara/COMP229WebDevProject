@@ -33,7 +33,6 @@ const getAll = async () => {
 
 const update = async (updatedItem, itemName, userToken) => {
   try {
-    debugger;
     let response = await fetch("/api/inventory/" + itemName, {
       method: "PUT",
       headers: {
