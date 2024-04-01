@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: '24px',
-    boxShadow: '0 2px 4px 0 #ABBDC225',
+    boxShadow: '0 2px 4px 0 #ABBDC225 !important',
     borderRadius: '8px',
   },
 }));

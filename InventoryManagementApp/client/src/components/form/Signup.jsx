@@ -32,7 +32,7 @@ export default function Login() {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <div style={{ marginTop: "10px" }}>
+        <div style={{ marginTop: "12px" }}>
           <TextField
             label="Username"
             id="standard-basic"
@@ -47,7 +47,7 @@ export default function Login() {
           />
         </div>
 
-        <div style={{ marginTop: "5px" }}>
+        <div style={{ marginTop: "12px" }}>
           <TextField
             label="Email Address"
             fullWidth
@@ -62,7 +62,7 @@ export default function Login() {
             }}
           />
         </div>
-        <div style={{ marginTop: "5px" }}>
+        <div style={{ marginTop: "12px" }}>
           <FormControl sx={{ width: "100%" }} variant="standard">
             <InputLabel htmlFor="standard-adornment-password">
               Password
@@ -89,9 +89,11 @@ export default function Login() {
           </FormControl>
         </div>
 
-        <div style={{ marginTop: "10px" }}>
+        <div style={{ marginTop: "32px" }}>
           <Button
             variant="contained"
+            color="primary"
+            disableElevation
             fullWidth
             startIcon={<LoginIcon />}
           >

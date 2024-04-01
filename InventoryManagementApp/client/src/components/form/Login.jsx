@@ -33,7 +33,7 @@ export default function Login() {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <div style={{ marginTop: "5px" }}>
+        <div style={{ marginTop: "12px" }}>
           <TextField
             label="Email Address"
             fullWidth
@@ -43,7 +43,7 @@ export default function Login() {
             onChange={(event) => setEmailInput(event.target.value)}
           />
         </div>
-        <div style={{ marginTop: "5px" }}>
+        <div style={{ marginTop: "12px" }}>
           <FormControl sx={{ width: "100%" }} variant="standard">
             <InputLabel htmlFor="standard-adornment-password">
               Password
@@ -73,6 +73,8 @@ export default function Login() {
             fontSize: "15px",
             fontFamily: theme.typography.fontFamily,
             color: theme.palette.text.secondary,
+            textAlign: 'left',
+            marginLeft: '-12px',
           }}
         >
           <Checkbox
@@ -83,9 +85,11 @@ export default function Login() {
           Remember Me
         </div>
 
-        <div style={{ marginTop: "10px" }}>
+        <div style={{ marginTop: "28px" }}>
           <Button
             variant="contained"
+            color="primary"
+            disableElevation
             fullWidth
             startIcon={<LoginIcon />}
             component={Link}
