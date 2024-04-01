@@ -47,7 +47,12 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.light,
     padding: '12px 24px',
     borderBottom: '1px solid rgba(234,245,249,.05)',
-    textDecoration: 'none',
+    "& a": {
+      textDecoration: 'none !important',
+    },
+  },
+  link: {
+    textDecoration: 'none !important',
   },
   footer: {
     display: 'flex',
@@ -91,12 +96,12 @@ const MainRouter = () => {
         <div>
           <img src={logo} alt="WDInv Logo" className={classes.logo} />
           <List>
-            <Link to="/dashboard">
+            <Link to="/dashboard" className={classes.link}>
               <ListItem button className={classes.listItem}>
                 <ListItemText primary="Dashboard" />
               </ListItem>
             </Link>
-            <Link to="/records/list">
+            <Link to="/records/list" className={classes.link}>
               <ListItem button className={classes.listItem}>
                 <ListItemText primary="View Records" />
               </ListItem>
