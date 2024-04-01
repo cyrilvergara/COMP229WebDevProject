@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Route to create a new inventory item
-router.post('/create', authenticateUser, createInventoryItem);
+router.post('/', authenticateUser, createInventoryItem);
 
 // Route to get all inventory items
 router.get('/', authenticateUser, getAllInventoryItems);

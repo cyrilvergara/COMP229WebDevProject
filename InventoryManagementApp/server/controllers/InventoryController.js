@@ -1,6 +1,5 @@
 const Inventory = require('../models/InventoryModel');
 const fs = require('fs');
-const csv = require('csv-parser');
 const XLSX = require('xlsx');
 const moment = require('moment'); // For date handling
 
@@ -9,6 +8,7 @@ const createInventoryItem = async (req, res) => {
     try {
         const inventoryItem = new Inventory(req.body);
         const savedItem = await inventoryItem.save();
+        
         res.status(201).json(savedItem);
     } catch (error) {
         res.status(500).json({ error: error.message });

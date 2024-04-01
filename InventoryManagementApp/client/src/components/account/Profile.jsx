@@ -4,7 +4,6 @@ import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Sidebar from '../sidebar/Sidebar';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
@@ -102,7 +101,6 @@ export default function Profile() {
             <Container className={classes.root}>
                 <Grid container className={classes.grid}>
                     <Grid item>
-                        <Sidebar className={classes.sidebar} />
                     </Grid>
                     <Grid item className={classes.main}>
                         <Grid item className={classes.content}>

@@ -2,6 +2,8 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./src/components/pages/Home";
 import Dashboard from "./src/components/pages/Dashboard";
+import ViewItems from "./src/components/inventory/ViewItems";
+import AddItem from "./src/components/inventory/AddItem";
 import Profile from "./src/components/account/Profile";
 import UpdateInfo from "./src/components/account/UpdateInfo";
 import UpdateAdmin from "./src/components/account/UpdateAdmin";
@@ -84,9 +86,14 @@ const MainRouter = () => {
                 <ListItemText primary="Dashboard" />
               </ListItem>
             </Link>
-            <Link to="/records/list">
+            <Link to="/item/list">
               <ListItem button className={classes.listItem}>
-                <ListItemText primary="View Records" />
+                <ListItemText primary="View Items" />
+              </ListItem>
+            </Link>
+            <Link to="/item/add">
+              <ListItem button className={classes.listItem}>
+                <ListItemText primary="Create New Item" />
               </ListItem>
             </Link>
           </List>
@@ -100,10 +107,12 @@ const MainRouter = () => {
         component="main"
         sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
       >
+      <Toolbar />
         <Routes>
             <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/item/list" element={<ViewItems />} />
+            <Route exact path="/item/add" element={<AddItem />} />
         </Routes>
-        <Toolbar />
       </Box>
     </Box>
 
