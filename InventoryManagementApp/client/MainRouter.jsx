@@ -4,6 +4,7 @@ import Home from "./src/components/pages/Home";
 import Dashboard from "./src/components/pages/Dashboard";
 import ViewItems from "./src/components/inventory/ViewItems";
 import AddItem from "./src/components/inventory/AddItem";
+import EditItem from "./src/components/inventory/EditItem";
 import Profile from "./src/components/account/Profile";
 import UpdateInfo from "./src/components/account/UpdateInfo";
 import UpdateAdmin from "./src/components/account/UpdateAdmin";
@@ -97,6 +98,16 @@ const MainRouter = () => {
               </ListItem>
             </Link>
           </List>
+            <Link to="/item/edit">
+              <ListItem button className={classes.listItem}>
+                <ListItemText primary="Edit Item" />
+              </ListItem>
+            </Link>
+            {/* <Link to="/item/delete">
+              <ListItem button className={classes.listItem}>
+                <ListItemText primary="Delete Item" />
+              </ListItem>
+            </Link> */}
         </div>
 
         <div className={classes.footer}>
@@ -112,6 +123,7 @@ const MainRouter = () => {
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/item/list" element={<ViewItems />} />
             <Route exact path="/item/add" element={<AddItem />} />
+            <Route exact path="/item/edit" element={<EditItem />} />
         </Routes>
       </Box>
     </Box>

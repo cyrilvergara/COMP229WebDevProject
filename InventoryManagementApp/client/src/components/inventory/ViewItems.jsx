@@ -1,56 +1,59 @@
 import React from "react";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-  
-  const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-  ];
-  
-  export default function ViewItems() {
-    return (
-      <div style={{ height: 400, width: '100%' }}>
-        <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { getAll } from "../../apis/item.api";
+
+export default function ViewItems() {
+    const [data, setData] = React.useState([]);
+
+    React.useEffect(() =>{
+        getAll().then((data) => {
+            if(!data.error){
+                setData(data);
+            }
+        })
+    }, []);
+
+  return (
+    <div style={{ height: 400, width: "100%" }}>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">Name</TableCell>
+              <TableCell align="right">Description</TableCell>
+              <TableCell align="right">Available Quantity</TableCell>
+              <TableCell align="right">Price</TableCell>
+              <TableCell align="right">Category</TableCell>
+              <TableCell align="right">Supplier</TableCell>
+              <TableCell align="right">Size</TableCell>
+              <TableCell align="right">Unit</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-      </div>
-    );
-  }
+          </TableHead>
+          <TableBody>
+            {data.reverse().map((item) => (
+              <TableRow
+                key={item.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="right">{item.itemName}</TableCell>
+                <TableCell align="right">{item.description}</TableCell>
+                <TableCell align="right">{item.availableQty}</TableCell>
+                <TableCell align="right">{item.price}</TableCell>
+                <TableCell align="right">{item.category}</TableCell>
+                <TableCell align="right">{item.supplier}</TableCell>
+                <TableCell align="right">{item.size}</TableCell>
+                <TableCell align="right">{item.unit}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  );
+}

@@ -35,10 +35,10 @@ const inventorySchema = new mongoose.Schema({
   description: { type: String},
   availableQty: { type: Number, required: false },
   price: { type: Number, required: false },
-  category: { type: Number, required: false },
-  supplier: { type: Number, required: false },
-  size: { type: Number, required: false },
-  unit: { type: Number, required: false },
+  category: { type: String, required: false },
+  supplier: { type: String, required: false },
+  size: { type: String, required: false },
+  unit: { type: String, required: false },
 });
 
 module.exports = mongoose.model("Inventory", inventorySchema);
