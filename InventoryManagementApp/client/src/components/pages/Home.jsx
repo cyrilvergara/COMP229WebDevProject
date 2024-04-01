@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: theme.breakpoints.values.lg,
     display: 'flex',
     flexDirection: 'column',
-    padding: '120px 0 0 0',
-    gap: '200px',
+    padding: '80px 0 0 0',
+    gap: '120px',
   },
   grid: {
     display: 'grid',
