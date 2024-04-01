@@ -67,7 +67,7 @@ export default function AddItem() {
         />
         <TextField
           label="Price"
-          onChange={onTextChange("Price")}
+          onChange={onTextChange("price")}
           fullWidth
           margin="normal"
           variant="outlined"
