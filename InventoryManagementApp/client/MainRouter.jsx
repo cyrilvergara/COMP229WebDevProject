@@ -21,6 +21,8 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Footer from "./src/components/footer/Footer";
+import logo from './assets/images/wdinvLogo_dark.svg';
+import logoWD from './assets/images/WinterDevLogo_PrimaryLogoDark.svg';
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -34,17 +36,29 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-between",
     height: "100%",
+    padding: '24px 0',
   },
-  title: {
-    textAlign: "center",
-    marginTop: theme.spacing(2),
-    color: theme.palette.primary.contrastText,
+  logo: {
+    height: '24px',
+    padding: '0 24px',
+    margin: '0 0 64px 0',
   },
   listItem: {
-    color: theme.palette.primary.contrastText,
+    color: theme.palette.primary.light,
+    padding: '12px 24px',
+    borderBottom: '1px solid rgba(234,245,249,.05)',
+    textDecoration: 'none',
   },
   footer: {
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: "center",
+    textAlign: 'center',
+    color: theme.palette.common.white,
+    gap: '8px',
+  },
+  logoWD: {
+    height: '48px',
   },
 }));
 
@@ -75,9 +89,7 @@ const MainRouter = () => {
         }}
       >
         <div>
-          <Typography variant="h5" className={classes.title}>
-            wdinv
-          </Typography>
+          <img src={logo} alt="WDInv Logo" className={classes.logo} />
           <List>
             <Link to="/dashboard">
               <ListItem button className={classes.listItem}>
@@ -93,7 +105,8 @@ const MainRouter = () => {
         </div>
 
         <div className={classes.footer}>
-          <Footer />
+          <Typography variant="h6">Powered by</Typography>
+          <img src={logoWD} alt="WDInv Logo" className={classes.logoWD} />
         </div>
       </Drawer>
       <Box
@@ -101,7 +114,7 @@ const MainRouter = () => {
         sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
       >
         <Routes>
-            <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
         </Routes>
         <Toolbar />
       </Box>
