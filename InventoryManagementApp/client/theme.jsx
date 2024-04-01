@@ -6,18 +6,21 @@ const theme = createTheme({
     fontFamily: [
       'proxima-nova',
       'futura-pt',
-      '"Helvetica Neue"',
+      'Helvetica Neue',
       'Arial',
       'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+      'BlinkMacSystemFont',
+      'Segoe UI',
+      'Roboto',
     ].join(','),
     htmlFontSize: 16,
     h1: {
       fontFamily: [
         'futura-pt',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -29,7 +32,7 @@ const theme = createTheme({
     h2: {
       fontFamily: [
         'futura-pt',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -41,7 +44,7 @@ const theme = createTheme({
     h3: {
       fontFamily: [
         'futura-pt',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -53,7 +56,7 @@ const theme = createTheme({
     h4: {
       fontFamily: [
         'futura-pt',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -66,7 +69,7 @@ const theme = createTheme({
     h5: {
       fontFamily: [
         'proxima-nova',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -78,7 +81,7 @@ const theme = createTheme({
     h6: {
       fontFamily: [
         'proxima-nova',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -91,7 +94,7 @@ const theme = createTheme({
     subtitle1: {
       fontFamily: [
         'proxima-nova',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -103,7 +106,7 @@ const theme = createTheme({
     subtitle2: {
       fontFamily: [
         'proxima-nova',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -115,7 +118,7 @@ const theme = createTheme({
     body1: {
       fontFamily: [
         'proxima-nova',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -127,7 +130,7 @@ const theme = createTheme({
     body2: {
       fontFamily: [
         'proxima-nova',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -139,7 +142,7 @@ const theme = createTheme({
     button: {
       fontFamily: [
         'proxima-nova',
-        '"Helvetica Neue"',
+        'Helvetica Neue',
         'Arial',
         'sans-serif',
       ].join(','),
@@ -167,11 +170,11 @@ const theme = createTheme({
       dark: '#0B7BFF',
       contrastText: '#000',
     },
-    openTitle: '#02222D',
+    openTitle: '#3f4771',
     customColorBlue: '#0bc4ff',
     customColorDarkBlue: '#022537',
     background: {
-      default: '#FCFEFF',
+      default: '#eff6f9',
     },
     error: {
       light: '#F05816',

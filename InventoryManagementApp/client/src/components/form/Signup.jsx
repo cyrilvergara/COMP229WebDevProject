@@ -7,21 +7,42 @@ import {
   IconButton,
   Button,
   Input,
-  Stack,
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoginIcon from "@mui/icons-material/Login";
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../theme";
+import {create} from "../../apis/users.api";
 
 export default function Login() {
   const [showPassword, setShowPassword] = React.useState(false);
 
-  //Inputs
-  const [usernameInput, setUsernameInput] = useState();
-  const [emailInput, setEmailInput] = useState();
-  const [passwordInput, setPasswordInput] = useState();
+  const [fields, setFieldValues] = useState({
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const onTextChange = (field) => (event) => {
+    setFieldValues({ ...fields, [field]: event.target.value });
+  };
+
+  const onSubmitClick = () => {
+    const newAccount = {
+      name: fields.name,
+      username: fields.username,
+      email: fields.email,
+      password: fields.password,
+    };
+    
+    create(newAccount).then((response) => {
+      if (response.error) {
+        setFieldValues({ ...fields, error: response.error });
+      }
+    });
+  };
 
   // Handles Display and Hide Password
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -34,32 +55,39 @@ export default function Login() {
       <div>
         <div style={{ marginTop: "12px" }}>
           <TextField
+          required
+            label="Name"
+            id="standard-basic"
+            variant="standard"
+            sx={{ width: "100%" }}
+            size="small"
+            onChange={onTextChange("name")}
+          />
+        </div>
+
+        <div style={{ marginTop: "10px" }}>
+          <TextField
+          required
             label="Username"
             id="standard-basic"
             variant="standard"
             sx={{ width: "100%" }}
             size="small"
-            value={usernameInput}
-            InputProps={{}}
-            onChange={(event) => {
-              setUsernameInput(event.target.value);
-            }}
+            onChange={onTextChange("username")}
           />
         </div>
 
         <div style={{ marginTop: "12px" }}>
           <TextField
+          required
+            type="email"
             label="Email Address"
             fullWidth
             id="standard-basic"
             variant="standard"
             sx={{ width: "100%" }}
-            value={emailInput}
-            InputProps={{}}
             size="small"
-            onChange={(event) => {
-              setEmailInput(event.target.value);
-            }}
+            onChange={onTextChange("email")}
           />
         </div>
         <div style={{ marginTop: "12px" }}>
@@ -68,12 +96,10 @@ export default function Login() {
               Password
             </InputLabel>
             <Input
+            required
               id="standard-adornment-password"
               type={showPassword ? "text" : "password"}
-              onChange={(event) => {
-                setPasswordInput(event.target.value);
-              }}
-              value={passwordInput}
+              onChange={onTextChange("password")}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -96,19 +122,11 @@ export default function Login() {
             disableElevation
             fullWidth
             startIcon={<LoginIcon />}
+            onClick={onSubmitClick}
           >
             SUBMIT
           </Button>
         </div>
-
-        {/* <div style={{ marginTop: "7px", fontSize: "10px" }} margin="left">
-          <a>Forgot Password</a>
-          <br />
-          Do you have an account ?{" "}
-          <small style={{ textDecoration: "underline", color: "blue" }}>
-            Sign Up
-          </small>
-        </div> */}
       </div>
     </ThemeProvider>
   );

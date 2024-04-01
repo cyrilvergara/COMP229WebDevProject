@@ -1,6 +1,5 @@
 const Inventory = require('../models/InventoryModel');
 const fs = require('fs');
-const csv = require('csv-parser');
 const XLSX = require('xlsx');
 const moment = require('moment'); // For date handling
 
@@ -9,6 +8,7 @@ const createInventoryItem = async (req, res) => {
     try {
         const inventoryItem = new Inventory(req.body);
         const savedItem = await inventoryItem.save();
+        
         res.status(201).json(savedItem);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -42,12 +42,15 @@ const getInventoryItemById = async (req, res) => {
 // Update an existing inventory item
 const updateInventoryItem = async (req, res) => {
     try {
+        console.log(req.body);
         const { itemId } = req.params;
         const updates = req.body;
         const updatedItem = await Inventory.findByIdAndUpdate(itemId, updates, { new: true });
-        if (!updatedItem) {
+
+        if (!item) {
             return res.status(404).json({ error: 'Inventory item not found' });
         }
+
         res.status(200).json(updatedItem);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -103,6 +106,19 @@ const uploadBulkInventory = async (req, res) => {
     }
 };
 
+const getInventoryItemByName = async (req, res) => {
+    try {
+        const { name } = req.params;
+        const inventoryItem = await Inventory.find({itemName: name})
+
+        if (!inventoryItem) {
+            return res.status(404).json({ error: 'Inventory item not found' });
+        }
+        res.status(200).json(inventoryItem);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 module.exports = {
     createInventoryItem,
@@ -110,5 +126,6 @@ module.exports = {
     getInventoryItemById,
     updateInventoryItem,
     deleteInventoryItem,
-    uploadBulkInventory
+    uploadBulkInventory,
+    getInventoryItemByName
 };

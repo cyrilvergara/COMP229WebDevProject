@@ -2,11 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-const {SignupUser, loginUser, passwordResetRequest, passwordReset } = require('../controllers/AuthController')
-
-
-// Route to sign up a new user
-router.post('/signup', SignupUser);
+const {loginUser, passwordResetRequest, passwordReset } = require('../controllers/AuthController')
 
 // Route to log in a user
 router.post('/login', loginUser);
