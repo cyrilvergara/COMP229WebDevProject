@@ -1,12 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
-import Footer from '../footer/Footer';
-import theme from '../../../theme';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
+import Footer from "../footer/Footer";
+import theme from "../../../theme";
+import { AppBar, CssBaseline, Box, Toolbar } from "@material-ui/core";
 
 const drawerWidth = 300;
 
@@ -40,35 +41,56 @@ const Sidebar = () => {
   const classes = useStyles();
 
   return (
-    <Drawer
-      className={classes.drawer}
-      variant="permanent"
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
-      <div>
-        <Typography variant="h5" className={classes.title}>
-          wdinv
-        </Typography>
-        <List>
-          {[
-            "View Records",
-            "Create New Record",
-            "Update Records",
-            "Delete Records",
-            "View Users",
-          ].map((text, index) => (
-            <ListItem button key={index} className={classes.listItem}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-      <div className={classes.footer}>
-        <Footer />
-      </div>
-    </Drawer>
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+      >
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
+            Permanent drawer
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div>
+          <Typography variant="h5" className={classes.title}>
+            wdinv
+          </Typography>
+          <List>
+            {[
+              "Dashboard",
+              "View Records",
+              "Create New Record",
+              "Update Records",
+              "Delete Records",
+              "View Users",
+            ].map((text, index) => (
+              <ListItem button key={index} className={classes.listItem}>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </div>
+        <div className={classes.footer}>
+          <Footer />
+        </div>
+      </Drawer>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+      >
+        <Toolbar />
+      </Box>
+    </Box>
   );
 };
 

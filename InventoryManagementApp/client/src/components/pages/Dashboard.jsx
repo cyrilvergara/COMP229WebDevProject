@@ -42,7 +42,6 @@ export default function Dashboard() {
 
     return (
         <div className={classes.root}>
-            <Sidebar className={classes.sidebar} />
             <main className={classes.content}>
                 <Card className={classes.card}>
                     <Typography variant="h1" className={classes.title}>
