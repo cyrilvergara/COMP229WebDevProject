@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./src/components/pages/Home";
 import Dashboard from "./src/components/pages/Dashboard";
 import Profile from "./src/components/account/Profile";
@@ -23,6 +23,10 @@ import { Link } from "react-router-dom";
 import Footer from "./src/components/footer/Footer";
 import logo from './assets/images/wdinvLogo_dark.svg';
 import logoWD from './assets/images/WinterDevLogo_PrimaryLogoDark.svg';
+
+const isActive = (location, path) => {
+  return location.pathname === path ? { color: '#0BC4FF' } : { color: '#EFF6F9' };
+};
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -71,6 +75,7 @@ const drawerWidth = 300;
 
 const MainRouter = () => {
   const classes = useStyles();
+  const location = useLocation();
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -97,12 +102,12 @@ const MainRouter = () => {
           <img src={logo} alt="WDInv Logo" className={classes.logo} />
           <List>
             <Link to="/dashboard" className={classes.link}>
-              <ListItem button className={classes.listItem}>
+              <ListItem button className={classes.listItem} style={isActive(location, "/dashboard")}>
                 <ListItemText primary="Dashboard" />
               </ListItem>
             </Link>
             <Link to="/records/list" className={classes.link}>
-              <ListItem button className={classes.listItem}>
+              <ListItem button className={classes.listItem} style={isActive(location, "/records/list")}>
                 <ListItemText primary="View Records" />
               </ListItem>
             </Link>
