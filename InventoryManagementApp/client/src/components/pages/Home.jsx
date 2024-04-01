@@ -8,10 +8,11 @@ import theme from "../../../theme";
 const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: theme.palette.background.default,
-    minHeight: "88vh",
+    minHeight: "100vh",
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(4),
+    overflow: "auto"
   },
   grid: {
     display: "grid",
@@ -36,7 +37,13 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   footer: {
-    marginTop: theme.spacing(9),
+    // marginTop: theme.spacing(9),
+    position: "fixed",
+    left: 0,
+    bottom: 0,
+    width: "100%",
+    color: "white",
+    textAlign: "center"
   },
 }));
 
@@ -70,8 +77,8 @@ export default function Home() {
           </div>
         </div>
         <div className={classes.footer}>
-        <Footer />
-      </div>
+          <Footer />
+        </div>
       </div>
     </ThemeProvider>
   );

@@ -1,11 +1,19 @@
 const  User  = require("../models/UserModel");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+const create = async (req, res) => {
+    try {
+        const user = new User(req.body);
+        await user.save();
 
+        res.status(200).json({
+            message: "Successfully registered!"
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
-// Controller to get all users
 const getAllUsers = async (req, res) => {
     try {
         // Fetch all users from the database
@@ -57,6 +65,6 @@ const deleteUser = async (req, res) => {
 
 
 
-module.exports = { getAllUsers, updateUser, deleteUser };
+module.exports = { create, getAllUsers, updateUser, deleteUser };
 
   
