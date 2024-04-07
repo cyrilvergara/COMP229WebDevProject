@@ -40,8 +40,8 @@ function LoginSignupForm() {
   };
 
   const onCreateUser = (success, open) => {
-    setOpenSnackBar({isSuccess: success, isOpen: open});
-  }
+    setOpenSnackBar({ isSuccess: success, isOpen: open });
+  };
 
   const [openSnackBar, setOpenSnackBar] = React.useState({
     isSuccess: false,
@@ -84,7 +84,10 @@ function LoginSignupForm() {
           <br />
 
           {showRegistration ? (
-            <Signup updateShowRegistration={updateShowRegistration} updateSnackbarState={onCreateUser}/>
+            <Signup
+              updateShowRegistration={updateShowRegistration}
+              updateSnackbarState={onCreateUser}
+            />
           ) : (
             <Login />
           )}
@@ -112,6 +115,7 @@ function LoginSignupForm() {
               : "Registration failed"
           }
           severity={openSnackBar.isSuccess ? "success" : "error"}
+          position={{ vertical: "bottom", horizontal: "left" }}
         />
       </div>
     </ThemeProvider>

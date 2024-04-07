@@ -6,7 +6,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Typography } from "@material-ui/core";
 import { getAll } from "../../apis/item.api";
+import authHelper from "../../helper/auth.helper";
 
 export default function ViewItems() {
     const [data, setData] = React.useState([]);
@@ -21,6 +23,10 @@ export default function ViewItems() {
 
   return (
     <div style={{ height: 400, width: "100%" }}>
+    <Typography variant="h4" noWrap component="div">
+      WELCOME {authHelper.isAuthenticated().user.name}!!
+    </Typography>
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -36,7 +42,7 @@ export default function ViewItems() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.reverse().map((item, index) => (
+            {data.reverse().map((item,index) => (
               <TableRow
                 key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

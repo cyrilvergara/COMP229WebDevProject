@@ -131,6 +131,7 @@ export default function AddItem() {
         onClose={handleSnackBarClose}
         message={openSnackBar.isSuccess ? "Successfully created item" : "An error occurred creating the item"}
         severity={openSnackBar.isSuccess ? "success" : "error"}
+        position={{ vertical: 'bottom', horizontal: 'right' }}
       />
     </Container>
   );

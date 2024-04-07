@@ -2,7 +2,7 @@ import React from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
-const SnackBar = ({ open, message, severity }) => {
+const SnackBar = ({ open, message, severity, position }) => {
   const [isOpen, setIsOpen] = React.useState(open);
 
   React.useEffect(() => {
@@ -12,7 +12,12 @@ const SnackBar = ({ open, message, severity }) => {
   const handleSnackbarClose = () => setIsOpen(false);
 
   return (
-    <Snackbar open={open} autoHideDuration={3000} onClose={handleSnackbarClose}>
+    <Snackbar
+      open={open}
+      autoHideDuration={3000}
+      onClose={handleSnackbarClose}
+      anchorOrigin={position}
+    >
       <Alert
         onClose={handleSnackbarClose}
         severity={severity}
