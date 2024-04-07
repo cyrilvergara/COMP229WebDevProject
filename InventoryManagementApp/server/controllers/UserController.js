@@ -28,8 +28,8 @@ const getAllUsers = async (req, res) => {
 // Controller to update a user
 const updateUser = async (req, res) => {
     try {
-        const { userId } = req.params; // Assuming userId is passed as a route parameter
-        const updates = req.body; // Assuming the updates are sent in the request body
+        const { userId } = req.params;
+        const updates = req.body;
 
         // Update the user in the database
         const updatedUser = await User.findByIdAndUpdate(userId, updates, { new: true });

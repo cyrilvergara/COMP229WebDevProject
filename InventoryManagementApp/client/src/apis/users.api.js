@@ -14,4 +14,22 @@ const create = async (user) => {
   }
 };
 
-export { create };
+const update = async (userId, token, user) => {
+  debugger;
+  try {
+    let response = await fetch("/api/users/" + userId, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(user),
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { create, update };
