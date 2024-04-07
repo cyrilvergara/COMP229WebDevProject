@@ -12,19 +12,29 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(4),
-    overflow: "auto"
+    overflow: "auto",
   },
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
     gap: theme.spacing(3),
     marginTop: theme.spacing(1),
-    marginLeft: theme.spacing(10),
+    [theme.breakpoints.down("md")]: {
+      gridTemplateColumns: "1fr", // Stack the elements on smaller screens
+      textAlign: "center", // Center the text for smaller screens
+      marginLeft: theme.spacing(0), // Adjust margin for smaller screens
+    },
+    [theme.breakpoints.down("sm")]: {
+      padding: theme.spacing(2), // Reduce padding on very small screens
+    },
   },
   title: {
     fontSize: "5rem",
     fontWeight: "bold",
     marginBottom: theme.spacing(6),
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "3rem", // Smaller title on small screens
+    },
   },
   titleColor: {
     color: theme.palette.customColorBlue,
@@ -32,18 +42,27 @@ const useStyles = makeStyles((theme) => ({
   subTitle: {
     fontSize: "6xl",
     color: theme.palette.text.secondary,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2rem", // Smaller subtitle on small screens
+    },
   },
   description: {
     color: theme.palette.text.secondary,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1rem", // Smaller text on small screens
+    },
   },
   footer: {
-    // marginTop: theme.spacing(9),
     position: "fixed",
     left: 0,
     bottom: 0,
     width: "100%",
     color: "white",
-    textAlign: "center"
+    textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      position: "relative", // Adjust position on small screens
+      marginBottom: theme.spacing(2), // Add margin bottom on small screens
+    },
   },
 }));
 
@@ -57,8 +76,7 @@ export default function Home() {
           <div>
             <div className="mb-6">
               <Typography variant="h1" className={classes.title}>
-                <span className={classes.titleColor}>wd</span>
-                <span>inv</span>
+                <span className={classes.titleColor}>wd</span>inv
               </Typography>
 
               <Typography variant="h2" className={classes.subTitle}>
