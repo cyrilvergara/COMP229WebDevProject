@@ -49,7 +49,7 @@ export default function ProfileBody() {
       email: authHelper.isAuthenticated().user.email,
       role: userType || authHelper.isAuthenticated().user.role,
     };
-debugger;
+    
     update(
       authHelper.isAuthenticated().user._id,
       authHelper.isAuthenticated().token,
@@ -63,6 +63,7 @@ debugger;
       setOpenSnackBar({ isSuccess: true, isOpen: true });
       setUserType(data.role);
       setIsEditing(false);
+      authHelper.updateUser(data);
     });
   };
 

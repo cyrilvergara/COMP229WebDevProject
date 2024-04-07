@@ -28,9 +28,15 @@ const auth = {
       let auth = JSON.parse(sessionStorage.getItem("jwt"));
       auth.user = user;
       sessionStorage.setItem("jwt", JSON.stringify(auth));
-      cb();
+      // cb();
     }
   },
+
+  isAdmin(){
+    let auth = JSON.parse(sessionStorage.getItem("jwt"));
+
+    return auth && auth.token && auth.user.role === "admin";
+  }
 };
 
 export default auth;

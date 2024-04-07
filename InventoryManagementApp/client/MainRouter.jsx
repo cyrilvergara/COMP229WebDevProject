@@ -21,6 +21,8 @@ import { Link } from "react-router-dom";
 import Profile from "./src/components/Profile/Profile";
 import ProfileBody from "./src/components/Profile/ProfileBody";
 import ViewUsers from "./src/components/account/ViewUsers";
+import PrivateRoute from "./src/components/Global/PrivateRoute";
+import Unauthorized from "./src/components/Global/Unauthorized";
 
 const useStyles = makeStyles((theme) => ({
   //dito nyo lagay styling :D
@@ -38,8 +40,7 @@ const MainRouter = () => {
     }
   }, [navigate]);
 
-  if(!authHelper.isAuthenticated())
-  {
+  if (!authHelper.isAuthenticated()) {
     return (
       <>
         <Routes>
@@ -48,7 +49,7 @@ const MainRouter = () => {
       </>
     );
   }
-  
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -127,7 +128,16 @@ const MainRouter = () => {
           <Route exact path="/item/add" element={<AddItem />} />
           <Route exact path="/item/edit" element={<EditItem />} />
           <Route exact path="/profilebody" element={<ProfileBody />} />
-          <Route exact path="/users" element={<ViewUsers />} />
+          <Route
+            exact
+            path="/users"
+            element={
+              <PrivateRoute>
+                <ViewUsers />
+              </PrivateRoute>
+            }
+          />
+          <Route exact path="/unauthorized" element={<Unauthorized />} />
         </Routes>
       </Box>
     </Box>
