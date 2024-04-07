@@ -32,4 +32,17 @@ const update = async (userId, token, user) => {
   }
 };
 
-export { create, update };
+const list = async (signal) => {
+  try {
+    let response = await fetch("/api/users/", {
+      method: "GET",
+      signal: signal,
+    });
+    
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { create, update, list };

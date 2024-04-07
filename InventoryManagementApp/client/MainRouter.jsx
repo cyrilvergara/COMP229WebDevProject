@@ -20,6 +20,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Profile from "./src/components/Profile/Profile";
 import ProfileBody from "./src/components/Profile/ProfileBody";
+import ViewUsers from "./src/components/account/ViewUsers";
 
 const useStyles = makeStyles((theme) => ({
   //dito nyo lagay styling :D
@@ -88,6 +89,11 @@ const MainRouter = () => {
               <ListItemText primary="Edit Item" />
             </ListItem>
           </Link>
+          <Link to="/users">
+            <ListItem button className={classes.listItem}>
+              <ListItemText primary="View Users" />
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
       {/* Main content */}
@@ -121,6 +127,7 @@ const MainRouter = () => {
           <Route exact path="/item/add" element={<AddItem />} />
           <Route exact path="/item/edit" element={<EditItem />} />
           <Route exact path="/profilebody" element={<ProfileBody />} />
+          <Route exact path="/users" element={<ViewUsers />} />
         </Routes>
       </Box>
     </Box>
