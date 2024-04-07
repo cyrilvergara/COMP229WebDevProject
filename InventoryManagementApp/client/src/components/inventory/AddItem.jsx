@@ -2,9 +2,20 @@ import React from "react";
 import { TextField, Button, Container, Typography } from "@mui/material";
 import { create } from "../../apis/item.api";
 import authHelper from "../../helper/auth.helper";
+import SnackBar from "../Global/Snackbar";
 
 export default function AddItem() {
   const auth = authHelper.isAuthenticated();
+
+
+  const [openSnackBar, setOpenSnackBar] = React.useState({
+    isSuccess: false,
+    isOpen: false
+  });
+
+  const handleSnackBarClose = () => {
+    setOpenSnackBar({isSuccess: false, isOpen: false});
+  };
 
   const [textFields, setFieldValues] = React.useState({
     itemName: "",
@@ -38,8 +49,11 @@ export default function AddItem() {
     create(newItem, auth.token).then((response) => {
       if (response.error) {
         setFieldValues({ ...textFields, error: response.error });
+        setOpenSnackBar({isSuccess: false, isOpen: true});
         return;
       }
+
+      setOpenSnackBar({isSuccess: true, isOpen: true});
     });
   };
 
@@ -111,6 +125,13 @@ export default function AddItem() {
           Create Item
         </Button>
       </form>
+
+      <SnackBar
+        open={openSnackBar.isOpen}
+        onClose={handleSnackBarClose}
+        message={openSnackBar.isSuccess ? "Successfully created item" : "An error occurred creating the item"}
+        severity={openSnackBar.isSuccess ? "success" : "error"}
+      />
     </Container>
   );
 }

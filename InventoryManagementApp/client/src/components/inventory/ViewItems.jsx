@@ -36,9 +36,9 @@ export default function ViewItems() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.reverse().map((item) => (
+            {data.reverse().map((item, index) => (
               <TableRow
-                key={item.name}
+                key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell align="right">{item.itemName}</TableCell>

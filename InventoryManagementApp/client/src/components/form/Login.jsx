@@ -18,7 +18,7 @@ import theme from "../../../theme";
 import { makeStyles } from "@material-ui/core/styles";
 import { signin } from "../../apis/auth.api";
 import auth from "../../helper/auth.helper";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   marginTop5: {
@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = React.useState(false);
   const [rememberMe, setRememberMe] = React.useState(false);
@@ -68,10 +69,8 @@ export default function Login() {
 
       auth.authenticate(response, () => {
         setFieldValues({ ...fields, error: "" });
-
-        if (response && response.token) {
-          setIsAuthenticated(true);
-        }
+        setIsAuthenticated(true);
+        navigate("/item/list", { replace: true });
       });
     });
   };
@@ -83,12 +82,9 @@ export default function Login() {
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
+
   if (isAuthenticated) {
-    return (
-      <>
-        <Navigate to="/item/list" />
-      </>
-    );
+    return null; // Or render a loading spinner or redirect indicator
   }
 
   return (

@@ -7,9 +7,10 @@ import FaceIcon from "@mui/icons-material/Face";
 import AcUnitIcon from "@material-ui/icons/AcUnit";
 import Signup from "./Signup";
 import Login from "./Login";
-import PersonAdd from "@mui/icons-material/PersonAdd"
+import PersonAdd from "@mui/icons-material/PersonAdd";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import SnackBar from "../Global/Snackbar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,23 @@ function LoginSignupForm() {
 
   const onSignUpClick = () =>
     setShowRegistration((showRegistration) => !showRegistration);
+
+  const updateShowRegistration = (updatedShowRegistration) => {
+    setShowRegistration(updatedShowRegistration);
+  };
+
+  const onCreateUser = (success, open) => {
+    setOpenSnackBar({isSuccess: success, isOpen: open});
+  }
+
+  const [openSnackBar, setOpenSnackBar] = React.useState({
+    isSuccess: false,
+    isOpen: false,
+  });
+
+  const handleSnackBarClose = () => {
+    setOpenSnackBar({ isSuccess: false, isOpen: false });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -65,7 +83,11 @@ function LoginSignupForm() {
           )}
           <br />
 
-          {showRegistration ? <Signup /> : <Login />}
+          {showRegistration ? (
+            <Signup updateShowRegistration={updateShowRegistration} updateSnackbarState={onCreateUser}/>
+          ) : (
+            <Login />
+          )}
 
           <div className={classes.signupDiv}>
             <Button
@@ -80,6 +102,17 @@ function LoginSignupForm() {
             </Button>
           </div>
         </Paper>
+
+        <SnackBar
+          open={openSnackBar.isOpen}
+          onClose={handleSnackBarClose}
+          message={
+            openSnackBar.isSuccess
+              ? "Registration successful"
+              : "Registration failed"
+          }
+          severity={openSnackBar.isSuccess ? "success" : "error"}
+        />
       </div>
     </ThemeProvider>
   );

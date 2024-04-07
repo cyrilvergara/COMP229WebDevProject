@@ -1,5 +1,3 @@
-// import { signout } from "../users/auth.api.js";
-
 const auth = {
   isAuthenticated() {
     if (typeof window == "undefined") return false;
@@ -18,7 +16,7 @@ const auth = {
 
   clearJWT(cb) {
     if (typeof window !== "undefined") sessionStorage.removeItem("jwt");
-    cb();
+    // cb();
     
     // signout().then((data) => {
     //   document.cookie = "t=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

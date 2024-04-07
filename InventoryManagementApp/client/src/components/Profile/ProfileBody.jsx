@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Profile() {
+export default function ProfileBody() {
     const classes = useStyles();
 
     return (

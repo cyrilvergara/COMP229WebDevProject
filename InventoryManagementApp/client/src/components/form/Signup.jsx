@@ -13,10 +13,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoginIcon from "@mui/icons-material/Login";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../theme";
-import {create} from "../../apis/users.api";
+import { create } from "../../apis/users.api";
 
-export default function Login() {
-  const [showPassword, setShowPassword] = React.useState(false);
+export default function Login({updateShowRegistration, updateSnackbarState}) {
+  const [showPassword, setShowPassword] = useState(false);
 
   const [fields, setFieldValues] = useState({
     name: "",
@@ -36,11 +36,16 @@ export default function Login() {
       email: fields.email,
       password: fields.password,
     };
-    
+
     create(newAccount).then((response) => {
       if (response.error) {
         setFieldValues({ ...fields, error: response.error });
+        updateSnackbarState(false, true)
+        return;
       }
+
+      updateSnackbarState(true, true)
+      updateShowRegistration(false);
     });
   };
 
@@ -55,7 +60,7 @@ export default function Login() {
       <div>
         <div style={{ marginTop: "10px" }}>
           <TextField
-          required
+            required
             label="Name"
             id="standard-basic"
             variant="standard"
@@ -67,7 +72,7 @@ export default function Login() {
 
         <div style={{ marginTop: "10px" }}>
           <TextField
-          required
+            required
             label="Username"
             id="standard-basic"
             variant="standard"
@@ -79,7 +84,7 @@ export default function Login() {
 
         <div style={{ marginTop: "5px" }}>
           <TextField
-          required
+            required
             type="email"
             label="Email Address"
             fullWidth
@@ -96,7 +101,7 @@ export default function Login() {
               Password
             </InputLabel>
             <Input
-            required
+              required
               id="standard-adornment-password"
               type={showPassword ? "text" : "password"}
               onChange={onTextChange("password")}
