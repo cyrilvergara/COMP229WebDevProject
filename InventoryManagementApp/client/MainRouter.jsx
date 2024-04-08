@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Home from "./src/components/pages/Home";
 import ViewItems from "./src/components/inventory/ViewItems";
 import AddItem from "./src/components/inventory/AddItem";
@@ -15,6 +15,7 @@ import {
   List,
   ListItemText,
   ListItem,
+  Container,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
@@ -23,16 +24,77 @@ import ProfileBody from "./src/components/Profile/ProfileBody";
 import ViewUsers from "./src/components/account/ViewUsers";
 import PrivateRoute from "./src/components/Global/PrivateRoute";
 import Unauthorized from "./src/components/Global/Unauthorized";
+import logo from './assets/images/wdinvLogo_dark.svg';
+import logoWD from './assets/images/WinterDevLogo_PrimaryLogoDark.svg';
+
+const isActive = (location, path) => {
+  return location.pathname === path ? { color: '#0BC4FF' } : { color: '#EFF6F9' };
+};
 
 const useStyles = makeStyles((theme) => ({
-  //dito nyo lagay styling :D
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: theme.palette.primary.dark,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '100%',
+    padding: '24px 0',
+    boxShadow: '2px 0 4px 0 rgba(171,189,194,.25)',
+  },
+  main: {
+    padding: 0,
+  },
+  header: {
+    backgroundColor: 'transparent',
+    boxShadow: 'none',
+    margin: '0 0 32px 0',
+  },
+  logo: {
+    height: '24px',
+  },
+  link: {
+    textDecoration: 'none',
+  },
+  listItem: {
+    color: theme.palette.primary.light,
+    padding: '12px 24px',
+    borderBottom: '1px solid rgba(234,245,249,.05)',
+  },
+  footer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    textAlign: 'center',
+    color: theme.palette.common.white,
+    gap: '8px',
+  },
+  logoWD: {
+    height: '48px',
+  },
+  topNav: {
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.grey[300],
+    boxShadow: 'none',
+    borderBottom: 'solid 1px #EAF5F9',
+    width: `calc(100vw - ${drawerWidth}px)`,
+    height: '64px',
+  },
+  topNavBody: {
+    padding: '0 24px 0 40px',
+  },
 }));
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const MainRouter = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (!authHelper.isAuthenticated()) {
@@ -65,37 +127,44 @@ const MainRouter = () => {
             zIndex: 0,
           },
         }}
+        className={classes.drawer}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
       >
-        <AppBar position="static" sx={{ width: drawerWidth }}>
-          <Toolbar>
-            <Typography variant="h6" noWrap component="div">
-              wdinv
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Toolbar />
-        <List>
-          <Link to="/item/list">
-            <ListItem button className={classes.listItem}>
-              <ListItemText primary="View Items" />
-            </ListItem>
-          </Link>
-          <Link to="/item/add">
-            <ListItem button className={classes.listItem}>
-              <ListItemText primary="Create New Item" />
-            </ListItem>
-          </Link>
-          <Link to="/item/edit">
-            <ListItem button className={classes.listItem}>
-              <ListItemText primary="Edit Item" />
-            </ListItem>
-          </Link>
-          <Link to="/users">
-            <ListItem button className={classes.listItem}>
-              <ListItemText primary="View Users" />
-            </ListItem>
-          </Link>
-        </List>
+        <Container className={classes.main}>
+          <AppBar position="static" sx={{ width: drawerWidth }} className={classes.header}>
+            <Toolbar>
+              <img src={logo} alt="WDInv Logo" className={classes.logo} />
+            </Toolbar>
+          </AppBar>
+          <List>
+            <Link to="/item/list" className={classes.link}>
+              <ListItem button className={classes.listItem} style={isActive(location, "/item/list")}>
+                <ListItemText primary="View Items" />
+              </ListItem>
+            </Link>
+            <Link to="/item/add" className={classes.link}>
+              <ListItem button className={classes.listItem} style={isActive(location, "/item/add")}>
+                <ListItemText primary="Create New Item" />
+              </ListItem>
+            </Link>
+            <Link to="/item/edit" className={classes.link}>
+              <ListItem button className={classes.listItem} style={isActive(location, "/item/edit")}>
+                <ListItemText primary="Edit Item" />
+              </ListItem>
+            </Link>
+            <Link to="/users" className={classes.link}>
+              <ListItem button className={classes.listItem} style={isActive(location, "/users")}>
+                <ListItemText primary="View Users" />
+              </ListItem>
+            </Link>
+          </List>
+        </Container>
+        <Container className={classes.footer}>
+          <Typography variant="h6">Powered by</Typography>
+          <img src={logoWD} alt="WDInv Logo" className={classes.logoWD} />
+        </Container>
       </Drawer>
       {/* Main content */}
       <Box
@@ -110,10 +179,10 @@ const MainRouter = () => {
           position: "relative", // Ensure proper positioning
         }}
       >
-        <AppBar position="fixed" sx={{ zIndex: 1 }}>
-          <Toolbar sx={{ ml: drawerWidth }}>
+        <AppBar position="fixed" sx={{ zIndex: 1 }} className={classes.topNav}>
+          <Toolbar sx={{ ml: drawerWidth }} className={classes.topNavBody}>
             <Typography variant="h6" noWrap component="div">
-              Content HeaderASDFASFSADF
+              Inventory Management App
             </Typography>
 
             <Box sx={{ flexGrow: 1 }} />
