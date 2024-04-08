@@ -82,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'none',
     borderBottom: 'solid 1px #EAF5F9',
     width: `calc(100vw - ${drawerWidth}px)`,
+    height: '64px',
   },
   topNavBody: {
     padding: '0 24px 0 40px',
