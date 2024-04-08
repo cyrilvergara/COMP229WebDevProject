@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Home from "./src/components/pages/Home";
 import ViewItems from "./src/components/inventory/ViewItems";
 import AddItem from "./src/components/inventory/AddItem";
@@ -23,9 +23,28 @@ import ProfileBody from "./src/components/Profile/ProfileBody";
 import ViewUsers from "./src/components/account/ViewUsers";
 import PrivateRoute from "./src/components/Global/PrivateRoute";
 import Unauthorized from "./src/components/Global/Unauthorized";
+import logo from './assets/images/wdinvLogo_dark.svg';
+import logoWD from './assets/images/WinterDevLogo_PrimaryLogoDark.svg';
+import theme from "./theme";
+
+const isActive = (location, path) => {
+  return location.pathname === path ? { color: '#0BC4FF' } : { color: '#EFF6F9' };
+};
 
 const useStyles = makeStyles((theme) => ({
-  //dito nyo lagay styling :D
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: theme.palette.primary.dark,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "100%",
+    padding: '24px 0',
+  },
 }));
 
 const drawerWidth = 240;
@@ -64,6 +83,10 @@ const MainRouter = () => {
             boxSizing: "border-box",
             zIndex: 0,
           },
+        }}
+        className={classes.drawer}
+        classes={{
+          paper: classes.drawerPaper,
         }}
       >
         <AppBar position="static" sx={{ width: drawerWidth }}>
