@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme) => ({
     width: '32px',
     height: '32px',
   },
+  menuPaper: {
+    top: '56px !important',
+    left: 'auto !important',
+    right: '40px',
+    boxShadow: '0 2px 4px 0 rgba(171,189,194,.25)',
+  },
 }))
 
 const Profile = () => {
@@ -61,6 +67,9 @@ const Profile = () => {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
+        classes={{
+          paper: classes.menuPaper,
+        }}
       >
         <MenuItem onClick={onProfileClick}>Profile</MenuItem>
         <MenuItem onClick={onLogout}>Logout</MenuItem>
