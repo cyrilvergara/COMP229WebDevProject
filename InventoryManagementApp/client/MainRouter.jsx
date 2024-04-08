@@ -15,6 +15,7 @@ import {
   List,
   ListItemText,
   ListItem,
+  Container,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
@@ -25,7 +26,6 @@ import PrivateRoute from "./src/components/Global/PrivateRoute";
 import Unauthorized from "./src/components/Global/Unauthorized";
 import logo from './assets/images/wdinvLogo_dark.svg';
 import logoWD from './assets/images/WinterDevLogo_PrimaryLogoDark.svg';
-import Container from '@material-ui/core/Container';
 
 const isActive = (location, path) => {
   return location.pathname === path ? { color: '#0BC4FF' } : { color: '#EFF6F9' };
@@ -74,6 +74,13 @@ const useStyles = makeStyles((theme) => ({
   },
   logoWD: {
     height: '48px',
+  },
+  topNav: {
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.grey[300],
+    boxShadow: 'none',
+    borderBottom: 'solid 1px #EAF5F9',
+    width: `calc(100vw - ${drawerWidth}px)`,
   },
 }));
 
@@ -167,8 +174,8 @@ const MainRouter = () => {
           position: "relative", // Ensure proper positioning
         }}
       >
-        <AppBar position="fixed" sx={{ zIndex: 1 }}>
-          <Toolbar sx={{ ml: drawerWidth }}>
+        <AppBar position="fixed" sx={{ zIndex: 1 }} className={classes.topNav}>
+          <Toolbar sx={{ ml: drawerWidth }} className={classes.topNavBody}>
             <Typography variant="h6" noWrap component="div">
               Content HeaderASDFASFSADF
             </Typography>
