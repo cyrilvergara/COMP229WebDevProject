@@ -10,13 +10,10 @@ export default defineConfig({
       "/api": {
         target: `http://localhost:${PORT}`,
         changeOrigin: true,
-      }
+      },
     },
   },
   build: {
-    manifest: true,
-    rollupOptions: {
-      input: "./src/main.jsx",
-    },
+    outDir: "../client/dist/app",
   },
 });
