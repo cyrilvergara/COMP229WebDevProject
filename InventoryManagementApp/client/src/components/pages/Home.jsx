@@ -11,7 +11,7 @@ import logo from '../../../assets/images/wdinvLogo_light.svg';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.primary.light,
     minHeight: '100vh',
     padding: theme.spacing(4),
     overflow: 'auto',
@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: '40px',
+    marginBottom: '24px',
   },
   title: {
     fontSize: '5rem',
