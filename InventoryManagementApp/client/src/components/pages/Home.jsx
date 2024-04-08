@@ -1,16 +1,13 @@
 import React from "react";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LoginSignupForm from "../form/LoginSignupForm";
 import Footer from "../footer/Footer";
-import theme from "../../../theme";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: theme.palette.background.default,
     minHeight: "100vh",
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[5],
     padding: theme.spacing(4),
     overflow: "auto",
   },
@@ -70,7 +67,6 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
       <div className={classes.container}>
         <div className={classes.grid}>
           <div>
@@ -98,6 +94,5 @@ export default function Home() {
           <Footer />
         </div>
       </div>
-    </ThemeProvider>
   );
 }
