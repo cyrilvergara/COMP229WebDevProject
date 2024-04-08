@@ -82,6 +82,9 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: 'solid 1px #EAF5F9',
     width: `calc(100vw - ${drawerWidth}px)`,
   },
+  topNavBody: {
+    padding: '0 24px 0 40px',
+  },
 }));
 
 const drawerWidth = 280;
@@ -177,7 +180,7 @@ const MainRouter = () => {
         <AppBar position="fixed" sx={{ zIndex: 1 }} className={classes.topNav}>
           <Toolbar sx={{ ml: drawerWidth }} className={classes.topNavBody}>
             <Typography variant="h6" noWrap component="div">
-              Content HeaderASDFASFSADF
+              Inventory Management App
             </Typography>
 
             <Box sx={{ flexGrow: 1 }} />
