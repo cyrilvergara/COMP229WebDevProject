@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "center",
     width: 450,
-    margin: "30px auto 0",
     padding: theme.spacing(2),
   },
   signupDiv: {

@@ -35,13 +35,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logo: {
-    height: '40px',
+    height: '48px',
+    marginBottom: '24px',
   },
   column1: {
     maxWidth: '600px',
     display: 'flex',
     flexDirection: 'column',
-    gap: '24px',
+    gap: '12px',
     alignItems: 'flex-start',
     [theme.breakpoints.down('md')]: {
       alignItems: 'center',
