@@ -34,5 +34,8 @@
     "nodemon": "^3.0.2",
     "vite": "^5.0.8"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.14.0"
+  },
   "dev": "concurrently 'vite' 'nodemon server.js'"
 }
