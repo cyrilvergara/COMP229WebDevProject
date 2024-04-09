@@ -1,39 +1,49 @@
 import React from "react";
 import {
-  TextField,
   InputAdornment,
   FormControl,
   InputLabel,
   IconButton,
-  Button,
   Input,
   Checkbox,
-} from "@mui/material";
-import Typography from "@material-ui/core/Typography";
+  TextField,
+  Button,
+  Typography,
+  Container,
+} from '@material-ui/core';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import LoginIcon from "@mui/icons-material/Login";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "../../../theme";
 import { makeStyles } from "@material-ui/core/styles";
 import { signin } from "../../apis/auth.api";
 import auth from "../../helper/auth.helper";
 import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  marginTop5: {
-    marginTop: "5px",
-  },
-  marginTop10: {
-    marginTop: "10px",
-  },
-  paddingTop15: {
-    paddingTop: "15px",
+  column: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    gap: '16px',
+    margin: '16px 0 8px 0',
+    padding: 0,
   },
   rememberMe: {
-    fontSize: "15px",
-    fontFamily: theme.typography.fontFamily,
-    color: theme.palette.text.secondary,
+    padding: 0,
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '4px',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginBottom: '16px',
+  },
+  rememberMeText: {
+    color: theme.palette.grey[600],
+  },
+  btnPrimary: {
+    width: 'min-content',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    padding: '12px 24px',
   },
 }));
 
@@ -88,9 +98,8 @@ export default function Login() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={classes.paddingTop15}>
-        <div className={classes.marginTop5}>
+      <div>
+        <Container className={classes.column}>
           <TextField
             type="email"
             label="Email Address"
@@ -98,9 +107,7 @@ export default function Login() {
             variant="standard"
             onChange={onTextChange("email")}
           />
-        </div>
-        <div className={classes.marginTop5}>
-          <FormControl sx={{ width: "100%" }} variant="standard">
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="standard-adornment-password">
               Password
             </InputLabel>
@@ -121,7 +128,7 @@ export default function Login() {
               }
             />
           </FormControl>
-        </div>
+        </Container>
 
         {fields.error && (
           <Typography component="p" color="error">
@@ -129,27 +136,26 @@ export default function Login() {
           </Typography>
         )}
 
-        <div className={classes.rememberMe}>
+        <Container className={classes.rememberMe}>
           <Checkbox
             {...label}
             size="small"
             onChange={(event) => setRememberMe(event.target.checked)}
           />
-          Remember Me
-        </div>
+          <Typography variant="body2" className={classes.rememberMeText}>Remember Me</Typography>
+        </Container>
 
-        <div className={classes.marginTop10}>
+        <div>
           <Button
             variant="contained"
             fullWidth
-            startIcon={<LoginIcon />}
             onClick={onLoginClick}
             disableElevation
+            className={classes.btnPrimary}
           >
             LOGIN
           </Button>
         </div>
       </div>
-    </ThemeProvider>
   );
 }

@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 import {
-  TextField,
   InputAdornment,
   FormControl,
   InputLabel,
   IconButton,
-  Button,
   Input,
-} from "@mui/material";
+  TextField,
+  Button,
+} from '@material-ui/core';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoginIcon from "@mui/icons-material/Login";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "../../../theme";
 import { create } from "../../apis/users.api";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  btnPrimary: {
+    width: 'min-content',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    padding: '12px 24px',
+  },
+}));
 
 export default function Login({updateShowRegistration, updateSnackbarState}) {
+  const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
 
   const [fields, setFieldValues] = useState({
@@ -56,7 +65,6 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <div>
         <div style={{ marginTop: "10px" }}>
           <TextField
@@ -64,7 +72,7 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
             label="Name"
             id="standard-basic"
             variant="standard"
-            sx={{ width: "100%" }}
+            fullWidth
             size="small"
             onChange={onTextChange("name")}
           />
@@ -76,8 +84,8 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
             label="Username"
             id="standard-basic"
             variant="standard"
-            sx={{ width: "100%" }}
             size="small"
+            fullWidth
             onChange={onTextChange("username")}
           />
         </div>
@@ -90,13 +98,12 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
             fullWidth
             id="standard-basic"
             variant="standard"
-            sx={{ width: "100%" }}
             size="small"
             onChange={onTextChange("email")}
           />
         </div>
         <div style={{ marginTop: "5px" }}>
-          <FormControl sx={{ width: "100%" }} variant="standard">
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="standard-adornment-password">
               Password
             </InputLabel>
@@ -127,11 +134,11 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
             startIcon={<LoginIcon />}
             onClick={onSubmitClick}
             disableElevation
+            className={classes.btnPrimary}
           >
             SUBMIT
           </Button>
         </div>
       </div>
-    </ThemeProvider>
   );
 }

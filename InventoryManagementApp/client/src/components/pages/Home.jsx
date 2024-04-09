@@ -53,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'left',
+    },
   },
   title: {
     fontSize: '5rem',
