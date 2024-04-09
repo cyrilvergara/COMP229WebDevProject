@@ -144,6 +144,7 @@ export default function Login() {
             fullWidth
             startIcon={<LoginIcon />}
             onClick={onLoginClick}
+            disableElevation
           >
             LOGIN
           </Button>

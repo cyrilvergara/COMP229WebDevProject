@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   btnText: {
     backgroundColor: 'transparent !important',
+    color: `${theme.palette.primary.main} !important`,
   },
 }));
 

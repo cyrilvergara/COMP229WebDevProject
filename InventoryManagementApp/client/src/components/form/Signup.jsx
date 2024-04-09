@@ -126,6 +126,7 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
             fullWidth
             startIcon={<LoginIcon />}
             onClick={onSubmitClick}
+            disableElevation
           >
             SUBMIT
           </Button>
