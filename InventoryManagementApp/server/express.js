@@ -33,6 +33,6 @@ app.use("/api/auth", authRoutes);
 // Mount inventory routes
 app.use("/api/inventory", inventoryRoutes);
 
-app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist/app")));
+app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
 
 module.exports = app;
