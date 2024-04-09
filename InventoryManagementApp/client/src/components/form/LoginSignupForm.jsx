@@ -11,14 +11,11 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 450,
+    width: 525,
     padding: theme.spacing(2),
   },
   signupDiv: {
     marginTop: "10px",
-    "& #btnSignup": {
-      backgroundColor: "green",
-    },
   },
   card: {
     padding: '24px',
@@ -26,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '8px !important',
   },
   btnText: {
-    backgroundColor: 'transparent !important',
     color: `${theme.palette.primary.main} !important`,
     width: 'min-content',
   },
@@ -75,7 +71,6 @@ function LoginSignupForm() {
 
           <div className={classes.signupDiv}>
             <Button
-              id="btnSignup"
               variant="text"
               fullWidth
               component={Link}
