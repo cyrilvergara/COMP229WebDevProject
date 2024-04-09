@@ -24,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "green",
     },
   },
+  card: {
+    padding: '24px',
+    boxShadow: '0 2px 4px 0 rgba(171,189,194,.25) !important',
+    borderRadius: '8px !important',
+  },
+  btnText: {
+    backgroundColor: 'transparent !important',
+  },
 }));
 
 function LoginSignupForm() {
@@ -54,7 +62,7 @@ function LoginSignupForm() {
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
-        <Paper elevation={3} style={{ padding: 10 }}>
+        <Paper className={classes.card}>
           {showRegistration ? (
             <Chip
               icon={<FaceIcon />}
@@ -94,13 +102,14 @@ function LoginSignupForm() {
           <div className={classes.signupDiv}>
             <Button
               id="btnSignup"
-              variant="contained"
+              variant="text"
               fullWidth
-              startIcon={<PersonAdd />}
+              // startIcon={<PersonAdd />}
               component={Link}
               onClick={onSignUpClick}
+              className={classes.btnText}
             >
-              {showRegistration ? "Sign in" : "Sign up"}
+              {showRegistration ? "Already have an account? Log in now" : "Don't have an account? Sign up now"}
             </Button>
           </div>
         </Paper>
