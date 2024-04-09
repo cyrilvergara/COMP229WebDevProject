@@ -7,6 +7,7 @@ import {
   Input,
   TextField,
   Button,
+  Container,
 } from '@material-ui/core';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -15,6 +16,14 @@ import { create } from "../../apis/users.api";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
+  column: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    gap: '16px',
+    margin: '16px 0 28px 0',
+    padding: 0,
+  },
   btnPrimary: {
     width: 'min-content',
     backgroundColor: theme.palette.primary.main,
@@ -66,7 +75,7 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
 
   return (
       <div>
-        <div style={{ marginTop: "10px" }}>
+        <Container className={classes.column}>
           <TextField
             required
             label="Name"
@@ -76,9 +85,6 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
             size="small"
             onChange={onTextChange("name")}
           />
-        </div>
-
-        <div style={{ marginTop: "10px" }}>
           <TextField
             required
             label="Username"
@@ -88,9 +94,6 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
             fullWidth
             onChange={onTextChange("username")}
           />
-        </div>
-
-        <div style={{ marginTop: "5px" }}>
           <TextField
             required
             type="email"
@@ -101,8 +104,6 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
             size="small"
             onChange={onTextChange("email")}
           />
-        </div>
-        <div style={{ marginTop: "5px" }}>
           <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="standard-adornment-password">
               Password
@@ -125,9 +126,9 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
               }
             />
           </FormControl>
-        </div>
+        </Container>
 
-        <div style={{ marginTop: "10px" }}>
+        <div>
           <Button
             variant="contained"
             fullWidth

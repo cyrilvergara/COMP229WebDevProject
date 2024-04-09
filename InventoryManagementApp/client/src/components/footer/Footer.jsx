@@ -5,7 +5,7 @@ import logo from '../../../assets/images/WinterDevLogo_PrimaryLogoLight.svg';
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
-    padding: theme.spacing(5),
+    padding: theme.spacing(2),
     textAlign: 'center',
   },
   logoImage: {
