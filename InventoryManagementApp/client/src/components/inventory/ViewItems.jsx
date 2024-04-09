@@ -6,12 +6,32 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Typography } from "@material-ui/core";
 import { getAll } from "../../apis/item.api";
 import authHelper from "../../helper/auth.helper";
+import {
+  Typography,
+  Container,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme) => ({
+  main: {
+    padding: '64px 48px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    gap: '64px',
+  },
+  heading: {
+    textTransform: 'capitalize',
+  },
+}));
+
+const drawerWidth = 280;
 
 export default function ViewItems() {
+  const classes = useStyles();
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
@@ -23,9 +43,9 @@ export default function ViewItems() {
   }, []);
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <Typography variant="h4" noWrap component="div">
-        WELCOME {authHelper.isAuthenticated().user.name}!!
+    <Container className={classes.main}>
+      <Typography variant="h4" className={classes.heading}>
+        Welcome back, {authHelper.isAuthenticated().user.name}!
       </Typography>
 
 
@@ -63,6 +83,6 @@ export default function ViewItems() {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Container>
   );
 }

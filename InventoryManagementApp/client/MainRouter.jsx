@@ -32,6 +32,15 @@ const isActive = (location, path) => {
 };
 
 const useStyles = makeStyles((theme) => ({
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: `calc(100vw - ${drawerWidth}px)`,
+    marginLeft: drawerWidth, // Adjust margin left to account for Drawer width
+    zIndex: 1, // Ensure content is above Drawer
+    position: 'relative', // Ensure proper positioning
+  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -167,17 +176,18 @@ const MainRouter = () => {
         </Container>
       </Drawer>
       {/* Main content */}
-      <Box
+      <Container
         component="main"
-        sx={{
-          flexGrow: 1,
-          bgcolor: "background.default",
-          p: 3,
-          marginLeft: drawerWidth, // Adjust margin left to account for Drawer width
-          marginTop: 64, // Offset for the AppBar
-          zIndex: 1, // Ensure content is above Drawer
-          position: "relative", // Ensure proper positioning
-        }}
+        className={classes.main}
+        // sx={{
+        //   flexGrow: 1,
+        //   bgcolor: "background.default",
+        //   p: 3,
+        //   marginLeft: drawerWidth, // Adjust margin left to account for Drawer width
+        //   marginTop: 64, // Offset for the AppBar
+        //   zIndex: 1, // Ensure content is above Drawer
+        //   position: "relative", // Ensure proper positioning
+        // }}
       >
         <AppBar position="fixed" sx={{ zIndex: 1 }} className={classes.topNav}>
           <Toolbar sx={{ ml: drawerWidth }} className={classes.topNavBody}>
@@ -208,7 +218,7 @@ const MainRouter = () => {
           />
           <Route exact path="/unauthorized" element={<Unauthorized />} />
         </Routes>
-      </Box>
+      </Container>
     </Box>
   );
 };

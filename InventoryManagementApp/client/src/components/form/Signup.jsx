@@ -11,7 +11,6 @@ import {
 } from '@material-ui/core';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import LoginIcon from "@mui/icons-material/Login";
 import { create } from "../../apis/users.api";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -132,7 +131,6 @@ export default function Login({updateShowRegistration, updateSnackbarState}) {
           <Button
             variant="contained"
             fullWidth
-            startIcon={<LoginIcon />}
             onClick={onSubmitClick}
             disableElevation
             className={classes.btnPrimary}
