@@ -2,19 +2,15 @@ import React from "react";
 import Paper from "@mui/material/Paper";
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import theme from "../../../theme";
-import Chip from "@mui/material/Chip";
-import FaceIcon from "@mui/icons-material/Face";
-import AcUnitIcon from "@material-ui/icons/AcUnit";
 import Signup from "./Signup";
 import Login from "./Login";
-import PersonAdd from "@mui/icons-material/PersonAdd";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import SnackBar from "../Global/Snackbar";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    textAlign: "center",
     width: 450,
     padding: theme.spacing(2),
   },
@@ -32,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
   btnText: {
     backgroundColor: 'transparent !important',
     color: `${theme.palette.primary.main} !important`,
+    width: 'min-content',
   },
 }));
 
@@ -64,32 +61,8 @@ function LoginSignupForm() {
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <Paper className={classes.card}>
-          {showRegistration ? (
-            <Chip
-              icon={<FaceIcon />}
-              label="Signup"
-              variant="outlined"
-              color="primary"
-              style={{
-                fontSize: "15px",
-                fontFamily: theme.typography.fontFamily,
-                color: theme.palette.text.secondary,
-              }}
-            />
-          ) : (
-            <Chip
-              icon={<AcUnitIcon />}
-              label="Login"
-              variant="outlined"
-              color="primary"
-              style={{
-                fontSize: "15px",
-                fontFamily: theme.typography.fontFamily,
-                color: theme.palette.text.secondary,
-              }}
-            />
-          )}
-          <br />
+          
+          <Typography variant="h5">{showRegistration ? "Create your account" : "Welcome back!"}</Typography>
 
           {showRegistration ? (
             <Signup
@@ -105,7 +78,6 @@ function LoginSignupForm() {
               id="btnSignup"
               variant="text"
               fullWidth
-              // startIcon={<PersonAdd />}
               component={Link}
               onClick={onSignUpClick}
               className={classes.btnText}
