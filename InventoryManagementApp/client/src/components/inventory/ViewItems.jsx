@@ -10,22 +10,25 @@ import { Typography } from "@material-ui/core";
 import { getAll } from "../../apis/item.api";
 import authHelper from "../../helper/auth.helper";
 
-export default function ViewItems() {
-    const [data, setData] = React.useState([]);
 
-    React.useEffect(() =>{
-        getAll().then((data) => {
-            if(!data.error){
-                setData(data);
-            }
-        })
-    }, []);
+export default function ViewItems() {
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    getAll().then((data) => {
+      if (!data.error) {
+        setData(data);
+      }
+    })
+  }, []);
 
   return (
     <div style={{ height: 400, width: "100%" }}>
-    <Typography variant="h4" noWrap component="div">
-      WELCOME {authHelper.isAuthenticated().user.name}!!
-    </Typography>
+      <Typography variant="h4" noWrap component="div">
+        WELCOME {authHelper.isAuthenticated().user.name}!!
+      </Typography>
+
+
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -42,7 +45,7 @@ export default function ViewItems() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.reverse().map((item,index) => (
+            {data.reverse().map((item, index) => (
               <TableRow
                 key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
