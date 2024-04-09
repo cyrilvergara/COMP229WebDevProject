@@ -1,38 +1,36 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const path = require("path");
 const userRoutes = require("./routes/UserRoute");
 const authRoutes = require("./routes/AuthRouter");
 const inventoryRoutes = require("./routes/InventoryRouter");
-const multer = require("multer");
-const path = require("path");
+const cors = require("cors");
 
 const app = express();
 const CURRENT_WORKING_DIR = process.cwd();
+const clientDistPath = path.join(CURRENT_WORKING_DIR, "client", "dist", "app");
 
-app.get("/", (req, res) => {
-  res.status(200).send("Welcome ");
-});
-
+// Middleware for parsing JSON and urlencoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Middleware to handle file uploads
-//app.use(upload.single('csv')); // 'csv' should match the name attribute in the file input of your form
-
-app.use(bodyParser.json());
-
 app.use(cors());
 
-// Mount user routes
+// Mount API routes
 app.use("/api/users", userRoutes);
-
-// Mount Auth routes
 app.use("/api/auth", authRoutes);
-
-// Mount inventory routes
 app.use("/api/inventory", inventoryRoutes);
 
-app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
+// Serve static files from the React app build directory
+app.use(express.static(clientDistPath));
+
+// Handles any requests that don't match the ones above
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(clientDistPath, "index.html"));
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
 
 module.exports = app;
