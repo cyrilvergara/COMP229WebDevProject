@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
+import authHelper from "../../helper/auth.helper";
+import { update } from "../../apis/users.api";
+import SnackBar from "../Global/Snackbar";
 import {
   Typography,
   Grid,
@@ -11,18 +16,65 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-} from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import CloseIcon from "@mui/icons-material/Close";
-import authHelper from "../../helper/auth.helper";
-import { update } from "../../apis/users.api";
-import SnackBar from "../Global/Snackbar";
+  Container,
+} from "@material-ui/core";
 
 const drawerWidth = 300;
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  main: {
+    maxWidth: '700px',
+    minHeight: 'calc(100vh - 64px)',
+    padding: '64px 0',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    gap: '24px',
+  },
+  card: {
+    width: '100%',
+    boxShadow: '0 2px 4px 0 rgba(171,189,194,.25)',
+    backgroundColor: theme.palette.common.white,
+    borderRadius: '8px',
+    padding: '24px',
+  },
+  cardHead: {
+    padding: 0,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '36px',
+  },
+  icon: {
+    color: theme.palette.primary.main,
+    '&:hover': {
+      backgroundColor: 'rgba(11,196,255,.1)',
+    },
+  },
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    gridAutoFlow: 'row',
+    gap: '24px',
+    marginBottom: '36px',
+  },
+  btnPrimary: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    padding: '12px 24px',
+  },
+  gridUser: {
+    position: 'relative',
+  },
+  radioGrp: {
+    position: 'absolute',
+  },
+}));
 
 export default function ProfileBody() {
+  const classes = useStyles();
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(authHelper.isAuthenticated().user.name);
 
@@ -49,7 +101,7 @@ export default function ProfileBody() {
       email: authHelper.isAuthenticated().user.email,
       role: userType || authHelper.isAuthenticated().user.role,
     };
-    
+
     update(
       authHelper.isAuthenticated().user._id,
       authHelper.isAuthenticated().token,
@@ -69,108 +121,114 @@ export default function ProfileBody() {
 
   return (
     <>
-      <Typography variant="h4" noWrap component="div">
-        Profile
-      </Typography>
-      <Grid container justifyContent="center">
-        <Grid item xs={12} sm={6}>
-          <Card>
-            <CardContent sx={{ position: "relative" }}>
-              <IconButton
-                aria-label="edit"
-                sx={{
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                  zIndex: 1,
-                }}
-                onClick={handleEditClick}
-              >
-                {isEditing ? <CloseIcon /> : <EditIcon />}
-              </IconButton>
-              <Typography variant="h5" gutterBottom>
-                {authHelper.isAuthenticated().user.name}!!
-              </Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    label="ID"
-                    variant="standard"
-                    fullWidth
-                    value={authHelper.isAuthenticated().user._id}
-                    disabled
-                  />
-                  <TextField
-                    label="Name"
-                    variant="standard"
-                    fullWidth
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    disabled={!isEditing}
-                  />
-                  <TextField
-                    label="Email"
-                    variant="standard"
-                    fullWidth
-                    value={authHelper.isAuthenticated().user.email}
-                    disabled
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  {!isEditing ? (
-                    <TextField
-                      label="User Type"
-                      variant="standard"
-                      fullWidth
-                      value={userType}
-                      disabled={!isEditing}
-                    />
-                  ) : (
-                    <>
-                      <Typography variant="subtitle1">User Type</Typography>
-                      <RadioGroup
-                        aria-label="user-type"
-                        name="user-type"
-                        value={userType}
-                        onChange={(e) => setUserType(e.target.value)}
-                        disabled={!isEditing}
-                      >
-                        <FormControlLabel
-                          value="user"
-                          control={<Radio />}
-                          label="User"
-                        />
-                        <FormControlLabel
-                          value="admin"
-                          control={<Radio />}
-                          label="Admin"
-                        />
-                      </RadioGroup>
-                    </>
-                  )}
-                </Grid>
-              </Grid>
-              {isEditing && (
-                <Button variant="contained" onClick={handleSaveClick}>
-                  Save
-                </Button>
-              )}
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
 
-      <SnackBar
-        open={openSnackBar.isOpen}
-        onClose={handleSnackBarClose}
-        message={
-          openSnackBar.isSuccess
-            ? "Profile update successfully"
-            : "An error occurred updating your profile"
-        }
-        severity={openSnackBar.isSuccess ? "success" : "error"}
-        position={{ vertical: "bottom", horizontal: "right" }}
-      />
+      <Container className={classes.main}>
+        <Typography variant="h5" noWrap component="div">
+          Profile
+        </Typography>
+        <Card className={classes.card}>
+          <Container className={classes.cardHead}>
+            <Typography variant="h5">
+              {authHelper.isAuthenticated().user.name}!!
+            </Typography>
+            <IconButton
+              aria-label="edit"
+              onClick={handleEditClick}
+              className={classes.icon}
+            >
+              {isEditing ? <CloseIcon /> : <EditIcon />}
+            </IconButton>
+          </Container>
+          <Grid container className={classes.grid}>
+            <Grid item xs={12}>
+              <TextField
+                label="ID"
+                variant="standard"
+                fullWidth
+                value={authHelper.isAuthenticated().user._id}
+                disabled
+              />
+            </Grid>
+            <Grid item xs={12} className={classes.gridUser}>
+              {!isEditing ? (
+                <TextField
+                  label="User Type"
+                  variant="standard"
+                  fullWidth
+                  value={userType}
+                  disabled={!isEditing}
+                />
+              ) : (
+                <>
+                  <Typography variant="body2">User Type</Typography>
+                  <RadioGroup
+                    aria-label="user-type"
+                    name="user-type"
+                    value={userType}
+                    onChange={(e) => setUserType(e.target.value)}
+                    disabled={!isEditing}
+                    className={classes.radioGrp}
+                  >
+                    <FormControlLabel
+                      value="user"
+                      control={<Radio />}
+                      label="User"
+                    />
+                    <FormControlLabel
+                      value="admin"
+                      control={<Radio />}
+                      label="Admin"
+                    />
+                  </RadioGroup>
+                </>
+              )}
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Name"
+                variant="standard"
+                fullWidth
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                disabled={!isEditing}
+              />
+            </Grid>
+            <Grid item xs={12} />
+            <Grid item xs={12}>
+              <TextField
+                label="Email"
+                variant="standard"
+                fullWidth
+                value={authHelper.isAuthenticated().user.email}
+                disabled
+              />
+            </Grid>
+            
+          </Grid>
+          {isEditing && (
+            <Button
+            variant="contained"
+            onClick={handleSaveClick}
+            disableElevation
+            className={classes.btnPrimary}
+            >
+              Save
+            </Button>
+          )}
+        </Card>
+
+        <SnackBar
+          open={openSnackBar.isOpen}
+          onClose={handleSnackBarClose}
+          message={
+            openSnackBar.isSuccess
+              ? "Profile update successfully"
+              : "An error occurred updating your profile"
+          }
+          severity={openSnackBar.isSuccess ? "success" : "error"}
+          position={{ vertical: "bottom", horizontal: "right" }}
+        />
+      </Container>
     </>
   );
 }
