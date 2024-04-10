@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     gap: '24px',
   },
   card: {
+    width: '100%',
     boxShadow: '0 2px 4px 0 rgba(171,189,194,.25)',
     backgroundColor: theme.palette.common.white,
     borderRadius: '8px',

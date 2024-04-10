@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     textTransform: 'capitalize',
-  }, dataGrid: {
+  }, 
+  dataGrid: {
     width: '100%',
     borderColor: 'transparent !important',
     boxShadow: '0 2px 4px 0 rgba(171,189,194,.25)',
