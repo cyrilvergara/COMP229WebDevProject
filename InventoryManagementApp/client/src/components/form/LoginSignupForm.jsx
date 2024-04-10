@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     '&:hover': {
       backgroundColor: 'transparent',
-      color: theme.palette.secondary.main,
+      color: theme.palette.grey[300],
     },
   },
   title: {

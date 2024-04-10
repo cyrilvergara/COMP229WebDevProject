@@ -77,7 +77,7 @@ const theme = createTheme({
       lineHeight: '5.333rem',
       '@media (max-width:960px)': {
         fontSize: '2.667rem',
-        lineHeight: '4.667rem',
+        lineHeight: '4rem',
       },
       letterSpacing: '0.02em',
       textTransform: 'uppercase',
