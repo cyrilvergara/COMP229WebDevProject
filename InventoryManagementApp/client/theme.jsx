@@ -25,9 +25,13 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 700,
-      fontSize: "6rem",
-      lineHeight: "8rem",
-      letterSpacing: "0.02em",
+      fontSize: '6rem',
+      lineHeight: '8rem',
+      '@media (max-width:960px)': {
+        fontSize: '5.333rem',
+        lineHeight: '6.667rem',
+      },
+      letterSpacing: '0.02em',
     },
     h2: {
       fontFamily: [
@@ -37,9 +41,13 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 700,
-      fontSize: "5.333rem",
-      lineHeight: "6.667rem",
-      letterSpacing: "0.02em",
+      fontSize: '5.333rem',
+      lineHeight: '6.667rem',
+      '@media (max-width:960px)': {
+        fontSize: '4.667rem',
+        lineHeight: '6rem',
+      },
+      letterSpacing: '0.02em',
     },
     h3: {
       fontFamily: [
@@ -49,8 +57,12 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 600,
-      fontSize: "4.667rem",
-      lineHeight: "6rem",
+      fontSize: '4.667rem',
+      lineHeight: '6rem',
+      '@media (max-width:960px)': {
+        fontSize: '4rem',
+        lineHeight: '5.333rem',
+      },
       letterSpacing: 0,
     },
     h4: {
@@ -61,9 +73,13 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 600,
-      fontSize: "4rem",
-      lineHeight: "5.333rem",
-      letterSpacing: "0.02em",
+      fontSize: '4rem',
+      lineHeight: '5.333rem',
+      '@media (max-width:960px)': {
+        fontSize: '2.667rem',
+        lineHeight: '4.667rem',
+      },
+      letterSpacing: '0.02em',
       textTransform: 'uppercase',
     },
     h5: {
@@ -74,8 +90,12 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 600,
-      fontSize: "2.667rem",
-      lineHeight: "4.667rem",
+      fontSize: '2.667rem',
+      lineHeight: '4.667rem',
+      '@media (max-width:960px)': {
+        fontSize: '2.333rem',
+        lineHeight: '4rem',
+      },
       letterSpacing: 0,
     },
     h6: {
@@ -86,9 +106,13 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 300,
-      fontSize: "1rem",
-      lineHeight: "1.333rem",
-      letterSpacing: "0.08em",
+      fontSize: '1rem',
+      lineHeight: '1.333rem',
+      '@media (max-width:960px)': {
+        fontSize: '1rem',
+        lineHeight: '1.333rem',
+      },
+      letterSpacing: '0.08em',
       textTransform: 'uppercase',
     },
     subtitle1: {
@@ -99,8 +123,12 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 400,
-      fontSize: "1.667rem",
-      lineHeight: "2.333rem",
+      fontSize: '1.667rem',
+      lineHeight: '2.333rem',
+      '@media (max-width:960px)': {
+        fontSize: '1.333rem',
+        lineHeight: '2rem',
+      },
       letterSpacing: 0,
     },
     subtitle2: {
@@ -111,9 +139,13 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 600,
-      fontSize: "1.667rem",
-      lineHeight: "2.333rem",
-      letterSpacing: "0.02em",
+      fontSize: '1.667rem',
+      lineHeight: '2.333rem',
+      '@media (max-width:960px)': {
+        fontSize: '1.333rem',
+        lineHeight: '2rem',
+      },
+      letterSpacing: '0.02em',
     },
     body1: {
       fontFamily: [
@@ -123,8 +155,12 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 400,
-      fontSize: "1.333rem",
-      lineHeight: "2rem",
+      fontSize: '1.333rem',
+      lineHeight: '2rem',
+      '@media (max-width:960px)': {
+        fontSize: '1.167rem',
+        lineHeight: '1.667rem',
+      },
       letterSpacing: 0,
     },
     body2: {
@@ -135,8 +171,12 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 400,
-      fontSize: "1rem",
-      lineHeight: "1.333rem",
+      fontSize: '1rem',
+      lineHeight: '1.333rem',
+      '@media (max-width:960px)': {
+        fontSize: '0.833rem',
+        lineHeight: '1.167rem',
+      },
       letterSpacing: 0,
     },
     button: {
@@ -147,9 +187,13 @@ const theme = createTheme({
         'sans-serif',
       ].join(','),
       fontWeight: 300,
-      fontSize: "1.167rem",
-      lineHeight: "1.167rem",
-      letterSpacing: "0.08em",
+      fontSize: '1.167rem',
+      lineHeight: '1.167rem',
+      '@media (max-width:960px)': {
+        fontSize: '1rem',
+        lineHeight: '1rem',
+      },
+      letterSpacing: '0.08em',
       textTransform: 'uppercase',
     },
   },
@@ -214,7 +258,7 @@ const theme = createTheme({
     },
   },
   breakpoints: {
-    keys: ["xs", "sm", "md", "lg", "xl"],
+    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
     values: {
       xs: 0,
       sm: 600,

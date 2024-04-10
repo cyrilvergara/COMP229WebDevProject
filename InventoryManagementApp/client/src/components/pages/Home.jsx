@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     marginBottom: theme.spacing(6),
     [theme.breakpoints.down('sm')]: {
-      fontSize: '3rem', // Smaller title on small screens
+      // fontSize: '3rem', // Smaller title on small screens
     },
   },
   subTitle: {
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.dark,
     textTransform: 'capitalize',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '2rem', // Smaller subtitle on small screens
+      // fontSize: '2rem', // Smaller subtitle on small screens
     },
   },
   description: {
