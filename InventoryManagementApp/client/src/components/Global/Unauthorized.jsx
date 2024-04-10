@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subtitle: {
     color: theme.palette.grey[600],
+    marginBottom: '8px',
   },
   btnPrimary: {
     marginTop: '28px',
