@@ -15,7 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   main: {
     maxWidth: '700px',
-    padding: '64px 48px',
+    padding: '64px 0',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
