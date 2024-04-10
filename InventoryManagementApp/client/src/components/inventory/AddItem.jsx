@@ -1,11 +1,31 @@
 import React from "react";
-import { TextField, Button, Container, Typography } from "@mui/material";
 import { create } from "../../apis/item.api";
 import authHelper from "../../helper/auth.helper";
 import SnackBar from "../Global/Snackbar";
+import {
+  Typography,
+  Container,
+  TextField,
+  Button,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  main: {
+    maxWidth: '700px',
+    padding: '64px 48px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    gap: '24px',
+  },
+}));
 
 export default function AddItem() {
   const auth = authHelper.isAuthenticated();
+  
+  const classes = useStyles();
 
 
   const [openSnackBar, setOpenSnackBar] = React.useState({
@@ -58,8 +78,8 @@ export default function AddItem() {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Typography variant="h4" gutterBottom>
+    <Container className={classes.main}>
+      <Typography variant="h5">
         Create New Item
       </Typography>
       <form onSubmit={onSubmitClick}>

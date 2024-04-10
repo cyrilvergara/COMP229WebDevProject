@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     gap: '64px',
-    backgroundColor: theme.palette.grey[100],
   },
   heading: {
     textTransform: 'capitalize',
