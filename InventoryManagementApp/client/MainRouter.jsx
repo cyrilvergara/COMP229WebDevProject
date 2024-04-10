@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
   topNav: {
     backgroundColor: theme.palette.common.white,
-    color: theme.palette.grey[300],
+    color: theme.palette.grey[600],
     boxShadow: 'none',
     borderBottom: 'solid 1px #EAF5F9',
     width: `calc(100vw - ${drawerWidth}px)`,

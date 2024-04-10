@@ -19,8 +19,6 @@ import {
   Container,
 } from "@material-ui/core";
 
-const drawerWidth = 300;
-
 const useStyles = makeStyles((theme) => ({
   main: {
     maxWidth: '700px',
