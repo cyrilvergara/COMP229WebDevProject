@@ -7,6 +7,8 @@ import {
   Container,
   TextField,
   Button,
+  Card,
+  Grid,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -20,11 +22,23 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
     gap: '24px',
   },
+  card: {
+    boxShadow: '0 2px 4px 0 rgba(171,189,194,.25)',
+    backgroundColor: theme.palette.common.white,
+    borderRadius: '8px',
+    padding: '24px',
+  },
+  btnPrimary: {
+    width: 'min-content',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    padding: '12px 24px',
+  },
 }));
 
 export default function AddItem() {
   const auth = authHelper.isAuthenticated();
-  
+
   const classes = useStyles();
 
 
@@ -34,7 +48,7 @@ export default function AddItem() {
   });
 
   const handleSnackBarClose = () => {
-    setOpenSnackBar({isSuccess: false, isOpen: false});
+    setOpenSnackBar({ isSuccess: false, isOpen: false });
   };
 
   const [textFields, setFieldValues] = React.useState({
@@ -69,11 +83,11 @@ export default function AddItem() {
     create(newItem, auth.token).then((response) => {
       if (response.error) {
         setFieldValues({ ...textFields, error: response.error });
-        setOpenSnackBar({isSuccess: false, isOpen: true});
+        setOpenSnackBar({ isSuccess: false, isOpen: true });
         return;
       }
 
-      setOpenSnackBar({isSuccess: true, isOpen: true});
+      setOpenSnackBar({ isSuccess: true, isOpen: true });
     });
   };
 
@@ -82,69 +96,77 @@ export default function AddItem() {
       <Typography variant="h5">
         Create New Item
       </Typography>
-      <form onSubmit={onSubmitClick}>
-        <TextField
-          label="Item Name"
-          onChange={onTextChange("itemName")}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          label="Description"
-          onChange={onTextChange("description")}
-          fullWidth
-          multiline
-          rows={4}
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          label="Price"
-          onChange={onTextChange("price")}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          label="Initial Quantity"
-          onChange={onTextChange("availableQty")}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          label="Category"
-          onChange={onTextChange("category")}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          label="Supplier"
-          onChange={onTextChange("supplier")}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          label="Size"
-          onChange={onTextChange("size")}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          label="Unit"
-          onChange={onTextChange("unit")}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-        />
-        <Button type="submit" variant="contained" color="primary">
-          Create Item
-        </Button>
-      </form>
+      <Card className={classes.card}>
+        <form onSubmit={onSubmitClick}>
+          <Grid container className={classes.grid}>
+          <TextField
+            label="Item Name"
+            onChange={onTextChange("itemName")}
+            fullWidth
+            margin="normal"
+            variant="standard"
+          />
+          <TextField
+            label="Description"
+            onChange={onTextChange("description")}
+            fullWidth
+            multiline
+            rows={4}
+            margin="normal"
+            variant="standard"
+          />
+          <TextField
+            label="Price"
+            onChange={onTextChange("price")}
+            fullWidth
+            margin="normal"
+            variant="standard"
+          />
+          <TextField
+            label="Initial Quantity"
+            onChange={onTextChange("availableQty")}
+            fullWidth
+            margin="normal"
+            variant="standard"
+          />
+          <TextField
+            label="Category"
+            onChange={onTextChange("category")}
+            fullWidth
+            margin="normal"
+            variant="standard"
+          />
+          <TextField
+            label="Supplier"
+            onChange={onTextChange("supplier")}
+            fullWidth
+            margin="normal"
+            variant="standard"
+          />
+          <TextField
+            label="Size"
+            onChange={onTextChange("size")}
+            fullWidth
+            margin="normal"
+            variant="standard"
+          />
+          <TextField
+            label="Unit"
+            onChange={onTextChange("unit")}
+            fullWidth
+            margin="normal"
+            variant="standard"
+          />
+          </Grid>
+          <Button
+            type="submit"
+            disableElevation
+            className={classes.btnPrimary}
+          >
+            Create Item
+          </Button>
+        </form>
+      </Card>
 
       <SnackBar
         open={openSnackBar.isOpen}

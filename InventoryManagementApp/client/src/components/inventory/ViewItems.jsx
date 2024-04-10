@@ -64,6 +64,7 @@ export default function ViewItems() {
   }, []);
 
   const columns = [
+    { field: "_id", headerName: "ID", flex: 1, align: "left", editable: false },
     { field: "itemName", headerName: "Name", flex: 1, align: "left", editable: false },
     { field: "description", headerName: "Description", flex: 1, align: "left", editable: false },
     { field: "availableQty", headerName: "Available Quantity", type: "number", flex: 1, align: "left", editable: false },
