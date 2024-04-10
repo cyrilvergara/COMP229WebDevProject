@@ -32,6 +32,10 @@ const isActive = (location, path) => {
 };
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    backgroundColor: theme.palette.grey[100],
+  },
   main: {
     display: 'flex',
     flexDirection: 'column',
@@ -122,7 +126,7 @@ const MainRouter = () => {
   }
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box className={classes.root}>
       <CssBaseline />
       {/* Drawer */}
       <Drawer
