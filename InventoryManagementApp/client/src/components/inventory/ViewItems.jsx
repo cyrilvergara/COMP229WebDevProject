@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'capitalize',
   }, dataGrid: {
     width: '100%',
+    borderColor: 'transparent !important',
+    boxShadow: '0 2px 4px 0 rgba(171,189,194,.25)',
+    backgroundColor: theme.palette.common.white,
+    borderRadius: '8px !important',
+    padding: '24px',
     '& .MuiDataGrid-cell': {
       whiteSpace: 'nowrap',
       overflow: 'hidden',
@@ -33,7 +38,13 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: 'none',
     },
     '& .MuiDataGrid-virtualScroller': {
-      height: 'calc(100vh - 400px)',
+      height: 'calc(100vh - 448px)',
+    },
+    '& .MuiDataGrid-columnHeaderTitleContainer': {
+      flexDirection: 'row !important',
+    },
+    '& .MuiDataGrid-columnHeaderTitle': {
+      fontWeight: 700,
     },
   },
 }));
