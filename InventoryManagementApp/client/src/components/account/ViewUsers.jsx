@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       lineHeight: 'normal',
+      padding: '10px',
     },
     '& .MuiDataGrid-row': {
       maxHeight: 'none',

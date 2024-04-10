@@ -54,10 +54,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddItem() {
-  const auth = authHelper.isAuthenticated();
-
   const classes = useStyles();
-
+  const auth = authHelper.isAuthenticated();
 
   const [openSnackBar, setOpenSnackBar] = React.useState({
     isSuccess: false,
@@ -126,7 +124,6 @@ export default function AddItem() {
               label="Item Name"
               onChange={onTextChange("itemName")}
               fullWidth
-              margin="normal"
               variant="standard"
               className={classes.gridFull}
             />
@@ -136,7 +133,6 @@ export default function AddItem() {
               fullWidth
               multiline
               rows={4}
-              margin="normal"
               variant="standard"
               className={classes.gridFull}
             />
@@ -144,42 +140,36 @@ export default function AddItem() {
               label="Price"
               onChange={onTextChange("price")}
               fullWidth
-              margin="normal"
               variant="standard"
             />
             <TextField
               label="Initial Quantity"
               onChange={onTextChange("availableQty")}
               fullWidth
-              margin="normal"
               variant="standard"
             />
             <TextField
               label="Category"
               onChange={onTextChange("category")}
               fullWidth
-              margin="normal"
               variant="standard"
             />
             <TextField
               label="Supplier"
               onChange={onTextChange("supplier")}
               fullWidth
-              margin="normal"
               variant="standard"
             />
             <TextField
               label="Size"
               onChange={onTextChange("size")}
               fullWidth
-              margin="normal"
               variant="standard"
             />
             <TextField
               label="Unit"
               onChange={onTextChange("unit")}
               fullWidth
-              margin="normal"
               variant="standard"
             />
           </Grid>
