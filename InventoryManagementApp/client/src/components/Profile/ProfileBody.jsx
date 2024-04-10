@@ -127,7 +127,7 @@ export default function ProfileBody() {
         <Card className={classes.card}>
           <Container className={classes.cardHead}>
             <Typography variant="h5">
-              {authHelper.isAuthenticated().user.name}!!
+              {authHelper.isAuthenticated().user.name}
             </Typography>
             <IconButton
               aria-label="edit"
