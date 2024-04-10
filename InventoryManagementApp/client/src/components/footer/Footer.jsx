@@ -5,13 +5,13 @@ import logo from '../../../assets/images/WinterDevLogo_PrimaryLogoLight.svg';
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
-    padding: theme.spacing(2),
+    padding: '24px 0',
     textAlign: 'center',
   },
   logoImage: {
     width: 250,
     margin: 'auto',
-    marginTop: theme.spacing(2),
+    // marginTop: theme.spacing(2),
   },
 }));
 

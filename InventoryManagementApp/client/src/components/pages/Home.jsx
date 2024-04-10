@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    [theme.breakpoints.down('md')]: {
+      padding: '80px 24px 64px 24px',
+    },
   },
   grid: {
     display: 'grid',
@@ -25,13 +28,9 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(3),
     marginTop: theme.spacing(1),
     [theme.breakpoints.down('md')]: {
-      gridTemplateColumns: '1fr', // Stack the elements on smaller screens
       textAlign: 'center', // Center the text for smaller screens
-      marginLeft: theme.spacing(0), // Adjust margin for smaller screens
       justifyItems: 'center',
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(2), // Reduce padding on very small screens
+      display: 'block',
     },
   },
   logo: {
@@ -39,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '24px',
   },
   column1: {
+    width: '100%',
     maxWidth: '600px',
     display: 'flex',
     flexDirection: 'column',
@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       alignItems: 'center',
       justifyContent: 'center',
+      margin: 'auto auto 48px auto',
     },
   },
   column2: {
@@ -55,26 +56,19 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-end',
     [theme.breakpoints.down('md')]: {
       textAlign: 'left',
-    },
-  },
-  title: {
-    fontSize: '5rem',
-    fontWeight: 'bold',
-    marginBottom: theme.spacing(6),
-    [theme.breakpoints.down('sm')]: {
-      // fontSize: '3rem', // Smaller title on small screens
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 'auto',
     },
   },
   subTitle: {
-    fontSize: '6xl',
     color: theme.palette.primary.dark,
     textTransform: 'capitalize',
-    [theme.breakpoints.down('sm')]: {
-      // fontSize: '2rem', // Smaller subtitle on small screens
-    },
+    textWrap: 'balance',
   },
   description: {
     color: theme.palette.grey[600],
+    textWrap: 'balance',
     [theme.breakpoints.down('sm')]: {
       fontSize: '1rem', // Smaller text on small screens
     },
@@ -85,9 +79,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     color: 'white',
     textAlign: 'center',
+    padding: 0,
     [theme.breakpoints.down('md')]: {
       position: 'relative', // Adjust position on small screens
-      marginBottom: theme.spacing(2), // Add margin bottom on small screens
+      marginTop: '48px', 
     },
   },
 }));
