@@ -21,8 +21,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     gap: '24px',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       padding: '48px 24px 64px 24px',
+    },
+    '@media (min-width:960px) and (max-width:1280px)': {
+      padding: '64px 24px',
     },
   },
   card: {
@@ -50,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     gridAutoFlow: 'row',
     gap: '24px',
     marginBottom: '36px',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       gridTemplateColumns: '1fr',
     },
   },

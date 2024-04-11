@@ -17,10 +17,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     gap: '48px',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       width: '100vw',
       padding: '48px 24px 64px 24px',
       gap: '24px',
+    },
+    '@media (min-width:960px) and (max-width:1280px)': {
+      padding: '64px 24px',
     },
   },
   heading: {
@@ -42,10 +45,11 @@ const useStyles = makeStyles((theme) => ({
     },
     '& .MuiDataGrid-row': {
       maxHeight: 'none',
+      overflowX: 'auto',
     },
     '& .MuiDataGrid-virtualScroller': {
       height: 'calc(100vh - 430px)',
-      [theme.breakpoints.down('md')]: {
+      '@media (max-width:960px)': {
         height: 'calc(100vh - 367px)',
       },
     },
@@ -74,15 +78,15 @@ export default function ViewItems() {
   }, []);
 
   const columns = [
-    { field: "_id", headerName: "ID", flex: 1, align: "left", editable: false },
-    { field: "itemName", headerName: "Name", flex: 1, align: "left", editable: false },
-    { field: "description", headerName: "Description", flex: 1, align: "left", editable: false },
-    { field: "availableQty", headerName: "Available Quantity", type: "number", flex: 1, align: "left", editable: false },
-    { field: "price", headerName: "Price", type: "number", flex: 1, align: "left", editable: false },
-    { field: "category", headerName: "Category", flex: 1, align: "left", editable: false },
-    { field: "supplier", headerName: "Supplier", flex: 1, align: "left", editable: false },
-    { field: "size", headerName: "Size", flex: 1, align: "left", editable: false },
-    { field: "unit", headerName: "Unit", flex: 1, align: "left", editable: false },
+    { field: "_id", headerName: "ID", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "itemName", headerName: "Name", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "description", headerName: "Description", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "availableQty", headerName: "Available Quantity", minWidth: 150, type: "number", flex: 1, align: "left", editable: false },
+    { field: "price", headerName: "Price", type: "number", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "category", headerName: "Category", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "supplier", headerName: "Supplier", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "size", headerName: "Size", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "unit", headerName: "Unit", minWidth: 150, flex: 1, align: "left", editable: false },
   ];
 
 

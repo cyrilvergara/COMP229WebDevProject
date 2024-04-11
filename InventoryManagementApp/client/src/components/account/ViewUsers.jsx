@@ -22,11 +22,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    gap: '48px',
-    [theme.breakpoints.down('md')]: {
+    gap: '24px',
+    '@media (max-width:960px)': {
       width: '100vw',
       padding: '48px 24px 64px 24px',
-      gap: '24px',
+    },
+    '@media (min-width:960px) and (max-width:1280px)': {
+      padding: '64px 24px',
     },
   },
   dataGrid: {
@@ -45,10 +47,11 @@ const useStyles = makeStyles((theme) => ({
     },
     '& .MuiDataGrid-row': {
       maxHeight: 'none',
+      overflowX: 'auto',
     },
     '& .MuiDataGrid-virtualScroller': {
-      height: 'calc(100vh - 418px)',
-      [theme.breakpoints.down('md')]: {
+      height: 'calc(100vh - 394px)',
+      '@media (max-width:960px)': {
         height: 'calc(100vh - 367px)',
       },
     },
@@ -77,12 +80,12 @@ export default function ViewItems() {
   }, []);
 
   const columns = [
-    { field: "name", headerName: "Name", flex: 1, align: "left", editable: false },
-    { field: "username", headerName: "Username", flex: 1, align: "left", editable: false },
-    { field: "email", headerName: "Email", flex: 1, align: "left", editable: false },
-    { field: "role", headerName: "Role", type: "number", flex: 1, align: "left", editable: false },
-    { field: "created", headerName: "Created on", type: "number", flex: 1, align: "left", editable: false },
-    { field: "updated", headerName: "Last Updated On", flex: 1, align: "left", editable: false },
+    { field: "name", headerName: "Name", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "username", headerName: "Username", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "email", headerName: "Email", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "role", headerName: "Role", type: "number", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "created", headerName: "Created on", type: "number", minWidth: 150, flex: 1, align: "left", editable: false },
+    { field: "updated", headerName: "Last Updated On", minWidth: 150, flex: 1, align: "left", editable: false },
   ];
 
   return (

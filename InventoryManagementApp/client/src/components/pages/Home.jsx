@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       padding: '80px 24px 64px 24px',
     },
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: theme.spacing(3),
     marginTop: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       textAlign: 'center', // Center the text for smaller screens
       justifyItems: 'center',
       display: 'block',
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     gap: '12px',
     alignItems: 'flex-start',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       alignItems: 'center',
       justifyContent: 'center',
       margin: 'auto auto 48px auto',
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       textAlign: 'left',
       alignItems: 'center',
       justifyContent: 'center',
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     textAlign: 'center',
     padding: 0,
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       position: 'relative', // Adjust position on small screens
       marginTop: '48px', 
     },

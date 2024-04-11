@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
     position: 'relative',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       position: 'absolute',
       width: '100vw',
     },
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     padding: '24px 0',
     boxShadow: '2px 0 4px 0 rgba(171,189,194,.25)',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       width: '100vw',
     },
   },
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   menuBurger: {
     color: theme.palette.primary.dark,
     position: 'absolute',
-    left: '16px',
+    left: '24px',
     zIndex: '50',
   },
   main: {
@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '0 24px',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       margin: '16px 0 24px 0',
     },
   },
@@ -127,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
     width: `calc(100vw - ${drawerWidth}px)`,
     height: '64px',
     justifyContent: 'center',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       width: '100vw',
     },
   },
@@ -135,18 +135,18 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 24px 0 40px',
     display: 'flex',
     justifyContent: 'space-between',
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       padding: '0 24px',
       justifyContent: 'center',
     },
   },
   notVisOnDesk: {
-    [theme.breakpoints.up('md')]: {
+    '@media (min-width:960px)': {
       display: 'none',
     },
   },
   notVisOnMob: {
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       display: 'none',
     },
   },

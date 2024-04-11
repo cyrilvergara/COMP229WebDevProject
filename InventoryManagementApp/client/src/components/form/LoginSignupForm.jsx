@@ -13,8 +13,7 @@ import SnackBar from "../Global/Snackbar";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 525,
-    // padding: theme.spacing(2),
-    [theme.breakpoints.down('md')]: {
+    '@media (max-width:960px)': {
       width: '100%',
     },
   },
