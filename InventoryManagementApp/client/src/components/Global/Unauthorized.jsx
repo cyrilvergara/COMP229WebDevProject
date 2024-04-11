@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   main: {
+    color: theme.palette.common.black,
     maxWidth: '550px',
     minHeight: 'calc(100vh - 64px)',
     padding: '64px 0',
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   card: {
+    color: theme.palette.common.black,
     width: '100%',
     boxShadow: '0 2px 4px 0 rgba(171,189,194,.25)',
     backgroundColor: theme.palette.common.white,

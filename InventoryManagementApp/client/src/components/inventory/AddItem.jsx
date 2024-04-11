@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   main: {
+    color: theme.palette.common.black,
     maxWidth: '700px',
     padding: '64px 0',
     display: 'flex',
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '24px',
   },
   cardTitle: {
+    color: theme.palette.common.black,
     fontWeight: 700,
   },
   cardSubtitle: {

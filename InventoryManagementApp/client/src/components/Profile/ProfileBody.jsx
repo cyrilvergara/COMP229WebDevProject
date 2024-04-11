@@ -21,6 +21,7 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   main: {
+    color: theme.palette.common.black,
     maxWidth: '700px',
     minHeight: 'calc(100vh - 64px)',
     padding: '64px 0',
@@ -44,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '24px',
   },
   cardHead: {
+    color: theme.palette.common.black,
     padding: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -80,6 +82,12 @@ const useStyles = makeStyles((theme) => ({
   },
   radioGrp: {
     position: 'absolute',
+    '& .MuiRadio-root': {
+      color: theme.palette.grey[600],
+    },
+    '& .MuiRadio-colorSecondary.Mui-checked': {
+      color: theme.palette.primary.main,
+    },
     '@media (max-width:960px)': {
       position: 'relative',
     },

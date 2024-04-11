@@ -16,6 +16,7 @@ import { DataGrid } from "@mui/x-data-grid";
 
 const useStyles = makeStyles((theme) => ({
   main: {
+    color: theme.palette.common.black,
     width: `calc(100vw - ${drawerWidth}px)`,
     padding: '64px 48px',
     display: 'flex',
@@ -50,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiDataGrid-row': {
       maxHeight: 'none',
       overflowX: 'auto',
+      '&:hover': {
+        backgroundColor: 'rgba(199,246,243,.25) !important',
+      },
     },
     '& .MuiDataGrid-virtualScroller': {
       height: 'calc(100vh - 394px)',
