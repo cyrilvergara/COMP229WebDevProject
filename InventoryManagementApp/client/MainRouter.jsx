@@ -16,8 +16,9 @@ import {
   ListItemText,
   ListItem,
   Container,
+  IconButton,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Profile from "./src/components/Profile/Profile";
 import ProfileBody from "./src/components/Profile/ProfileBody";
@@ -26,6 +27,9 @@ import PrivateRoute from "./src/components/Global/PrivateRoute";
 import Unauthorized from "./src/components/Global/Unauthorized";
 import logo from './assets/images/wdinvLogo_dark.svg';
 import logoWD from './assets/images/WinterDevLogo_PrimaryLogoDark.svg';
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const isActive = (location, path) => {
   return location.pathname === path ? { color: '#0BC4FF' } : { color: '#EFF6F9' };
@@ -48,6 +52,11 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    position: 'relative',
+    [theme.breakpoints.down('md')]: {
+      position: 'absolute',
+      width: '100vw',
+    },
   },
   drawerPaper: {
     width: drawerWidth,
@@ -58,6 +67,24 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     padding: '24px 0',
     boxShadow: '2px 0 4px 0 rgba(171,189,194,.25)',
+    [theme.breakpoints.down('md')]: {
+      width: '100vw',
+    },
+  },
+  menuClose: {
+    position: 'absolute',
+    right: '24px',
+    zIndex: '50',
+    color: theme.palette.common.white,
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+  menuBurger: {
+    color: theme.palette.primary.dark,
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
   },
   main: {
     padding: 0,
@@ -96,18 +123,43 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: 'solid 1px #EAF5F9',
     width: `calc(100vw - ${drawerWidth}px)`,
     height: '64px',
+    [theme.breakpoints.down('md')]: {
+      width: '100vw',
+    },
   },
   topNavBody: {
     padding: '0 24px 0 40px',
+  },
+  topNavText: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
 }));
 
 const drawerWidth = 280;
 
 const MainRouter = () => {
+  const theme = useTheme();
   const classes = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
+  const matchesMD = useMediaQuery(theme.breakpoints.up('md'));
+  const [open, setOpen] = React.useState(matchesMD);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    if (!matchesMD) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    setOpen(matchesMD);
+  }, [matchesMD]);
 
   useEffect(() => {
     if (!authHelper.isAuthenticated()) {
@@ -130,7 +182,7 @@ const MainRouter = () => {
       <CssBaseline />
       {/* Drawer */}
       <Drawer
-        variant="permanent"
+        variant="persistent"
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -144,7 +196,14 @@ const MainRouter = () => {
         classes={{
           paper: classes.drawerPaper,
         }}
+        open={open}
       >
+        <IconButton
+          className={classes.menuClose}
+          onClick={handleDrawerClose}
+        >
+          <CloseIcon />
+        </IconButton>
         <Container className={classes.main}>
           <AppBar position="static" sx={{ width: drawerWidth }} className={classes.header}>
             <Toolbar>
@@ -183,19 +242,26 @@ const MainRouter = () => {
       <Container
         component="main"
         className={classes.main}
-        // sx={{
-        //   flexGrow: 1,
-        //   bgcolor: "background.default",
-        //   p: 3,
-        //   marginLeft: drawerWidth, // Adjust margin left to account for Drawer width
-        //   marginTop: 64, // Offset for the AppBar
-        //   zIndex: 1, // Ensure content is above Drawer
-        //   position: "relative", // Ensure proper positioning
-        // }}
+      // sx={{
+      //   flexGrow: 1,
+      //   bgcolor: "background.default",
+      //   p: 3,
+      //   marginLeft: drawerWidth, // Adjust margin left to account for Drawer width
+      //   marginTop: 64, // Offset for the AppBar
+      //   zIndex: 1, // Ensure content is above Drawer
+      //   position: "relative", // Ensure proper positioning
+      // }}
       >
         <AppBar position="fixed" sx={{ zIndex: 1 }} className={classes.topNav}>
           <Toolbar sx={{ ml: drawerWidth }} className={classes.topNavBody}>
-            <Typography variant="h6" noWrap component="div">
+
+            <IconButton
+              onClick={handleDrawerOpen}
+              className={classes.menuBurger}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div" className={classes.topNavText}>
               Inventory Management App
             </Typography>
 
