@@ -52,10 +52,10 @@ const useStyles = makeStyles((theme) => ({
       overflowX: 'auto',
     },
     '& .MuiDataGrid-virtualScroller': {
-      // height: 'calc(100vh - 394px)',
-      // '@media (max-width:960px)': {
-      //   height: 'calc(100vh - 367px)',
-      // },
+      height: 'calc(100vh - 394px)',
+      '@media (max-width:960px)': {
+        height: 'calc(100vh - 367px)',
+      },
     },
     '& .MuiDataGrid-columnHeaderTitleContainer': {
       flexDirection: 'row !important',
