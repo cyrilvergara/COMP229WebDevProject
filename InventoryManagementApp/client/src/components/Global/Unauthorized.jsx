@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    '@media (max-width:960px)': {
+      padding: '48px 24px 64px 24px',
+    },
+    '@media (min-width:960px) and (max-width:1280px)': {
+      padding: '64px 24px',
+    },
   },
   card: {
     width: '100%',

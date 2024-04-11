@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import EditIcon from "@mui/icons-material/Edit";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import authHelper from "../../helper/auth.helper";
 import { update } from "../../apis/users.api";
@@ -154,7 +154,7 @@ export default function ProfileBody() {
               onClick={handleEditClick}
               className={classes.icon}
             >
-              {isEditing ? <CloseIcon /> : <EditIcon />}
+              {isEditing ? <CloseIcon /> : <EditOutlinedIcon />}
             </IconButton>
           </Container>
           <Grid container className={classes.grid}>

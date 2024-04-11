@@ -15,6 +15,7 @@ import {
   List,
   ListItemText,
   ListItem,
+  ListItemIcon,
   Container,
   IconButton,
 } from "@material-ui/core";
@@ -30,6 +31,12 @@ import logoLight from './assets/images/wdinvLogo_light.svg';
 import logoWD from './assets/images/WinterDevLogo_PrimaryLogoDark.svg';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
+import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
+import PublishOutlinedIcon from '@material-ui/icons/PublishOutlined';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import PeopleOutlinedIcon from '@material-ui/icons/PeopleOutlined';
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const isActive = (location, path) => {
@@ -107,6 +114,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.light,
     padding: '12px 24px',
     borderBottom: '1px solid rgba(234,245,249,.05)',
+  },
+  listIcon: {
+    color: theme.palette.primary.light,
+    minWidth: '40px',
   },
   footer: {
     display: 'flex',
@@ -232,30 +243,48 @@ const MainRouter = () => {
           <List>
             <Link to="/item/list" className={classes.link} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/item/list")}>
+                <ListItemIcon className={classes.listIcon}>
+                  <ListAltOutlinedIcon style={isActive(location, "/item/list")} />
+                </ListItemIcon>
                 <ListItemText primary="View Items" />
               </ListItem>
             </Link>
             <Link to="/item/add" className={classes.link} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/item/add")}>
+                <ListItemIcon className={classes.listIcon}>
+                  <PublishOutlinedIcon style={isActive(location, "/item/add")} />
+                </ListItemIcon>
                 <ListItemText primary="Create New Item" />
               </ListItem>
             </Link>
             <Link to="/item/edit" className={classes.link} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/item/edit")}>
+                <ListItemIcon className={classes.listIcon}>
+                  <EditOutlinedIcon style={isActive(location, "/item/edit")} />
+                </ListItemIcon>
                 <ListItemText primary="Edit Item" />
               </ListItem>
             </Link>
             <Link to="/users" className={classes.link} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/users")}>
+                <ListItemIcon className={classes.listIcon}>
+                  <PeopleOutlinedIcon style={isActive(location, "/users")} />
+                </ListItemIcon>
                 <ListItemText primary="View Users" />
               </ListItem>
             </Link>
             <Link to="/profilebody" className={`${classes.link} ${classes.notVisOnDesk}`} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/profilebody")}>
+                <ListItemIcon className={classes.listIcon}>
+                  <PersonOutlineOutlinedIcon style={isActive(location, "/profilebody")} />
+                </ListItemIcon>
                 <ListItemText primary="Profile" />
               </ListItem>
             </Link>
             <ListItem button className={`${classes.listItem} ${classes.notVisOnDesk}`} onClick={onLogout}>
+                <ListItemIcon className={classes.listIcon}>
+                  <ExitToAppOutlinedIcon />
+                </ListItemIcon>
               <ListItemText primary="Log Out" />
             </ListItem>
           </List>

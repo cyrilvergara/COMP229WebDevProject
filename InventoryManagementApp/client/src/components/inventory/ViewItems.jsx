@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     gap: '48px',
+    maxHeight: 'calc(100vh - 64px)',
     '@media (max-width:960px)': {
       width: '100vw',
       padding: '48px 24px 64px 24px',
@@ -48,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
       overflowX: 'auto',
     },
     '& .MuiDataGrid-virtualScroller': {
-      height: 'calc(100vh - 430px)',
-      '@media (max-width:960px)': {
-        height: 'calc(100vh - 367px)',
-      },
+      // height: 'calc(100vh - 430px)',
+      // '@media (max-width:960px)': {
+      //   height: 'calc(100vh - 367px)',
+      // },
     },
     '& .MuiDataGrid-columnHeaderTitleContainer': {
       flexDirection: 'row !important',

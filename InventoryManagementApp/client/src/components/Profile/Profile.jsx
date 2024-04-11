@@ -2,12 +2,16 @@ import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import { Avatar, Menu, MenuItem, IconButton } from "@material-ui/core";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import authHelper from "../../helper/auth.helper";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
+    '& .MuiAvatar-colorDefault': {
+      backgroundColor: theme.palette.grey[300],
+      color: theme.palette.common.white,
+    },
     '&:hover': {
       backgroundColor: 'rgba(11,196,255,.1)',
     },
@@ -58,7 +62,7 @@ const Profile = () => {
         className={classes.avatar}
       >
         <Avatar className={classes.avatarIcon}>
-          <AccountCircleIcon />
+          <AccountCircleOutlinedIcon />
         </Avatar>
       </IconButton>
       <Menu
