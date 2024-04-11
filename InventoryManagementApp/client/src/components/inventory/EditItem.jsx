@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
     gridAutoFlow: 'row',
     gap: '24px',
     marginBottom: '36px',
+    [theme.breakpoints.down('md')]: {
+      gridTemplateColumns: '1fr',
+    },
   },
   gridFull: {
     gridColumn: '1 / -1',

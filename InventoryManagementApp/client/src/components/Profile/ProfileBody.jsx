@@ -60,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
     gridAutoFlow: 'row',
     gap: '24px',
     marginBottom: '36px',
+    [theme.breakpoints.down('md')]: {
+      gridTemplateColumns: '1fr',
+    },
   },
   btnPrimary: {
     backgroundColor: theme.palette.primary.main,
@@ -68,9 +71,20 @@ const useStyles = makeStyles((theme) => ({
   },
   gridUser: {
     position: 'relative',
+    [theme.breakpoints.down('md')]: {
+      order: 4,
+    },
   },
   radioGrp: {
     position: 'absolute',
+    [theme.breakpoints.down('md')]: {
+      position: 'relative',
+    },
+  },
+  notVisOnMob: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -194,7 +208,7 @@ export default function ProfileBody() {
                 disabled={!isEditing}
               />
             </Grid>
-            <Grid item xs={12} />
+            <Grid item xs={12} className={classes.notVisOnMob} />
             <Grid item xs={12}>
               <TextField
                 label="Email"
