@@ -16,7 +16,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    gap: '64px',
+    gap: '48px',
+    [theme.breakpoints.down('md')]: {
+      width: '100vw',
+      padding: '48px 24px 64px 24px',
+      gap: '24px',
+    },
   },
   heading: {
     textTransform: 'capitalize',
@@ -39,7 +44,10 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: 'none',
     },
     '& .MuiDataGrid-virtualScroller': {
-      height: 'calc(100vh - 448px)',
+      height: 'calc(100vh - 430px)',
+      [theme.breakpoints.down('md')]: {
+        height: 'calc(100vh - 367px)',
+      },
     },
     '& .MuiDataGrid-columnHeaderTitleContainer': {
       flexDirection: 'row !important',

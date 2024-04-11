@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
     gap: '24px',
     [theme.breakpoints.down('md')]: {
-      padding: '48px 24px',
+      padding: '48px 24px 64px 24px',
     },
   },
   card: {
