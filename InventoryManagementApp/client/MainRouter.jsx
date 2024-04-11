@@ -195,6 +195,7 @@ const MainRouter = () => {
   const onLogout = () => {
     authHelper.clearJWT();
     navigate("/", { replace: true });
+    setOpen(false);
   };
 
   return (
