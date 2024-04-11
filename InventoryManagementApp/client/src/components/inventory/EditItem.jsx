@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     gap: '24px',
+    [theme.breakpoints.down('md')]: {
+      padding: '48px 24px',
+    },
   },
   card: {
     width: '100%',
