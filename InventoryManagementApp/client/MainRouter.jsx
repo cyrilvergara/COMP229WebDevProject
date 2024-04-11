@@ -26,6 +26,7 @@ import ViewUsers from "./src/components/account/ViewUsers";
 import PrivateRoute from "./src/components/Global/PrivateRoute";
 import Unauthorized from "./src/components/Global/Unauthorized";
 import logo from './assets/images/wdinvLogo_dark.svg';
+import logoLight from './assets/images/wdinvLogo_light.svg';
 import logoWD from './assets/images/WinterDevLogo_PrimaryLogoDark.svg';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
@@ -72,19 +73,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   menuClose: {
-    position: 'absolute',
-    right: '24px',
-    zIndex: '50',
     color: theme.palette.common.white,
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
   },
   menuBurger: {
     color: theme.palette.primary.dark,
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
+    position: 'absolute',
+    left: '16px',
+    zIndex: '50',
   },
   main: {
     padding: 0,
@@ -92,7 +87,15 @@ const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: 'transparent',
     boxShadow: 'none',
-    margin: '0 0 32px 0',
+    margin: '24px 0 32px 0',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '0 24px',
+    [theme.breakpoints.down('md')]: {
+      margin: '16px 0 24px 0',
+    },
   },
   logo: {
     height: '24px',
@@ -123,14 +126,26 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: 'solid 1px #EAF5F9',
     width: `calc(100vw - ${drawerWidth}px)`,
     height: '64px',
+    justifyContent: 'center',
     [theme.breakpoints.down('md')]: {
       width: '100vw',
     },
   },
   topNavBody: {
     padding: '0 24px 0 40px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('md')]: {
+      padding: '0 24px',
+      justifyContent: 'center',
+    },
   },
-  topNavText: {
+  notVisOnDesk: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+  notVisOnMob: {
     [theme.breakpoints.down('md')]: {
       display: 'none',
     },
@@ -177,6 +192,11 @@ const MainRouter = () => {
     );
   }
 
+  const onLogout = () => {
+    authHelper.clearJWT();
+    navigate("/", { replace: true });
+  };
+
   return (
     <Box className={classes.root}>
       <CssBaseline />
@@ -198,39 +218,45 @@ const MainRouter = () => {
         }}
         open={open}
       >
-        <IconButton
-          className={classes.menuClose}
-          onClick={handleDrawerClose}
-        >
-          <CloseIcon />
-        </IconButton>
         <Container className={classes.main}>
           <AppBar position="static" sx={{ width: drawerWidth }} className={classes.header}>
-            <Toolbar>
-              <img src={logo} alt="WDInv Logo" className={classes.logo} />
-            </Toolbar>
+            <img src={logo} alt="WDInv Logo" className={classes.logo} />
+            <IconButton
+              className={`${classes.menuClose} ${classes.notVisOnDesk}`}
+              onClick={handleDrawerClose}
+            >
+              <CloseIcon />
+            </IconButton>
           </AppBar>
           <List>
-            <Link to="/item/list" className={classes.link}>
+            <Link to="/item/list" className={classes.link} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/item/list")}>
                 <ListItemText primary="View Items" />
               </ListItem>
             </Link>
-            <Link to="/item/add" className={classes.link}>
+            <Link to="/item/add" className={classes.link} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/item/add")}>
                 <ListItemText primary="Create New Item" />
               </ListItem>
             </Link>
-            <Link to="/item/edit" className={classes.link}>
+            <Link to="/item/edit" className={classes.link} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/item/edit")}>
                 <ListItemText primary="Edit Item" />
               </ListItem>
             </Link>
-            <Link to="/users" className={classes.link}>
+            <Link to="/users" className={classes.link} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/users")}>
                 <ListItemText primary="View Users" />
               </ListItem>
             </Link>
+            <Link to="/profilebody" className={`${classes.link} ${classes.notVisOnDesk}`} onClick={handleDrawerClose}>
+              <ListItem button className={classes.listItem} style={isActive(location, "/profilebody")}>
+                <ListItemText primary="Profile" />
+              </ListItem>
+            </Link>
+            <ListItem button className={`${classes.listItem} ${classes.notVisOnDesk}`} onClick={onLogout}>
+              <ListItemText primary="Log Out" />
+            </ListItem>
           </List>
         </Container>
         <Container className={classes.footer}>
@@ -242,32 +268,26 @@ const MainRouter = () => {
       <Container
         component="main"
         className={classes.main}
-      // sx={{
-      //   flexGrow: 1,
-      //   bgcolor: "background.default",
-      //   p: 3,
-      //   marginLeft: drawerWidth, // Adjust margin left to account for Drawer width
-      //   marginTop: 64, // Offset for the AppBar
-      //   zIndex: 1, // Ensure content is above Drawer
-      //   position: "relative", // Ensure proper positioning
-      // }}
       >
         <AppBar position="fixed" sx={{ zIndex: 1 }} className={classes.topNav}>
           <Toolbar sx={{ ml: drawerWidth }} className={classes.topNavBody}>
 
             <IconButton
               onClick={handleDrawerOpen}
-              className={classes.menuBurger}
+              className={`${classes.menuBurger} ${classes.notVisOnDesk}`}
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div" className={classes.topNavText}>
+            <Typography variant="h6" noWrap component="div" className={classes.notVisOnMob}>
               Inventory Management App
             </Typography>
-
-            <Box sx={{ flexGrow: 1 }} />
-            {/* Render the Profile component in the AppBar */}
-            <Profile />
+            <Box className={classes.notVisOnMob}>
+              {/* Render the Profile component in the AppBar */}
+              <Profile />
+            </Box>
+            <Box className={classes.notVisOnDesk}>
+              <img src={logoLight} alt="WDInv Logo" className={classes.logo} />
+            </Box>
           </Toolbar>
         </AppBar>
         <Toolbar sx={{ height: 64 }} />
