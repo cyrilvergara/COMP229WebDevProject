@@ -48,15 +48,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     backgroundColor: theme.palette.grey[100],
   },
-  main: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    width: `calc(100vw - ${drawerWidth}px)`,
-    marginLeft: drawerWidth, // Adjust margin left to account for Drawer width
-    zIndex: 1, // Ensure content is above Drawer
-    position: 'relative', // Ensure proper positioning
-  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,

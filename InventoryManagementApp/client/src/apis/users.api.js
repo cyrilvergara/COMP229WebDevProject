@@ -15,7 +15,6 @@ const create = async (user) => {
 };
 
 const update = async (userId, token, user) => {
-  debugger;
   try {
     let response = await fetch("/api/users/" + userId, {
       method: "PUT",
