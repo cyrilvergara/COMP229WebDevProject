@@ -19,6 +19,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -54,6 +55,11 @@ const useStyles = makeStyles((theme) => ({
   },
   btnPrimary: {
     backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    padding: "12px 24px",
+  },
+  btnDelete: {
+    backgroundColor: theme.palette.error.main,
     color: theme.palette.common.white,
     padding: "12px 24px",
   },
@@ -263,7 +269,8 @@ export default function EditItem() {
               type="submit"
               variant="contained"
               disableElevation
-              className={classes.btnPrimary}
+              className={classes.btnDelete}
+              startIcon={<DeleteIcon />}
             >
               Delete
             </Button>
@@ -289,14 +296,22 @@ export default function EditItem() {
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Are you sure you want to delete item {textFields.itemName}?
+              Are you sure you want to delete item: {textFields.itemName}?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={dialogConfirmClick}>
+            <Button
+              autoFocus
+              onClick={dialogConfirmClick}
+              className={classes.btnDelete}
+            >
               Confirm
             </Button>
-            <Button onClick={dialogCancelClick} autoFocus>
+            <Button
+              onClick={dialogCancelClick}
+              autoFocus
+              className={classes.btnPrimary}
+            >
               Cancel
             </Button>
           </DialogActions>
