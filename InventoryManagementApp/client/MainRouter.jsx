@@ -38,6 +38,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import PeopleOutlinedIcon from '@material-ui/icons/PeopleOutlined';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const isActive = (location, path) => {
@@ -260,7 +261,7 @@ const MainRouter = () => {
             <Link to="/item/delete" className={classes.link} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/item/delete")}>
                 <ListItemIcon className={classes.listIcon}>
-                  <EditOutlinedIcon style={isActive(location, "/item/delete")} />
+                  <DeleteOutlinedIcon style={isActive(location, "/item/delete")} />
                 </ListItemIcon>
                 <ListItemText primary="Delete Item" />
               </ListItem>
