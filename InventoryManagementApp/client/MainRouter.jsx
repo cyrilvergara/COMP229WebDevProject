@@ -4,6 +4,7 @@ import Home from "./src/components/pages/Home";
 import ViewItems from "./src/components/inventory/ViewItems";
 import AddItem from "./src/components/inventory/AddItem";
 import EditItem from "./src/components/inventory/EditItem";
+import DeleteItem from "./src/components/inventory/DeleteItem";
 import authHelper from "./src/helper/auth.helper";
 import {
   AppBar,
@@ -256,6 +257,14 @@ const MainRouter = () => {
                 <ListItemText primary="Edit Item" />
               </ListItem>
             </Link>
+            <Link to="/item/delete" className={classes.link} onClick={handleDrawerClose}>
+              <ListItem button className={classes.listItem} style={isActive(location, "/item/delete")}>
+                <ListItemIcon className={classes.listIcon}>
+                  <EditOutlinedIcon style={isActive(location, "/item/delete")} />
+                </ListItemIcon>
+                <ListItemText primary="Delete Item" />
+              </ListItem>
+            </Link>
             <Link to="/users" className={classes.link} onClick={handleDrawerClose}>
               <ListItem button className={classes.listItem} style={isActive(location, "/users")}>
                 <ListItemIcon className={classes.listIcon}>
@@ -317,6 +326,7 @@ const MainRouter = () => {
           <Route exact path="/item/list" element={<ViewItems />} />
           <Route exact path="/item/add" element={<AddItem />} />
           <Route exact path="/item/edit" element={<EditItem />} />
+          <Route exact path="/item/delete" element={<DeleteItem />} />
           <Route exact path="/profilebody" element={<ProfileBody />} />
           <Route
             exact

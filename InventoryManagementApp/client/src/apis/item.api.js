@@ -31,9 +31,9 @@ const getAll = async () => {
   }
 };
 
-const update = async (updatedItem, itemName, userToken) => {
+const update = async (updatedItem, itemId, userToken) => {
   try {
-    let response = await fetch("/api/inventory/" + itemName, {
+    let response = await fetch("/api/inventory/" + itemId, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -65,4 +65,20 @@ const get = async(itemName, userToken) => {
     }
 }
 
-export { create, getAll, update, get };
+const remove = async (itemId, userToken) => {
+  try {
+    let response = await fetch("/api/inventory/" + itemId, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + userToken,
+      }
+    });
+    return await response.json(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { create, getAll, update, get, remove };

@@ -1,5 +1,5 @@
 import React from "react";
-import { update, get } from "../../apis/item.api";
+import { remove, get } from "../../apis/item.api";
 import authHelper from "../../helper/auth.helper";
 import SearchCard from "../Global/Search";
 import SnackBar from "../Global/Snackbar";
@@ -88,35 +88,22 @@ export default function EditItem() {
   const onSubmitClick = (event) => {
     event.preventDefault();
 
-    const updatedItem = {
-      itemName: textFields.itemName,
-      description: textFields.description,
-      availableQty: textFields.availableQty,
-      price: textFields.price,
-      category: textFields.category,
-      supplier: textFields.supplier,
-      size: textFields.size,
-      unit: textFields.unit,
-    };
-
-    update(updatedItem, textFields.id, auth.token).then((response) => {
+    remove(textFields.id, auth.token).then((response) => {
       if (response && response.error) {
         setOpenSnackBar({
           isSuccess: false,
           isOpen: true,
-          message: `An error occurred updating ${textFields.itemName}`,
+          message: `An error occurred deleting ${textFields.itemName}`,
         });
 
-        setFieldValues({ ...textFields, error: response.error });
         return;
       }
 
       setOpenSnackBar({
         isSuccess: true,
         isOpen: true,
-        message: `Successfully updated ${textFields.itemName}`,
+        message: `Successfully deleted item ${textFields.itemName}`,
       });
-
     });
   };
 
@@ -130,9 +117,9 @@ export default function EditItem() {
       setFieldValues({
         ...textFields,
         id: data._id,
-        itemName: data.itemName,
-        description: data.description,
-        availableQty: data.availableQty,
+        itemName: data.itemName || data.itemcode,
+        description: data.description || data.desc,
+        availableQty: data.availableQty || data.qty,
         price: data.price,
         category: data.category,
         supplier: data.supplier,
@@ -155,13 +142,13 @@ export default function EditItem() {
   return (
     <>
       <Container className={classes.main}>
-        <Typography variant="h5">Update a record</Typography>
+        <Typography variant="h5">Delete a record</Typography>
 
         <SearchCard onSearch={onSearchClick} classes={classes} />
 
         <Card className={classes.card}>
           <Typography variant="body2" className={classes.cardSubtitle}>
-            Please fill in all required fields
+            Please double check records before confirming delete.
           </Typography>
           <form onSubmit={onSubmitClick}>
             <Grid container className={classes.grid}>
@@ -179,7 +166,6 @@ export default function EditItem() {
                 value={textFields.itemName}
                 fullWidth
                 variant="standard"
-                required
                 className={classes.gridFull}
               />
               <TextField
@@ -188,9 +174,10 @@ export default function EditItem() {
                 onChange={onTextChange("description")}
                 fullWidth
                 multiline
-                rows={4}
+                minRows={4}
                 variant="standard"
                 className={classes.gridFull}
+                disabled
               />
               <TextField
                 label="Price"
@@ -198,6 +185,7 @@ export default function EditItem() {
                 onChange={onTextChange("price")}
                 fullWidth
                 variant="standard"
+                disabled
               />
               <TextField
                 label="Initial Quantity"
@@ -205,6 +193,7 @@ export default function EditItem() {
                 onChange={onTextChange("availableQty")}
                 fullWidth
                 variant="standard"
+                disabled
               />
               <TextField
                 label="Category"
@@ -212,6 +201,7 @@ export default function EditItem() {
                 onChange={onTextChange("category")}
                 fullWidth
                 variant="standard"
+                disabled
               />
               <TextField
                 label="Supplier"
@@ -219,6 +209,7 @@ export default function EditItem() {
                 onChange={onTextChange("supplier")}
                 fullWidth
                 variant="standard"
+                disabled
               />
               <TextField
                 label="Size"
@@ -226,6 +217,7 @@ export default function EditItem() {
                 onChange={onTextChange("size")}
                 fullWidth
                 variant="standard"
+                disabled
               />
               <TextField
                 label="Unit"
@@ -233,6 +225,7 @@ export default function EditItem() {
                 onChange={onTextChange("unit")}
                 fullWidth
                 variant="standard"
+                disabled
               />
             </Grid>
             <Button
@@ -241,7 +234,7 @@ export default function EditItem() {
               disableElevation
               className={classes.btnPrimary}
             >
-              Update
+              Delete
             </Button>
           </form>
         </Card>

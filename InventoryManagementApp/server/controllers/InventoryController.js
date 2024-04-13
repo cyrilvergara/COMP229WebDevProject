@@ -47,7 +47,7 @@ const updateInventoryItem = async (req, res) => {
         const updates = req.body;
         const updatedItem = await Inventory.findByIdAndUpdate(itemId, updates, { new: true });
 
-        if (!item) {
+        if (!updatedItem) {
             return res.status(404).json({ error: 'Inventory item not found' });
         }
 

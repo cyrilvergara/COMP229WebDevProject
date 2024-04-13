@@ -38,7 +38,7 @@ router.get('/:itemId', getInventoryItemById);
 router.put('/:itemId', updateInventoryItem);
 
 // Route to delete an existing inventory item
-router.delete('/:itemId', authenticateUser, deleteInventoryItem);
+router.delete('/:itemId', deleteInventoryItem);
 
 // Route to upload bulk inventory from CSV
 router.post('/upload', authenticateUser, upload.single('csvFile'), uploadBulkInventory);
