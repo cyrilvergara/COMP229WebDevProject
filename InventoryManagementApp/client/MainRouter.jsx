@@ -165,12 +165,14 @@ const MainRouter = () => {
   const location = useLocation();
   const matchesMD = useMediaQuery(theme.breakpoints.up('md'));
   const [open, setOpen] = React.useState(matchesMD);
+  const [currentRoute, setCurrentRoute] = React.useState("");
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
+  const handleDrawerClose = (event) => {
+    setCurrentRoute(event.target.innerText);
     if (!matchesMD) {
       setOpen(false);
     }
@@ -310,7 +312,7 @@ const MainRouter = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div" className={classes.notVisOnMob}>
-              Inventory Management App
+              Inventory Management App / {currentRoute}
             </Typography>
             <Box className={classes.notVisOnMob}>
               {/* Render the Profile component in the AppBar */}
