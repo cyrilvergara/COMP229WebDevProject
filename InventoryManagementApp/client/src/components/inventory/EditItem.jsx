@@ -1,7 +1,7 @@
 import React from "react";
 import { update, get } from "../../apis/item.api";
 import authHelper from "../../helper/auth.helper";
-import SearchCard from "./Search";
+import SearchCard from "../Global/Search";
 import {
   Typography,
   Container,
