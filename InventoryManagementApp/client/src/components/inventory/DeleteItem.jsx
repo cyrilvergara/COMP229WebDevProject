@@ -12,6 +12,13 @@ import {
   Grid,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -88,29 +95,17 @@ export default function EditItem() {
   const onSubmitClick = (event) => {
     event.preventDefault();
 
-    remove(textFields.id, auth.token).then((response) => {
-      if (response && response.error) {
-        setOpenSnackBar({
-          isSuccess: false,
-          isOpen: true,
-          message: `An error occurred deleting ${textFields.itemName}`,
-        });
-
-        return;
-      }
-
-      setOpenSnackBar({
-        isSuccess: true,
-        isOpen: true,
-        message: `Successfully deleted item ${textFields.itemName}`,
-      });
-    });
+    setConfirmDialogOpen(true);
   };
 
   const onSearchClick = (itemId) => {
     get(itemId, auth.token).then((data) => {
       if (data && data.error) {
-        setOpenSnackBar({ isSuccess: false, isOpen: true, message: `Failed to load item with id: ${itemId}` });
+        setOpenSnackBar({
+          isSuccess: false,
+          isOpen: true,
+          message: `Failed to load item with id: ${itemId}`,
+        });
         return;
       }
 
@@ -137,6 +132,41 @@ export default function EditItem() {
 
   const handleSnackBarClose = () => {
     setOpenSnackBar({ isSuccess: false, isOpen: false, message: "" });
+  };
+
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [open, setConfirmDialogOpen] = React.useState(false);
+
+  const dialogConfirmClick = () => {
+    setConfirmDialogOpen(true);
+
+    remove(textFields.id, auth.token).then((response) => {
+      if (response && response.error) {
+        setOpenSnackBar({
+          isSuccess: false,
+          isOpen: true,
+          message: `An error occurred deleting ${textFields.itemName}`,
+        });
+
+        setConfirmDialogOpen(false);
+
+        return;
+      }
+
+      setOpenSnackBar({
+        isSuccess: true,
+        isOpen: true,
+        message: `Successfully deleted item ${textFields.itemName}`,
+      });
+
+      setConfirmDialogOpen(false);
+    });
+  };
+
+  const dialogCancelClick = () => {
+    setConfirmDialogOpen(false);
   };
 
   return (
@@ -167,6 +197,7 @@ export default function EditItem() {
                 fullWidth
                 variant="standard"
                 className={classes.gridFull}
+                disabled
               />
               <TextField
                 label="Description"
@@ -246,6 +277,30 @@ export default function EditItem() {
           severity={openSnackBar.isSuccess ? "success" : "error"}
           position={{ vertical: "bottom", horizontal: "right" }}
         />
+
+        <Dialog
+          fullScreen={fullScreen}
+          open={open}
+          onClose={dialogCancelClick}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <DialogTitle id="responsive-dialog-title">
+            {"Confirm Delete"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete item {textFields.itemName}?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={dialogConfirmClick}>
+              Confirm
+            </Button>
+            <Button onClick={dialogCancelClick} autoFocus>
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Container>
     </>
   );
