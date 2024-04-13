@@ -106,10 +106,12 @@ export default function EditItem() {
     });
   };
 
-  const onSearchClick = () => {
-    get(textFields.id, auth.token).then((data) => {
+  const onSearchClick = (itemId) => {
+    debugger;
+    get(itemId, auth.token).then((data) => {
       setFieldValues({
         ...textFields,
+        id: data._id,
         itemName: data.itemName,
         description: data.description,
         availableQty: data.availableQty,
@@ -128,9 +130,9 @@ export default function EditItem() {
         <Typography variant="h5">
           Update a record
         </Typography>
-        {/* ----- Removed search for third release -----
-        <SearchCard /> 
-        */}
+        
+        <SearchCard onSearch={ onSearchClick } /> 
+       
         <Card className={classes.card}>
           <Typography variant="body1" className={classes.cardTitle}>
             Enter A Product ID
@@ -142,11 +144,11 @@ export default function EditItem() {
             <Grid container className={classes.grid}>
               <TextField
                 label="Id"
-                onChange={onTextChange("id")}
+                value={textFields.id}
                 fullWidth
                 variant="standard"
-                required
                 className={classes.gridFull}
+                disabled
               />
               <TextField
                 label="Item Name"
@@ -217,15 +219,7 @@ export default function EditItem() {
             className={classes.btnPrimary}
             >
               Update
-            </Button>
-            {/* ---- Removed Search Functionality ----
-            <Button
-            variant="contained"
-            color="secondary"
-            onClick={onSearchClick}>
-              Search
-            </Button> 
-            */}
+            </Button>           
           </form>
         </Card>
       </Container>

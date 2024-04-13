@@ -8,7 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
-const SearchCard = ({ data }) => {
+const SearchCard = ({ onSearch }) => {
   const theme = useTheme();
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,8 +16,11 @@ const SearchCard = ({ data }) => {
   const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
-    onSearch(value); // Pass the search term to the parent component
   };
+
+  const iconSearchClick = () =>{
+    onSearch(searchTerm); // Pass the search term to the parent component
+  }
 
   return (
     <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -38,7 +41,7 @@ const SearchCard = ({ data }) => {
           sx={{ width: '100%' }} // Stretch the TextField to the width of its container
           InputProps={{
             endAdornment: (
-              <IconButton>
+              <IconButton onClick={iconSearchClick}>
                 <SearchIcon />
               </IconButton>
             ),
