@@ -131,7 +131,7 @@ export default function EditItem() {
           Update a record
         </Typography>
         
-        <SearchCard onSearch={ onSearchClick } /> 
+        <SearchCard onSearch={ onSearchClick } classes={classes} /> 
        
         <Card className={classes.card}>
           <Typography variant="body1" className={classes.cardTitle}>
