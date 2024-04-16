@@ -312,7 +312,7 @@ const MainRouter = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div" className={classes.notVisOnMob}>
-              Inventory Management App / {currentRoute}
+              WD Inventory Management App / {currentRoute}
             </Typography>
             <Box className={classes.notVisOnMob}>
               {/* Render the Profile component in the AppBar */}
